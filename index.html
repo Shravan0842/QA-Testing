@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QA Tester Academy — Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    // Apply saved theme before paint to avoid flash
+    (function () {
+      try {
+        var t = localStorage.getItem("qat_theme_v1");
+        if (!t) {
+          t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+<div class="layout">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo">🛡️</div>
+      <div>
+        <h1>QA Tester Academy</h1>
+        <small>Manual Testing Mastery</small>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Start</div>
+      <a href="index.html" class="active"><span class="ico">🏠</span> Dashboard</a>
+
+      <div class="nav-label">Learn (Docs)</div>
+      <a href="docs.html"><span class="ico">📘</span> All Concepts</a>
+      <a href="docs.html#sdlc"><span class="ico">🔄</span> SDLC &amp; Agile</a>
+      <a href="docs.html#stlc"><span class="ico">🧪</span> STLC</a>
+      <a href="docs.html#types"><span class="ico">🔬</span> Test Types</a>
+      <a href="docs.html#design"><span class="ico">✏️</span> Test Design</a>
+      <a href="docs.html#testcase"><span class="ico">📋</span> Test Cases</a>
+      <a href="docs.html#bug"><span class="ico">🐞</span> Bug Lifecycle</a>
+      <a href="docs.html#plan"><span class="ico">🗺️</span> Test Plan</a>
+      <a href="docs.html#tools"><span class="ico">🛠️</span> Tools</a>
+
+      <div class="nav-label">Quick Reference</div>
+      <a href="cheatsheet.html"><span class="ico">⚡</span> Cheatsheet</a>
+
+      <div class="nav-label">Practice</div>
+      <a href="practice.html"><span class="ico">📝</span> Quizzes</a>
+      <a href="practice.html#flashcards"><span class="ico">🃏</span> Flashcards</a>
+      <a href="practice.html#interview"><span class="ico">💬</span> Interview Q&amp;A</a>
+      <a href="practice.html#playground"><span class="ico">🎯</span> Bug Hunting</a>
+    </nav>
+    <div class="sidebar-foot">Build by you · Learn daily · Land a QA job</div>
+  </aside>
+  <div class="overlay"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-btn">☰</button>
+      <div>
+        <div class="page-title">Dashboard</div>
+        <div class="page-crumb">Home / Welcome</div>
+      </div>
+      <div class="topbar-spacer"></div>
+      <button class="theme-toggle" id="themeToggle" title="Toggle dark / light mode" aria-label="Toggle theme">
+        <span class="ico">🌙</span><span class="label">Dark</span>
+      </button>
+    </header>
+
+    <div class="content">
+      <!-- HERO -->
+      <section class="hero">
+        <h2>👋 Welcome to QA Tester Academy!</h2>
+        <p>Your complete Manual Testing learning system. Study the Docs section to master every concept,
+           use the Cheatsheet for quick revision, and sharpen your skills in Practice.</p>
+        <div class="hero-chips">
+          <span class="chip primary">📘 15+ concept chapters</span>
+          <span class="chip teal">⚡ 40+ cheat sheets</span>
+          <span class="chip pass">📝 100+ quiz questions</span>
+          <span class="chip info">💬 50+ interview Q&amp;A</span>
+          <span class="chip warn">🎯 Bug-hunting playground</span>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <div class="stats">
+        <div class="stat"><div class="val" id="statTopics">15+</div><div class="lbl">Concept Chapters</div></div>
+        <div class="stat"><div class="val" id="statQuizzes">—</div><div class="lbl">Quizzes</div></div>
+        <div class="stat"><div class="val">100+</div><div class="lbl">MCQ Questions</div></div>
+        <div class="stat"><div class="val">50+</div><div class="lbl">Interview Q&amp;A</div></div>
+      </div>
+
+      <!-- QUICK ACTIONS -->
+      <h2 class="sec-title">Quick Actions</h2>
+      <p class="sec-sub">Follow this path: <b>Docs → Cheatsheet → Practice</b> for interview readiness.</p>
+
+      <div class="card-grid">
+        <a class="topic-card" href="docs.html">
+          <div class="ico">📘</div>
+          <h4>Learn — Docs Section</h4>
+          <p>Every manual testing concept explained simply with diagrams, tables and real examples.
+             Built so a beginner can go from zero to job-ready.</p>
+        </a>
+        <a class="topic-card" href="cheatsheet.html">
+          <div class="ico">⚡</div>
+          <h4>Cheatsheet</h4>
+          <p>Fast revision: definitions, templates, SQL commands, HTTP codes, Agile terms — everything
+             you need the night before an interview.</p>
+        </a>
+        <a class="topic-card" href="practice.html">
+          <div class="ico">📝</div>
+          <h4>Practice</h4>
+          <p>Topic quizzes, flashcards, scenario-based interview questions and a hands-on
+             bug-hunting playground where you hunt real bugs.</p>
+        </a>
+      </div>
+
+      <!-- DOCS ROADMAP -->
+      <h2 class="sec-title">📚 Your Learning Roadmap</h2>
+      <p class="sec-sub">Study in this order — each topic builds on the last. Mark topics as read in the Docs page.</p>
+
+      <div class="topic-grid">
+        <a class="topic-card" href="docs.html#intro"><div class="ico">🎓</div><h4>1. Intro to Testing</h4><p>What is testing, QA vs QC, principles of testing</p></a>
+        <a class="topic-card" href="docs.html#sdlc"><div class="ico">🔄</div><h4>2. SDLC &amp; Models</h4><p>Waterfall, V-Model, Agile, Spiral</p></a>
+        <a class="topic-card" href="docs.html#stlc"><div class="ico">🧪</div><h4>3. STLC</h4><p>The 6 phases of the testing lifecycle</p></a>
+        <a class="topic-card" href="docs.html#levels"><div class="ico">📶</div><h4>4. Test Levels</h4><p>Unit, Integration, System, UAT</p></a>
+        <a class="topic-card" href="docs.html#types"><div class="ico">🔬</div><h4>5. Test Types</h4><p>Functional &amp; non-functional testing</p></a>
+        <a class="topic-card" href="docs.html#design"><div class="ico">✏️</div><h4>6. Test Design</h4><p>BVA, Equivalence Partitioning &amp; more</p></a>
+        <a class="topic-card" href="docs.html#testcase"><div class="ico">📋</div><h4>7. Test Cases</h4><p>How to write professional test cases</p></a>
+        <a class="topic-card" href="docs.html#bug"><div class="ico">🐞</div><h4>8. Bug Lifecycle</h4><p>Severity vs priority, bug report writing</p></a>
+        <a class="topic-card" href="docs.html#plan"><div class="ico">🗺️</div><h4>9. Test Plan &amp; Strategy</h4><p>Entry/exit criteria, RTM, estimation</p></a>
+        <a class="topic-card" href="docs.html#agile"><div class="ico">🚀</div><h4>10. Agile &amp; Scrum</h4><p>Ceremonies, roles, DoD / DoR</p></a>
+        <a class="topic-card" href="docs.html#tools"><div class="ico">🛠️</div><h4>11. Tools</h4><p>Jira, Postman, SQL, Excel for testers</p></a>
+        <a class="topic-card" href="docs.html#api"><div class="ico">🔌</div><h4>12. API Testing</h4><p>HTTP methods, status codes, Postman</p></a>
+        <a class="topic-card" href="docs.html#mobile"><div class="ico">📱</div><h4>13. Mobile Testing</h4><p>Android/iOS differences, device testing</p></a>
+        <a class="topic-card" href="docs.html#nonfunc"><div class="ico">📊</div><h4>14. Performance &amp; Security</h4><p>Load testing, OWASP Top 10</p></a>
+        <a class="topic-card" href="docs.html#automation"><div class="ico">🤖</div><h4>15. Automation Basics</h4><p>Selenium, frameworks, POM — talk about it</p></a>
+        <a class="topic-card" href="docs.html#portfolio"><div class="ico">💼</div><h4>16. Portfolio Project</h4><p>Build a project that gets you hired</p></a>
+      </div>
+
+      <!-- DAILY SCHEDULE -->
+      <h2 class="sec-title">🗓️ Your 30-Day Study Plan</h2>
+      <p class="sec-sub">4 hours per day = 120 focused hours. Follow this schedule:</p>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Phase</th><th>Days</th><th>Focus</th><th>Outcome</th></tr></thead>
+            <tbody>
+              <tr><td><b>Phase 1</b></td><td>1 – 7</td><td>Foundations: SDLC, STLC, test types, test case basics</td><td>Write 25+ test cases</td></tr>
+              <tr><td><b>Phase 2</b></td><td>8 – 14</td><td>Techniques: design techniques, bug lifecycle, Jira, test plans</td><td>Complete test plan + 20 bug reports</td></tr>
+              <tr><td><b>Phase 3</b></td><td>15 – 21</td><td>Tools: Jira deep-dive, SQL, Postman/API, Excel, Linux</td><td>25 SQL queries, Postman collections</td></tr>
+              <tr><td><b>Phase 4</b></td><td>22 – 26</td><td>Advanced: Agile testing, automation concepts, mobile, portfolio</td><td>Complete portfolio project</td></tr>
+              <tr><td><b>Phase 5</b></td><td>27 – 30</td><td>Interview prep: resume, 50 questions, mock interview</td><td>Job applications ready</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout tip"><b>💡 Pro Tip</b>Your fraud-investigation background is a HUGE advantage. Frame it as: attention to detail, analytical thinking, documentation, process compliance, and stakeholder communication. Apply for QA roles in Banking, Insurance &amp; Fintech — your domain knowledge + testing = perfect fit.</div>
+      </div>
+
+      <h2 class="sec-title">🚀 Start Learning</h2>
+      <p style="margin-bottom:20px;">Begin with <a href="docs.html">the Docs section</a> and work through it chapter by chapter.</p>
+      <a class="btn" href="docs.html">📘 Start with Docs →</a>
+      <a class="btn secondary" href="practice.html" style="margin-left:10px;">📝 Jump to Practice</a>
+      <a class="btn ghost" href="cheatsheet.html" style="margin-left:10px;">⚡ Cheatsheet</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

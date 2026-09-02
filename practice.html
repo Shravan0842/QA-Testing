@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QA Tester Academy — Practice</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    // Apply saved theme before paint to avoid flash
+    (function () {
+      try {
+        var t = localStorage.getItem("qat_theme_v1");
+        if (!t) {
+          t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+<div class="layout">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo">🛡️</div>
+      <div>
+        <h1>QA Tester Academy</h1>
+        <small>Manual Testing Mastery</small>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Start</div>
+      <a href="index.html"><span class="ico">🏠</span> Dashboard</a>
+
+      <div class="nav-label">Learn (Docs)</div>
+      <a href="docs.html"><span class="ico">📘</span> All Concepts</a>
+      <a href="docs.html#sdlc"><span class="ico">🔄</span> SDLC &amp; Agile</a>
+      <a href="docs.html#stlc"><span class="ico">🧪</span> STLC</a>
+      <a href="docs.html#types"><span class="ico">🔬</span> Test Types</a>
+      <a href="docs.html#design"><span class="ico">✏️</span> Test Design</a>
+      <a href="docs.html#testcase"><span class="ico">📋</span> Test Cases</a>
+      <a href="docs.html#bug"><span class="ico">🐞</span> Bug Lifecycle</a>
+      <a href="docs.html#plan"><span class="ico">🗺️</span> Test Plan</a>
+      <a href="docs.html#tools"><span class="ico">🛠️</span> Tools</a>
+
+      <div class="nav-label">Quick Reference</div>
+      <a href="cheatsheet.html"><span class="ico">⚡</span> Cheatsheet</a>
+
+      <div class="nav-label">Practice</div>
+      <a href="practice.html" class="active"><span class="ico">📝</span> Quizzes</a>
+      <a href="practice.html#flashcards"><span class="ico">🃏</span> Flashcards</a>
+      <a href="practice.html#interview"><span class="ico">💬</span> Interview Q&amp;A</a>
+      <a href="practice.html#playground"><span class="ico">🎯</span> Bug Hunting</a>
+    </nav>
+    <div class="sidebar-foot">Build by you · Learn daily · Land a QA job</div>
+  </aside>
+  <div class="overlay"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-btn">☰</button>
+      <div>
+        <div class="page-title">📝 Practice Center</div>
+        <div class="page-crumb">Home / Practice</div>
+      </div>
+      <div class="topbar-spacer"></div>
+      <button class="theme-toggle" id="themeToggle" title="Toggle dark / light mode" aria-label="Toggle theme">
+        <span class="ico">🌙</span><span class="label">Dark</span>
+      </button>
+    </header>
+
+    <div class="content">
+      <h2 class="sec-title">🎯 Practice &amp; Interview Prep</h2>
+      <p class="sec-sub">Test yourself with quizzes, drill with flashcards, master interview answers, and hunt real bugs in the playground.</p>
+
+      <!-- TABS -->
+      <div class="tabs" data-tabs="practice-tabs">
+        <button class="tab active" data-panel="quiz">📝 Quizzes</button>
+        <button class="tab" data-panel="flashcards">🃏 Flashcards</button>
+        <button class="tab" data-panel="interview">💬 Interview Q&amp;A</button>
+        <button class="tab" data-panel="playground">🎯 Bug Hunting</button>
+      </div>
+
+      <!-- ============ QUIZZES ============ -->
+      <div class="tab-panel active" id="quiz">
+        <p>Select an option then click <b>"Check My Answers"</b>. Score 70%+ to pass each quiz. Your best scores are saved automatically.</p>
+
+        <!-- Quiz 1: fundamentals -->
+        <div class="card" data-quiz="quiz_fundamentals">
+          <h3>Quiz 1 — Fundamentals</h3>
+          <div class="quiz-q" data-answer="A">
+            <div class="q-tag">Fundamentals</div>
+            <div class="q-text">What is the difference between Verification and Validation?</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">Verification = static review (building right?), Validation = executing the product (building the right thing?)</div>
+              <div class="opt" data-opt="B">They are the same thing</div>
+              <div class="opt" data-opt="C">Verification is done by developers only, validation by testers only</div>
+              <div class="opt" data-opt="D">Verification finds security bugs, validation finds functional bugs</div>
+            </div>
+            <div class="explain">Verification checks documents/code against requirements (static, no execution). Validation runs the software to confirm it meets user needs.</div>
+          </div>
+          <div class="quiz-q" data-answer="C">
+            <div class="q-tag">Fundamentals</div>
+            <div class="q-text">"Testing can prove bugs exist but can never prove the software is bug-free." This is which principle of testing?</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">Defects cluster together</div>
+              <div class="opt" data-opt="B">Pesticide paradox</div>
+              <div class="opt" data-opt="C">Testing shows the presence of defects</div>
+              <div class="opt" data-opt="D">Exhaustive testing is impossible</div>
+            </div>
+            <div class="explain">Principle #1: testing shows the presence of defects, not their absence.</div>
+          </div>
+          <div class="quiz-q" data-answer="B">
+            <div class="q-tag">Fundamentals</div>
+            <div class="q-text">A bug found at which stage costs the LEAST to fix?</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">Production</div>
+              <div class="opt" data-opt="B">Requirements / early design</div>
+              <div class="opt" data-opt="C">During testing</div>
+              <div class="opt" data-opt="D">After deployment</div>
+            </div>
+            <div class="explain">Early testing saves time and money — a bug found in requirements costs ~10x less than in production.</div>
+          </div>
+          <div class="quiz-result" style="display:none; font-weight:700; margin-top:12px; padding:12px; background:var(--bg-soft); border-radius:8px;"></div>
+          <div style="margin-top:12px;">
+            <button class="btn check-quiz">✅ Check My Answers</button>
+            <button class="btn ghost reset-quiz" style="margin-left:8px;">↻ Retake</button>
+          </div>
+        </div>
+
+        <!-- Quiz 2: test types -->
+        <div class="card" data-quiz="quiz_types">
+          <h3>Quiz 2 — Test Types</h3>
+          <div class="quiz-q" data-answer="D">
+            <div class="q-tag">Test Types</div>
+            <div class="q-text">After a new feature is added, you run the full set of existing tests to check nothing broke. This is:</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">Smoke testing</div>
+              <div class="opt" data-opt="B">Sanity testing</div>
+              <div class="opt" data-opt="C">Unit testing</div>
+              <div class="opt" data-opt="D">Regression testing</div>
+            </div>
+            <div class="explain">Regression ensures new changes did not break existing functionality.</div>
+          </div>
+          <div class="quiz-q" data-answer="A">
+            <div class="q-tag">Test Types</div>
+            <div class="q-text">You receive a new build and want a quick check that critical features (login, home page) work before deep testing. This is:</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">Smoke testing</div>
+              <div class="opt" data-opt="B">Ad-hoc testing</div>
+              <div class="opt" data-opt="C">UAT</div>
+              <div class="opt" data-opt="D">Load testing</div>
+            </div>
+            <div class="explain">Smoke testing is the quick "build is testable?" check on critical features.</div>
+          </div>
+          <div class="quiz-q" data-answer="B">
+            <div class="q-tag">Test Types</div>
+            <div class="q-text">Client representatives test the system to confirm it satisfies business needs. This is:</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">System testing</div>
+              <div class="opt" data-opt="B">User Acceptance Testing (UAT)</div>
+              <div class="opt" data-opt="C">Sanity testing</div>
+              <div class="opt" data-opt="D">Stress testing</div>
+            </div>
+            <div class="explain">UAT is done by business/users to accept the product.</div>
+          </div>
+          <div class="quiz-result" style="display:none; font-weight:700; margin-top:12px; padding:12px; background:var(--bg-soft); border-radius:8px;"></div>
+          <div style="margin-top:12px;">
+            <button class="btn check-quiz">✅ Check My Answers</button>
+            <button class="btn ghost reset-quiz" style="margin-left:8px;">↻ Retake</button>
+          </div>
+        </div>
+
+        <!-- Quiz 3: design techniques -->
+        <div class="card" data-quiz="quiz_design">
+          <h3>Quiz 3 — Test Design Techniques</h3>
+          <div class="quiz-q" data-answer="C">
+            <div class="q-tag">Test Design</div>
+            <div class="q-text">An input field accepts values from 1 to 100. Using Boundary Value Analysis, which values must you test?</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">1, 50, 100</div>
+              <div class="opt" data-opt="B">-1, 1, 100, 101</div>
+              <div class="opt" data-opt="C">0, 1, 100, 101</div>
+              <div class="opt" data-opt="D">Only 1 and 100</div>
+            </div>
+            <div class="explain">BVA tests just below, at, and just above boundaries: 0 (below min), 1 (min), 100 (max), 101 (above max).</div>
+          </div>
+          <div class="quiz-q" data-answer="A">
+            <div class="q-tag">Test Design</div>
+            <div class="q-text">You split valid inputs into groups and test one value from each group. This is:</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">Equivalence Partitioning</div>
+              <div class="opt" data-opt="B">State transition</div>
+              <div class="opt" data-opt="C">Error guessing</div>
+              <div class="opt" data-opt="D">Decision table</div>
+            </div>
+            <div class="explain">EP groups inputs that behave the same; testing one value from each group is enough.</div>
+          </div>
+          <div class="quiz-q" data-answer="B">
+            <div class="q-tag">Test Design</div>
+            <div class="q-text">Username correct but password wrong — you get "Invalid password" error. Which table documents this combination logic?</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">State transition diagram</div>
+              <div class="opt" data-opt="B">Decision table</div>
+              <div class="opt" data-opt="C">Traceability matrix</div>
+              <div class="opt" data-opt="D">Use case table</div>
+            </div>
+            <div class="explain">Decision tables capture combinations of conditions and their results — great for business rules.</div>
+          </div>
+          <div class="quiz-result" style="display:none; font-weight:700; margin-top:12px; padding:12px; background:var(--bg-soft); border-radius:8px;"></div>
+          <div style="margin-top:12px;">
+            <button class="btn check-quiz">✅ Check My Answers</button>
+            <button class="btn ghost reset-quiz" style="margin-left:8px;">↻ Retake</button>
+          </div>
+        </div>
+
+        <!-- Quiz 4: bug lifecycle -->
+        <div class="card" data-quiz="quiz_bug">
+          <h3>Quiz 4 — Bug Lifecycle &amp; Reporting</h3>
+          <div class="quiz-q" data-answer="D">
+            <div class="q-tag">Bugs</div>
+            <div class="q-text">A tester retests a fixed bug and the bug still occurs. The bug status becomes:</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">Closed</div>
+              <div class="opt" data-opt="B">Deferred</div>
+              <div class="opt" data-opt="C">Rejected</div>
+              <div class="opt" data-opt="D">Reopened</div>
+            </div>
+            <div class="explain">When a fix doesn't work, the bug is Reopened and goes back to the developer.</div>
+          </div>
+          <div class="quiz-q" data-answer="C">
+            <div class="q-tag">Bugs</div>
+            <div class="q-text">The company logo is misspelled on the homepage. It's a cosmetic issue but the client wants it fixed today. This is:</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">High severity, high priority</div>
+              <div class="opt" data-opt="B">Low severity, low priority</div>
+              <div class="opt" data-opt="C">Low severity, high priority</div>
+              <div class="opt" data-opt="D">High severity, low priority</div>
+            </div>
+            <div class="explain">Spelling/cosmetic = LOW severity, but business urgency makes it HIGH priority.</div>
+          </div>
+          <div class="quiz-q" data-answer="B">
+            <div class="q-tag">Bugs</div>
+            <div class="q-text">Which is NOT part of a good bug report?</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">Steps to reproduce</div>
+              <div class="opt" data-opt="B">Just "it's broken" with no steps</div>
+              <div class="opt" data-opt="C">Expected vs actual result</div>
+              <div class="opt" data-opt="D">Environmental details</div>
+            </div>
+            <div class="explain">A bug without clear steps can't be reproduced or fixed. Always document everything.</div>
+          </div>
+          <div class="quiz-result" style="display:none; font-weight:700; margin-top:12px; padding:12px; background:var(--bg-soft); border-radius:8px;"></div>
+          <div style="margin-top:12px;">
+            <button class="btn check-quiz">✅ Check My Answers</button>
+            <button class="btn ghost reset-quiz" style="margin-left:8px;">↻ Retake</button>
+          </div>
+        </div>
+
+        <!-- Quiz 5: agile -->
+        <div class="card" data-quiz="quiz_agile">
+          <h3>Quiz 5 — Agile &amp; Scrum</h3>
+          <div class="quiz-q" data-answer="A">
+            <div class="q-tag">Agile</div>
+            <div class="q-text">Which is NOT a Scrum ceremony?</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">Waterfall review</div>
+              <div class="opt" data-opt="B">Sprint planning</div>
+              <div class="opt" data-opt="C">Daily stand-up</div>
+              <div class="opt" data-opt="D">Sprint retrospective</div>
+            </div>
+            <div class="explain">Waterfall isn't a Scrum ceremony — Scrum has planning, stand-up, review, retrospective, and refinement.</div>
+          </div>
+          <div class="quiz-q" data-answer="C">
+            <div class="q-tag">Agile</div>
+            <div class="q-text">Who selects and prioritizes what's in the Product Backlog?</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">Scrum Master</div>
+              <div class="opt" data-opt="B">Tester</div>
+              <div class="opt" data-opt="C">Product Owner</div>
+              <div class="opt" data-opt="D">Developer</div>
+            </div>
+            <div class="explain">The Product Owner owns the backlog and its priorities.</div>
+          </div>
+          <div class="quiz-q" data-answer="B">
+            <div class="q-tag">Agile</div>
+            <div class="q-text">"Definition of Done" means:</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">The story is ready to be started</div>
+              <div class="opt" data-opt="B">The story is truly finished — developed, tested, and accepted</div>
+              <div class="opt" data-opt="C">The sprint has ended</div>
+              <div class="opt" data-opt="D">The bug report is complete</div>
+            </div>
+            <div class="explain">DoD = the shared checklist for "finished". DoR = ready to start.</div>
+          </div>
+          <div class="quiz-result" style="display:none; font-weight:700; margin-top:12px; padding:12px; background:var(--bg-soft); border-radius:8px;"></div>
+          <div style="margin-top:12px;">
+            <button class="btn check-quiz">✅ Check My Answers</button>
+            <button class="btn ghost reset-quiz" style="margin-left:8px;">↻ Retake</button>
+          </div>
+        </div>
+
+        <!-- Quiz 6: api & sql -->
+        <div class="card" data-quiz="quiz_apitools">
+          <h3>Quiz 6 — API &amp; SQL</h3>
+          <div class="quiz-q" data-answer="B">
+            <div class="q-tag">API</div>
+            <div class="q-text">Which HTTP method is used to CREATE new data?</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">GET</div>
+              <div class="opt" data-opt="B">POST</div>
+              <div class="opt" data-opt="C">DELETE</div>
+              <div class="opt" data-opt="D">PATCH</div>
+            </div>
+            <div class="explain">POST creates; GET reads; PUT/PATCH update; DELETE removes.</div>
+          </div>
+          <div class="quiz-q" data-answer="C">
+            <div class="q-tag">API</div>
+            <div class="q-text">HTTP status 401 means:</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">Not Found</div>
+              <div class="opt" data-opt="B">Internal Server Error</div>
+              <div class="opt" data-opt="C">Unauthorized — login required</div>
+              <div class="opt" data-opt="D">OK</div>
+            </div>
+            <div class="explain">401 = unauthenticated (not logged in). 403 = forbidden (logged in but no permission).</div>
+          </div>
+          <div class="quiz-q" data-answer="A">
+            <div class="q-tag">SQL</div>
+            <div class="q-text">Which SQL clause filters groups AFTER aggregation?</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">HAVING</div>
+              <div class="opt" data-opt="B">WHERE</div>
+              <div class="opt" data-opt="C">ORDER BY</div>
+              <div class="opt" data-opt="D">JOIN</div>
+            </div>
+            <div class="explain">WHERE filters rows before grouping; HAVING filters groups after GROUP BY.</div>
+          </div>
+          <div class="quiz-result" style="display:none; font-weight:700; margin-top:12px; padding:12px; background:var(--bg-soft); border-radius:8px;"></div>
+          <div style="margin-top:12px;">
+            <button class="btn check-quiz">✅ Check My Answers</button>
+            <button class="btn ghost reset-quiz" style="margin-left:8px;">↻ Retake</button>
+          </div>
+        </div>
+
+        <!-- Quiz 7: definitions -->
+        <div class="card" data-quiz="quiz_defs">
+          <h3>Quiz 7 — Quick Definitions</h3>
+          <div class="quiz-q" data-answer="D">
+            <div class="q-tag">Definitions</div>
+            <div class="q-text">What is a Test Scenario?</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">A step-by-step instruction to execute</div>
+              <div class="opt" data-opt="B">A type of programming</div>
+              <div class="opt" data-opt="C">The final report</div>
+              <div class="opt" data-opt="D">A one-line statement of WHAT to test</div>
+            </div>
+            <div class="explain">Scenario = what to test (one line). Test case = how to test (steps + expected result).</div>
+          </div>
+          <div class="quiz-q" data-answer="C">
+            <div class="q-tag">Definitions</div>
+            <div class="q-text">An RTM (Traceability Matrix) maps requirements to:</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">Only bugs</div>
+              <div class="opt" data-opt="B">Only developers</div>
+              <div class="opt" data-opt="C">Test cases and bugs</div>
+              <div class="opt" data-opt="D">Nothing</div>
+            </div>
+            <div class="explain">RTM proves every requirement is covered by test cases and tracked through to bugs.</div>
+          </div>
+          <div class="quiz-q" data-answer="A">
+            <div class="q-tag">Definitions</div>
+            <div class="q-text">Which of these is a NON-functional test?</div>
+            <div class="opts">
+              <div class="opt" data-opt="A">Performance testing</div>
+              <div class="opt" data-opt="B">Login testing</div>
+              <div class="opt" data-opt="C">Search testing</div>
+              <div class="opt" data-opt="D">Payment testing</div>
+            </div>
+            <div class="explain">Non-functional = HOW the system performs (performance, security, usability, compatibility).</div>
+          </div>
+          <div class="quiz-result" style="display:none; font-weight:700; margin-top:12px; padding:12px; background:var(--bg-soft); border-radius:8px;"></div>
+          <div style="margin-top:12px;">
+            <button class="btn check-quiz">✅ Check My Answers</button>
+            <button class="btn ghost reset-quiz" style="margin-left:8px;">↻ Retake</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ FLASHCARDS ============ -->
+      <div class="tab-panel" id="flashcards">
+        <p>Click a card to flip it. Drill these until you can answer without flipping. 🃏</p>
+        <div class="flashcards">
+          <div class="flashcard"><div class="inner"><div class="face front">What is the difference between smoke &amp; sanity testing?<span class="hint">Click</span></div><div class="face back">SMOKE = is the whole build testable? (wide, critical features). SANITY = does this one fix work? (narrow).</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">Regression vs Retesting?<span class="hint">Click</span></div><div class="face back">RETEST = re-run the exact failed case after a fix. REGRESSION = check new changes didn't break existing features.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">Verification vs Validation?<span class="hint">Click</span></div><div class="face back">VERIFICATION = building the product right (static review). VALIDATION = building the right product (execute &amp; confirm).</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">Severity vs Priority?<span class="hint">Click</span></div><div class="face back">SEVERITY = how bad the bug is (set by tester). PRIORITY = how urgent to fix (set by PM/business).</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What is BVA?<span class="hint">Click</span></div><div class="face back">Boundary Value Analysis — test at, just below, and just above boundaries. Field 1-100 → test 0, 1, 100, 101.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What is Equivalence Partitioning?<span class="hint">Click</span></div><div class="face back">Split inputs into groups treated the same way; test ONE value per group.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">List the 6 STLC phases.<span class="hint">Click</span></div><div class="face back">Requirement Analysis → Test Planning → Test Case Development → Environment Setup → Test Execution → Test Closure (RTPEEC).</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">List the bug lifecycle.<span class="hint">Click</span></div><div class="face back">New → Assigned → Open → Fixed → Retest → Closed. Plus: Reopened, Deferred, Rejected.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What is an RTM?<span class="hint">Click</span></div><div class="face back">Requirement Traceability Matrix — maps each requirement → test case → bug, proving full coverage.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What is a Test Plan?<span class="hint">Click</span></div><div class="face back">Document covering scope, approach, resources, schedule, entry/exit criteria, and risks for testing.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">Who sets severity? Who sets priority?<span class="hint">Click</span></div><div class="face back">Tester sets severity; Project Manager / Product Owner sets priority.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">HTTP 200, 400, 404, 401, 500?<span class="hint">Click</span></div><div class="face back">200 = OK, 400 = Bad Request, 401 = Unauthorized, 404 = Not Found, 500 = Internal Server Error.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">Name the 4 Scrum ceremonies.<span class="hint">Click</span></div><div class="face back">Sprint Planning, Daily Stand-up, Sprint Review, Sprint Retrospective (plus Backlog Refinement).</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What is DoD vs DoR?<span class="hint">Click</span></div><div class="face back">DoR = story ready to start. DoD = story truly finished (developed, tested, accepted).</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">Positive vs Negative testing?<span class="hint">Click</span></div><div class="face back">Positive = valid input → success. Negative = invalid input → proper error handling.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What is exploratory testing?<span class="hint">Click</span></div><div class="face back">Unplanned, creative testing where the tester explores the app and learns as they go to find unexpected bugs.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">Name 3 non-functional test types.<span class="hint">Click</span></div><div class="face back">Performance, Security, Usability, Compatibility, Accessibility, Load, Stress.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What is the "pesticide paradox"?<span class="hint">Click</span></div><div class="face back">Repeating the same tests stops finding new bugs — keep adding and reviewing test cases.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What is UAT?<span class="hint">Click</span></div><div class="face back">User Acceptance Testing — done by the client/business users to confirm the software meets their needs.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">4 levels of testing?<span class="hint">Click</span></div><div class="face back">Unit (dev) → Integration → System → UAT (client).</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">Which tool is used for API testing?<span class="hint">Click</span></div><div class="face back">Postman (or SoapUI / REST Assured).</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">Which tool for defect tracking is most popular?<span class="hint">Click</span></div><div class="face back">Jira (also Azure DevOps, Bugzilla).</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What is a "blocked" test case status?<span class="hint">Click</span></div><div class="face back">The test can't be executed due to environment/data/blockers — it's not a fail, it's blocked.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What does "defect clustering" mean?<span class="hint">Click</span></div><div class="face back">Most defects (~80%) are found in a small number of modules (~20%) — focus testing there.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">Alpha vs Beta testing?<span class="hint">Click</span></div><div class="face back">Alpha = internal team testing at the company. Beta = real external users test before release.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What is entry criteria?<span class="hint">Click</span></div><div class="face back">Conditions to START testing — build deployed, environment ready, test data available, cases reviewed.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What is exit criteria?<span class="hint">Click</span></div><div class="face back">Conditions to STOP — all planned tests executed, critical bugs closed, no P1 blockers, report approved.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">Name 3 SDLC models.<span class="hint">Click</span></div><div class="face back">Waterfall, V-Model, Agile (Scrum), Spiral, Iterative.</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What is a user story format?<span class="hint">Click</span></div><div class="face back">"As a [role], I want [feature] so that [benefit]".</div></div></div>
+          <div class="flashcard"><div class="inner"><div class="face front">What is a test suite?<span class="hint">Click</span></div><div class="face back">A collection of test cases for a module, feature, or release.</div></div></div>
+        </div>
+      </div>
+
+      <!-- ============ INTERVIEW ============ -->
+      <div class="tab-panel" id="interview">
+        <p>Frequently asked interview questions with model answers. Click a question to reveal the answer, or use the accordion below.</p>
+
+        <div class="accordion">
+          <div class="acc-head">1. Tell me about yourself (fresher QA). <span class="toggle">▼</span></div>
+          <div class="acc-body">"I've recently completed a structured manual testing course and built a portfolio project on an e-commerce website. I've written a test plan, 50+ test cases using BVA and EP, logged bugs, and prepared a test summary report. I'm detail-oriented, good at documentation, and understand SDLC, STLC, Agile/Scrum, Jira, SQL, and Postman basics. I'm excited to join as a manual QA to ensure quality software."</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">2. What is SDLC? List the phases. <span class="toggle">▼</span></div>
+          <div class="acc-body">SDLC (Software Development Life Cycle) is the process of building software. Phases: Requirements → Design → Development → Testing → Deployment → Maintenance. QA adds value in every phase.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">3. What is STLC? <span class="toggle">▼</span></div>
+          <div class="acc-body">STLC (Software Testing Life Cycle) is the testing process: 1. Requirement Analysis, 2. Test Planning, 3. Test Case Development, 4. Environment Setup, 5. Test Execution, 6. Test Closure.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">4. Difference between Waterfall and Agile? <span class="toggle">▼</span></div>
+          <div class="acc-body">Waterfall is linear — each phase completes before the next, testing happens at the end, changes are costly. Agile is iterative — work in short sprints, testing happens in every sprint with continuous feedback, and requirements can change quickly.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">5. Difference between severity and priority? <span class="toggle">▼</span></div>
+          <div class="acc-body">Severity measures how serious/impactful a bug is on the system (Critical, Major, Minor, Trivial) and is usually set by the tester. Priority measures how urgently it must be fixed (P1–P4) and is set by the PM/Product Owner. Example: a misspelled logo is low severity but can be high priority.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">6. What is the bug/defect lifecycle? <span class="toggle">▼</span></div>
+          <div class="acc-body">New → Assigned → Open → Fixed → Retest → Closed, with states like Reopened (fix didn't work), Deferred (fix later), and Rejected (not a bug / duplicate).</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">7. Difference between smoke, sanity, and regression testing? <span class="toggle">▼</span></div>
+          <div class="acc-body">Smoke = quick check that the build is testable (wide, critical features). Sanity = quick check that one specific fix works (narrow). Regression = verify new changes didn't break existing functionality (wide).</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">8. How do you write a good test case? <span class="toggle">▼</span></div>
+          <div class="acc-body">Clear ID, descriptive title, preconditions, test data, numbered steps, expected result, and later the actual result &amp; status. Test one thing per case, cover positive + negative + boundary scenarios, and write it so anyone can follow. Example for login: enter valid username/password → expect dashboard.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">9. What is boundary value analysis? Give an example. <span class="toggle">▼</span></div>
+          <div class="acc-body">BVA tests values at, just below, and just above the boundaries of a field. For an age field accepting 18–60, I'd test 17, 18, 60, and 61 because bugs cluster at boundaries.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">10. What is equivalence partitioning? <span class="toggle">▼</span></div>
+          <div class="acc-body">EP divides inputs into partitions that the system treats the same way; test one value from each partition. For 0–100 marks: valid partition = 50, invalid = -5 and 150.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">11. What is a test plan? What does it contain? <span class="toggle">▼</span></div>
+          <div class="acc-body">A test plan is a document that defines the testing scope, approach, resources, schedule, entry/exit criteria, deliverables, and risks. It's the roadmap for testing.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">12. What is RTM and why is it important? <span class="toggle">▼</span></div>
+          <div class="acc-body">RTM (Requirement Traceability Matrix) maps each requirement to its test cases and bugs. It proves 100% requirement coverage and helps when requirements change — you can find which tests are affected.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">13. What is entry and exit criteria? <span class="toggle">▼</span></div>
+          <div class="acc-body">Entry criteria are conditions to START testing (build deployed, environment ready, test data available). Exit criteria are conditions to STOP (all tests executed, critical bugs closed, no blockers, report approved).</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">14. What is the difference between a bug, error, and failure? <span class="toggle">▼</span></div>
+          <div class="acc-body">Error = mistake by a developer in code. Bug/Defect = deviation between expected and actual behavior found during testing. Failure = when a user experiences the defect at runtime.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">15. What is positive and negative testing? <span class="toggle">▼</span></div>
+          <div class="acc-body">Positive testing uses valid inputs and expects success (login with correct credentials). Negative testing uses invalid inputs and verifies proper error handling (wrong password shows an error, not a crash).</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">16. How would you test a login page? <span class="toggle">▼</span></div>
+          <div class="acc-body">Test valid login, invalid username, invalid password, both empty, boundary on password length, special characters, "Remember me", forgot-password flow, session timeout, UI alignment on multiple screens, and verify error messages are correct and no crash occurs.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">17. What do you do if a bug is not reproducible? <span class="toggle">▼</span></div>
+          <div class="acc-body">Note the exact environment, time, steps; add screenshots/videos; ask the developer to test on their environment; check logs; add heap dump if possible; mark it as "sometimes/occasionally failed" and keep the bug open with all details.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">18. The developer says "it's working on my machine". What do you do? <span class="toggle">▼</span></div>
+          <div class="acc-body">Compare environments (OS, browser version, data, configs), reproduce with the exact build version, share screenshots/logs, and if it's truly environment-specific, document it clearly rather than arguing — evidence wins.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">19. What is the difference between verification and validation? <span class="toggle">▼</span></div>
+          <div class="acc-body">Verification is static — reviewing documents/design to confirm we're building it right (like a review). Validation is dynamic — executing the software to confirm we built the right product.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">20. What is compatibility testing? <span class="toggle">▼</span></div>
+          <div class="acc-body">Checking the application works across different browsers, OS, devices, screen sizes, and network conditions. After functional tests pass, verify look and behavior is consistent everywhere.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">21. Why do we need SQL knowledge in testing? <span class="toggle">▼</span></div>
+          <div class="acc-body">To verify data stored correctly in the database (e.g., a payment is recorded), to prepare test data, to validate reports, and to check the backend of features — the UI may show success but the DB may reveal issues.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">22. Name the HTTP status codes you know. <span class="toggle">▼</span></div>
+          <div class="acc-body">2xx success (200 OK, 201 Created), 3xx redirection (301/302), 4xx client errors (400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found), 5xx server errors (500 Internal Server Error, 503 Service Unavailable).</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">23. What is API testing? <span class="toggle">▼</span></div>
+          <div class="acc-body">Testing backend APIs directly (without UI) to verify request/response logic, status codes, data validation, authentication, and business rules. It's faster and tests core logic before UI.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">24. Difference between int, smoke, and regression in one sentence each? <span class="toggle">▼</span></div>
+          <div class="acc-body">Integration = modules working together. Smoke = quick build-stability check. Regression = nothing broke after changes.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">25. What is a retest? <span class="toggle">▼</span></div>
+          <div class="acc-body">Retesting is re-running the exact test case that failed, after a developer has fixed the bug, to confirm the fix works.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">26. What is exploratory testing? <span class="toggle">▼</span></div>
+          <div class="acc-body">Unscripted, creative testing where the tester explores the application, learns it as they go, and uses intuition and experience to find bugs that scripted tests might miss.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">27. What is the role of a tester in an Agile team? <span class="toggle">▼</span></div>
+          <div class="acc-body">Participate in sprint planning and backlog refinement, write test cases from acceptance criteria early, test features as they're developed, log and track bugs, do regression each sprint, and give fast feedback to help deliver quality increments.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">28. What is performance testing? What types exist? <span class="toggle">▼</span></div>
+          <div class="acc-body">Performance testing checks speed, responsiveness, and stability. Types: Load (expected load), Stress (beyond limits), Endurance (long duration), Spike (sudden load), Volume (large data). Tool: JMeter.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">29. What is the difference between load and stress testing? <span class="toggle">▼</span></div>
+          <div class="acc-body">Load testing verifies the system works fine under expected/peak load. Stress testing pushes beyond limits to find the breaking point and how the system fails (and recovers).</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">30. What is UAT? <span class="toggle">▼</span></div>
+          <div class="acc-body">User Acceptance Testing — performed by real business users/clients in an environment close to production to confirm the software meets their business needs before release.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">31. What do you know about mobile testing challenges? <span class="toggle">▼</span></div>
+          <div class="acc-body">Device fragmentation (many devices/OS/screens), network variability (2G–5G, WiFi), interruptions (calls, SMS, notifications), battery/memory constraints, and OS version differences. Test install/uninstall, permissions, rotation, and performance too.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">32. What is the difference between emulator and real device? <span class="toggle">▼</span></div>
+          <div class="acc-body">An emulator/simulator is a software copy on the computer — fast and free for early functional testing. A real device behaves realistically (sensors, network, battery) and is needed for final verification.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">33. What is security testing? What do you know? <span class="toggle">▼</span></div>
+          <div class="acc-body">Security testing checks the app is protected from attacks and data leaks — e.g., SQL injection, XSS, broken authentication, insecure data storage. I'm familiar with OWASP Top 10 and basic testing of authorization, encryption, and session handling.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">34. What is automation testing? Do you know Selenium? <span class="toggle">▼</span></div>
+          <div class="acc-body">Automation uses tools to run tests repeatedly and fast (Selenium, Cypress, Playwright). I understand the concept, when to automate (repeated regression, large data) vs not (usability, exploratory), and frameworks like Data-Driven and Page Object Model. I'm learning the basics to grow into automation.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">35. What is the "Page Object Model"? <span class="toggle">▼</span></div>
+          <div class="acc-body">POM is an automation design pattern where each page of the app is represented by a class. Test code says "loginPage.login()" instead of messy selectors — making tests cleaner, reusable, and easier to maintain.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">36. What is the difference between a defect and a failure? <span class="toggle">▼</span></div>
+          <div class="acc-body">A defect is the coding problem (found during testing). A failure is when an end-user observes that defect in production.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">37. What is "defect density"? <span class="toggle">▼</span></div>
+          <div class="acc-body">The number of defects per unit of software size (e.g., per 1000 lines of code). It helps measure which modules are most buggy and quality of code.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">38. How do you prioritize which test cases to run first? <span class="toggle">▼</span></div>
+          <div class="acc-body">Run: (1) smoke/high-priority critical paths, (2) test cases matching recent changes, (3) high-risk modules (payments, login), then (4) lower-risk and cosmetic areas. Time-box testing based on risk.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">39. What is a traceability matrix used for during requirement changes? <span class="toggle">▼</span></div>
+          <div class="acc-body">When a requirement changes, the RTM helps identify exactly which test cases are affected and must be updated and re-run — ensuring nothing is missed.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">40. What is the difference between "defect rejection" and "defect deferred"? <span class="toggle">▼</span></div>
+          <div class="acc-body">Rejected = the defect is not valid (not a bug, duplicate, or by design). Deferred = the defect is valid but will be fixed in a future release, not this one.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">41. What is a "smoke test" and why is it the first test? <span class="toggle">▼</span></div>
+          <div class="acc-body">A smoke test quickly checks the critical functionality (app opens, login works, main pages load). It's run first on each build to decide whether the build is stable enough to accept for deeper testing.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">42. What is your understanding of "quality assurance vs quality control"? <span class="toggle">▼</span></div>
+          <div class="acc-body">QA is proactive — improving the process to prevent defects. QC is reactive — verifying the product to detect defects. Testing is part of QC.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">43. What is an epic, story, and task? <span class="toggle">▼</span></div>
+          <div class="acc-body">Epic = large feature that's broken down. Story = a user-valued feature in user-story format. Task = a piece of work that contributes to finishing a story (e.g., "write test cases for login").</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">44. How do you handle a massive release with tight deadlines? <span class="toggle">▼</span></div>
+          <div class="acc-body">Prioritize by risk — test critical/high-risk modules first, use smoke and sanity checks, apply BVA/EP for efficient coverage, communicate risks early to the PM, and clearly report what is untested so the team makes an informed release decision.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">45. What is the "test summary report"? <span class="toggle">▼</span></div>
+          <div class="acc-body">The closing document of testing that summarizes what was tested, pass/fail percentages, defects found and closed, coverage achieved, risks, and the release recommendation (go / no-go).</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">46. What are the 7 principles of testing? <span class="toggle">▼</span></div>
+          <div class="acc-body">1. Testing shows presence of defects. 2. Exhaustive testing is impossible. 3. Early testing saves money. 4. Defects cluster. 5. Pesticide paradox. 6. Testing is context-dependent. 7. Absence-of-errors fallacy.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">47. What is the difference between functional and non-functional testing? <span class="toggle">▼</span></div>
+          <div class="acc-body">Functional testing checks WHAT the system does (features work per requirements). Non-functional testing checks HOW it performs — performance, security, usability, compatibility, accessibility.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">48. When would you reject a build? <span class="toggle">▼</span></div>
+          <div class="acc-body">When smoke/critical tests fail — for example, the app won't launch or login consistently fails. Rejecting early saves the team from testing a broken build. Always document why it was rejected.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">49. What is "testing is context-dependent"? <span class="toggle">▼</span></div>
+          <div class="acc-body">Testing approach depends on the application — a banking app needs heavy security/transaction testing, a game needs performance/UX, a website needs compatibility. There's no single correct approach for everything.</div>
+        </div>
+        <div class="accordion">
+          <div class="acc-head">50. Why should we hire you as a QA tester? <span class="toggle">▼</span></div>
+          <div class="acc-body">"I'm highly detail-oriented and analytical — I've spent 2 years in fraud investigation, where I examined transactions, followed evidence, and documented findings precisely. That's exactly what a good tester does: investigate behavior, find discrepancies, and document evidence. Plus I've completed structured QA training with test cases, bug reports, and a portfolio project, and I understand Jira, SQL, Postman, and Agile. I'll bring both discipline and a genuine passion for finding defects."</div>
+        </div>
+
+        <div class="callout tip" style="margin-top:18px;"><b>💡 How To Prep</b>Don't memorize word-for-word. Understand each concept, then practice saying answers out loud. Record yourself and refine. Scenario questions (16, 17, 18) are the favorites — practice those cold.</div>
+      </div>
+
+      <!-- ============ PLAYGROUND ============ -->
+      <div class="tab-panel" id="playground">
+        <div class="callout info"><b>🎯 Bug-Hunting Playground</b>Below is a deliberately <b>buggy "Payment Registration" form</b>. It contains <b>8 intentional bugs</b> (validation, logic, boundary, data issues). Your job: test it like a real QA, find the bugs, tick them in the checklist, and compare with the answers. This trains exactly what interviewers ask: "How would you test this page?"</div>
+
+        <div class="playground">
+          <div class="pg-form">
+            <div style="text-align:center; margin-bottom:6px;"><b>💳 Customer Payment Registration</b></div>
+            <!-- Intentional bugs are described in comments; the form below WILL behave buggy -->
+            <form id="bugForm">
+              <label>Full Name <span style="color:var(--fail);">*</span></label>
+              <input type="text" id="pgName" name="pgName" placeholder="Enter full name">
+              <div class="pg-hint">Buggy: accepts numbers and 1-character names</div>
+
+              <label>Email <span style="color:var(--fail);">*</span></label>
+              <input type="text" id="pgEmail" name="pgEmail" placeholder="user@example.com">
+              <div class="pg-hint">Buggy: accepts "bad-email" without @</div>
+
+              <label>Age <span style="color:var(--fail);">*</span></label>
+              <input type="number" id="pgAge" name="pgAge" min="18" max="60" placeholder="18 - 60">
+              <div class="pg-hint">Buggy: allows ages below 18 and above 60 (validation bypass)</div>
+
+              <label>Phone <span style="color:var(--fail);">*</span></label>
+              <input type="text" id="pgPhone" name="pgPhone" placeholder="10-digit number">
+              <div class="pg-hint">Buggy: accepts 5-digit numbers</div>
+
+              <label>Card Number <span style="color:var(--fail);">*</span></label>
+              <input type="text" id="pgCard" name="pgCard" placeholder="16 digits">
+              <div class="pg-hint">Buggy: card number shown fully on screen (no masking)</div>
+
+              <label>Payment Amount (₹) <span style="color:var(--fail);">*</span></label>
+              <input type="number" id="pgAmount" name="pgAmount" placeholder="Min ₹100">
+              <div class="pg-hint">Buggy: accepts ₹0 and negative amounts</div>
+
+              <div class="row2">
+                <div>
+                  <label>Expiry Month</label>
+                  <select id="pgExpMonth">
+                    <option>01</option><option>02</option><option>03</option><option>04</option>
+                    <option>05</option><option>06</option><option>07</option><option>08</option>
+                    <option>09</option><option>10</option><option>11</option><option>12</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Expiry Year</label>
+                  <select id="pgExpYear">
+                    <option>2020</option><option>2021</option><option>2022</option><option>2023</option>
+                    <option>2024</option><option>2025</option><option>2026</option>
+                  </select>
+                </div>
+              </div>
+              <div class="pg-hint">Buggy: lets you select an already-expired card (2020–2024)</div>
+
+              <label>CVV <span style="color:var(--fail);">*</span></label>
+              <input type="text" id="pgCvv" name="pgCvv" placeholder="3 digits">
+              <div class="pg-hint">Buggy: accepts 2-digit CVV and letters</div>
+
+              <div style="margin-top:16px;">
+                <button type="submit" class="btn" style="width:100%;">🔒 Submit Payment</button>
+              </div>
+              <div class="pg-result" style="display:none; margin-top:14px; padding:12px; background:var(--bg-soft); border-radius:8px;"></div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🕵️ Bug Checklist — Tick Each Bug You Found</h3>
+          <div class="bug-list" style="display:block; margin-top:10px;">
+            <label class="bug-item" style="display:flex; gap:10px; align-items:center; cursor:pointer;">
+              <input type="checkbox" name="bugFound" value="1">
+              <div><div class="bug-title">Bug 1: Full Name accepts numbers / too short</div><div class="bug-meta">Name field accepts "1234" or "A" — must be letters, min 2+ chars</div></div>
+            </label>
+            <label class="bug-item" style="display:flex; gap:10px; align-items:center; cursor:pointer;">
+              <input type="checkbox" name="bugFound" value="1">
+              <div><div class="bug-title">Bug 2: Email validation too weak</div><div class="bug-meta">Accepts "bad-email" with no @ or domain — must be valid format</div></div>
+            </label>
+            <label class="bug-item" style="display:flex; gap:10px; align-items:center; cursor:pointer;">
+              <input type="checkbox" name="bugFound" value="1">
+              <div><div class="bug-title">Bug 3: Age boundary validation bypassed</div><div class="bug-meta">Accepts 5 and 99 — must enforce 18–60 (BVA: 17, 18, 60, 61)</div></div>
+            </label>
+            <label class="bug-item" style="display:flex; gap:10px; align-items:center; cursor:pointer;">
+              <input type="checkbox" name="bugFound" value="1">
+              <div><div class="bug-title">Bug 4: Phone accepts 5-digit numbers</div><div class="bug-meta">Must require exactly 10 digits</div></div>
+            </label>
+            <label class="bug-item" style="display:flex; gap:10px; align-items:center; cursor:pointer;">
+              <input type="checkbox" name="bugFound" value="1">
+              <div><div class="bug-title">Bug 5: Card number not masked (security)</div><div class="bug-meta">Card shown in full on screen — must mask (e.g., •••• •••• •••• 1234)</div></div>
+            </label>
+            <label class="bug-item" style="display:flex; gap:10px; align-items:center; cursor:pointer;">
+              <input type="checkbox" name="bugFound" value="1">
+              <div><div class="bug-title">Bug 6: Amount accepts ₹0 and negatives</div><div class="bug-meta">Must reject 0 / negative — minimum ₹100</div></div>
+            </label>
+            <label class="bug-item" style="display:flex; gap:10px; align-items:center; cursor:pointer;">
+              <input type="checkbox" name="bugFound" value="1">
+              <div><div class="bug-title">Bug 7: Expired card can be selected</div><div class="bug-meta">Drop-down allows past years (2020-2024); must only allow future months</div></div>
+            </label>
+            <label class="bug-item" style="display:flex; gap:10px; align-items:center; cursor:pointer;">
+              <input type="checkbox" name="bugFound" value="1">
+              <div><div class="bug-title">Bug 8: CVV accepts 2 digits / letters</div><div class="bug-meta">CVV must be exactly 3 digits, numbers only</div></div>
+            </label>
+          </div>
+          <div style="margin-top:14px;">
+            <button type="button" class="btn" id="checkBugs">🔍 See My Score</button>
+          </div>
+          <div class="pg-result" style="display:none; margin-top:14px; padding:14px; background:var(--bg-soft); border-radius:8px; font-size:15px;"></div>
+        </div>
+
+        <div class="card hidden" id="bugAnswers">
+          <h3>🔎 The 8 Bugs (Compare Your Findings)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>#</th><th>Bug</th><th>Severity</th><th>Priority</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Name accepts numbers &amp; 1-character input</td><td>Major</td><td>P2</td></tr>
+                <tr><td>2</td><td>Email accepts invalid format like "bad-email"</td><td>Major</td><td>P2</td></tr>
+                <tr><td>3</td><td>Age accepts out-of-range values (bypasses 18–60)</td><td>Critical</td><td>P1</td></tr>
+                <tr><td>4</td><td>Phone accepts only 5 digits</td><td>Major</td><td>P2</td></tr>
+                <tr><td>5</td><td>Card number not masked — security/PII exposure</td><td><b>Critical (security)</b></td><td>P1</td></tr>
+                <tr><td>6</td><td>Amount accepts ₹0 / negative</td><td>Critical</td><td>P1</td></tr>
+                <tr><td>7</td><td>Expired card can be selected (past years)</td><td>Major</td><td>P1</td></tr>
+                <tr><td>8</td><td>CVV accepts 2 digits and letters</td><td>Major</td><td>P2</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout tip"><b>💡 Real Interview Skill</b>These bugs came from applying BVA (age 17/18/60/61), negative testing (invalid formats), data validation (CVV length, amount), and security thinking (masking, expired card). This is exactly how testers think!</div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:8px;">
+        <a class="btn ghost" href="cheatsheet.html">← Back to Cheatsheet</a>
+        <a class="btn secondary" href="docs.html">Review Docs →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Bug playground handler specific to this page */
+document.addEventListener("click", function handlerForPlayground(e) {
+  const btn = e.target.closest("#checkBugs");
+  if (!btn) return;
+  const checked = document.querySelectorAll('input[name="bugFound"]:checked').length;
+  const res = document.querySelector("#playground .card .pg-result");
+  const answers = document.getElementById("bugAnswers");
+  if (res) {
+    res.style.display = "block";
+    res.innerHTML = "You found <strong>" + checked + " of 8</strong> intentional bugs. " +
+      (checked === 8 ? "🏆 Perfect — you have exceptional testing eyes!" :
+       checked >= 5 ? "👍 Great work! Review the answers to catch the rest." :
+       "📖 Good effort — study the docs on BVA & negative testing, then try again.");
+  }
+  if (answers) answers.classList.remove("hidden");
+});
+</script>
+<script src="js/script.js"></script>
+</body>
+</html>
