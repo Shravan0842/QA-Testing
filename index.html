@@ -21,57 +21,33 @@
 <body>
 <div class="layout">
 
-  <!-- ============ SIDEBAR ============ -->
-  <aside class="sidebar">
-    <div class="sidebar-brand">
-      <div class="logo">🛡️</div>
-      <div>
-        <h1>QA Tester Academy</h1>
-        <small>Manual Testing Mastery</small>
+  <!-- ============ TOP NAV (Apple-style, two rows) ============ -->
+  <header class="topnav">
+    <div class="topnav-main">
+      <a class="topnav-logo" href="index.html">
+        <span class="topnav-logo-mark">🛡️</span>
+        <span class="topnav-logo-text">QA Tester Academy</span>
+      </a>
+      <button class="topnav-menu-btn" aria-label="Open menu">☰</button>
+      <nav class="topnav-sections" aria-label="Primary">
+        <a href="index.html" data-section="start" class="topnav-link active">Start</a>
+        <a href="docs.html" data-section="learn" class="topnav-link">Learn</a>
+        <a href="cheatsheet.html" data-section="reference" class="topnav-link">Quick Reference</a>
+        <a href="practice.html" data-section="practice" class="topnav-link">Practice</a>
+      </nav>
+      <div class="topnav-utils">
+        <button class="theme-toggle" id="themeToggle" title="Toggle dark / light mode" aria-label="Toggle theme">
+          <span class="ico">🌙</span><span class="label">Dark</span>
+        </button>
       </div>
     </div>
-    <nav class="sidebar-nav">
-      <div class="nav-label">Start</div>
-      <a href="index.html" class="active"><span class="ico">🏠</span> Dashboard</a>
-
-      <div class="nav-label">Learn (Docs)</div>
-      <a href="docs.html"><span class="ico">📘</span> All Concepts</a>
-      <a href="docs.html#sdlc"><span class="ico">🔄</span> SDLC &amp; Agile</a>
-      <a href="docs.html#stlc"><span class="ico">🧪</span> STLC</a>
-      <a href="docs.html#types"><span class="ico">🔬</span> Test Types</a>
-      <a href="docs.html#design"><span class="ico">✏️</span> Test Design</a>
-      <a href="docs.html#testcase"><span class="ico">📋</span> Test Cases</a>
-      <a href="docs.html#bug"><span class="ico">🐞</span> Bug Lifecycle</a>
-      <a href="docs.html#plan"><span class="ico">🗺️</span> Test Plan</a>
-      <a href="docs.html#tools"><span class="ico">🛠️</span> Tools</a>
-
-      <div class="nav-label">Quick Reference</div>
-      <a href="cheatsheet.html"><span class="ico">⚡</span> Cheatsheet</a>
-
-      <div class="nav-label">Practice</div>
-      <a href="practice.html"><span class="ico">📝</span> Quizzes</a>
-      <a href="practice.html#flashcards"><span class="ico">🃏</span> Flashcards</a>
-      <a href="practice.html#interview"><span class="ico">💬</span> Interview Q&amp;A</a>
-      <a href="practice.html#playground"><span class="ico">🎯</span> Bug Hunting</a>
+    <nav class="topnav-sub" aria-label="Section">
+      <a href="index.html" class="topnav-sub-link active">Dashboard</a>
     </nav>
-    <div class="sidebar-foot">Build by you · Learn daily · Land a QA job</div>
-  </aside>
-  <div class="overlay"></div>
+  </header>
 
   <!-- ============ MAIN ============ -->
   <div class="main">
-    <header class="topbar">
-      <button class="menu-btn">☰</button>
-      <div>
-        <div class="page-title">Dashboard</div>
-        <div class="page-crumb">Home / Welcome</div>
-      </div>
-      <div class="topbar-spacer"></div>
-      <button class="theme-toggle" id="themeToggle" title="Toggle dark / light mode" aria-label="Toggle theme">
-        <span class="ico">🌙</span><span class="label">Dark</span>
-      </button>
-    </header>
-
     <div class="content">
       <!-- HERO -->
       <section class="hero">

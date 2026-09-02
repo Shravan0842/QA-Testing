@@ -1,6 +1,6 @@
 /* ============================================================
    QA Tester Academy - Shared JavaScript
-   Sidebar, accordion, tabs, flashcards, quiz engine,
+   Top nav, accordion, tabs, flashcards, quiz engine,
    progress tracking (localStorage), bug-hunting playground
    ============================================================ */
 
@@ -9,21 +9,14 @@
 
   const STORE_KEY = "qat_progress_v1";
 
-  /* ---------- Sidebar (mobile) ---------- */
-  const menuBtn = document.querySelector(".menu-btn");
-  const sidebar = document.querySelector(".sidebar");
-  const overlay = document.querySelector(".overlay");
-
-  function openSidebar() {
-    if (sidebar) sidebar.classList.add("open");
-    if (overlay) overlay.classList.add("show");
+  /* ---------- Top nav (mobile menu toggle) ---------- */
+  const menuBtn = document.querySelector(".topnav-menu-btn");
+  const topnavSections = document.querySelector(".topnav-sections");
+  if (menuBtn && topnavSections) {
+    menuBtn.addEventListener("click", () => {
+      topnavSections.classList.toggle("open");
+    });
   }
-  function closeSidebar() {
-    if (sidebar) sidebar.classList.remove("open");
-    if (overlay) overlay.classList.remove("show");
-  }
-  if (menuBtn) menuBtn.addEventListener("click", openSidebar);
-  if (overlay) overlay.addEventListener("click", closeSidebar);
 
   /* ---------- Theme toggle (dark / light) ---------- */
   const themeBtn = document.getElementById("themeToggle");
@@ -44,55 +37,36 @@
     });
   }
 
-  // Highlight the active sidebar link.
-  // For pages that use hash-anchors (docs.html, practice.html), the hash
-  // selects a specific topic/tab and that link should be the one marked
-  // active, not the generic "page-level" link above it.
+  // Highlight the active topnav link.
+  // Two-level nav: row 1 is the section (start / learn / reference / practice),
+  // row 2 is the sub-link within that section. For pages with hash deep-links
+  // (docs.html, practice.html), the matching sub-link becomes active.
   function updateActiveNav() {
     const path = window.location.pathname.split("/").pop() || "index.html";
     const hash = window.location.hash.replace("#", "");
-    const links = document.querySelectorAll(".sidebar-nav a");
 
-    // Clear all active states first
-    links.forEach((a) => a.classList.remove("active"));
+    // Row 1 — highlight the section whose href matches the current path.
+    const sectionLinks = document.querySelectorAll(".topnav-sections .topnav-link");
+    sectionLinks.forEach((a) => a.classList.remove("active"));
+    const activeSection =
+      Array.from(sectionLinks).find((a) => a.getAttribute("href") === path) || null;
+    if (activeSection) activeSection.classList.add("active");
 
-    // Find a link whose href matches "<path>#<hash>" if a hash is present,
-    // otherwise the link whose href equals the current path exactly.
-    let active = null;
+    // Row 2 — highlight the sub-link matching path[#hash], or just path.
+    const subLinks = document.querySelectorAll(".topnav-sub .topnav-sub-link");
+    subLinks.forEach((a) => a.classList.remove("active"));
+    let activeSub = null;
     if (hash) {
-      active =
-        Array.from(links).find((a) => a.getAttribute("href") === path + "#" + hash) ||
+      activeSub =
+        Array.from(subLinks).find((a) => a.getAttribute("href") === path + "#" + hash) ||
         null;
     }
-    if (!active) {
-      active =
-        Array.from(links).find((a) => a.getAttribute("href") === path) ||
+    if (!activeSub) {
+      activeSub =
+        Array.from(subLinks).find((a) => a.getAttribute("href") === path) ||
         null;
     }
-    if (active) active.classList.add("active");
-
-    // On docs.html, also reflect the active topic in the topbar title & breadcrumb.
-    // (practice.html already has a single static "Practice & Interview Prep" title
-    // that works for any tab, so we leave it alone.)
-    if (path === "docs.html") {
-      const titleEl = document.querySelector(".topbar .page-title");
-      const crumbEl = document.querySelector(".topbar .page-crumb");
-      if (titleEl && crumbEl) {
-        if (active && hash && active.getAttribute("href") !== "docs.html") {
-          // Pull the link label from text nodes only — ignore the <span class="ico">.
-          const topic = Array.from(active.childNodes)
-            .filter((n) => n.nodeType === 3) // Node.TEXT_NODE
-            .map((n) => n.textContent.trim())
-            .filter(Boolean)
-            .join(" ");
-          titleEl.textContent = "📘 " + topic;
-          crumbEl.textContent = "Home / Learn / " + topic;
-        } else {
-          titleEl.textContent = "📘 Docs — All Concepts";
-          crumbEl.textContent = "Home / Learn / Concepts";
-        }
-      }
-    }
+    if (activeSub) activeSub.classList.add("active");
   }
   updateActiveNav();
   window.addEventListener("hashchange", updateActiveNav);
