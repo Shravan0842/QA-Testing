@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -34,27 +34,16 @@
       <header class="topnav">
         <div class="topnav-main">
           <a class="topnav-logo" href="index.html">
-            <span class="topnav-logo-text">QA Testing Academy</span>
+            <span class="topnav-logo-mark">QA</span>
+            <span class="topnav-logo-text">Testing Academy</span>
           </a>
           <button class="topnav-menu-btn" aria-label="Open menu">☰</button>
           <nav class="topnav-sections" aria-label="Primary">
-            <a href="index.html" class="topnav-link active"
-              >Dashboard</a
-            >
-            <a href="docs.html" class="topnav-link"
-              >Docs</a
-            >
-            <a
-              href="cheatsheet.html"
-              class="topnav-link"
-              >Cheatsheet</a
-            >
-            <a href="practice.html" class="topnav-link"
-              >Practice</a
-            >
-            <a href="tutorial.html" class="topnav-link"
-              >Tutorial</a
-            >
+            <a href="index.html" class="topnav-link active">Dashboard</a>
+            <a href="docs.html" class="topnav-link">Docs</a>
+            <a href="cheatsheet.html" class="topnav-link">Cheatsheet</a>
+            <a href="practice.html" class="topnav-link">Practice</a>
+            <a href="tutorial.html" class="topnav-link">Tutorial</a>
           </nav>
           <div class="topnav-utils">
             <button
@@ -74,43 +63,59 @@
         <div class="content">
           <!-- HERO -->
           <section class="hero">
-            <h2>Welcome to QA Testing Academy!</h2>
+            <span class="eyebrow">QA Testing Academy</span>
+            <h1>Manual testing, <em>made simple.</em></h1>
             <p>
-              Your complete Manual Testing learning system. Study the Docs
-              section to master every concept, use the Cheatsheet for quick
-              revision, and sharpen your skills in Practice.
+              Your complete learning system — sixteen concept chapters, a
+              printable cheatsheet, twelve topic quizzes, and a hands-on
+              bug-hunting playground. Built so a beginner can go from zero to
+              job-ready in thirty focused days.
             </p>
+            <div class="hero-cta">
+              <a class="btn" href="docs.html">Start learning →</a>
+              <a class="btn secondary" href="practice.html">Take a quiz</a>
+            </div>
             <div class="hero-chips">
-              <span class="chip primary">15+ concept chapters</span>
-              <span class="chip teal">40+ cheat sheets</span>
-              <span class="chip pass">100+ quiz questions</span>
-              <span class="chip info">50+ interview Q&amp;A</span>
-              <span class="chip warn">Bug-hunting playground</span>
+              <span class="chip">16 concept chapters</span>
+              <span class="chip">19 cheatsheets</span>
+              <span class="chip">100+ MCQs</span>
+              <span class="chip">50+ interview Q&amp;A</span>
+              <span class="chip">Bug-hunting playground</span>
             </div>
           </section>
 
           <!-- STATS -->
           <div class="stats">
-            <div class="stat">
-              <div class="val" id="statTopics">15+</div>
-              <div class="lbl">Concept Chapters</div>
+            <div class="stat stat-xl">
+              <div class="val" id="statTopics">16</div>
+              <div class="lbl">Concept chapters</div>
             </div>
-            <div class="stat">
-              <div class="val" id="statQuizzes">7+</div>
-              <div class="lbl">Quizzes</div>
+            <div class="stat stat-xl">
+              <div class="val" id="statQuizzes">12</div>
+              <div class="lbl">Topic quizzes</div>
             </div>
-            <div class="stat">
+            <div class="stat stat-xl">
               <div class="val">100+</div>
-              <div class="lbl">MCQ Questions</div>
+              <div class="lbl">MCQ questions</div>
             </div>
-            <div class="stat">
+            <div class="stat stat-xl">
               <div class="val">50+</div>
               <div class="lbl">Interview Q&amp;A</div>
             </div>
           </div>
 
           <!-- QUICK ACTIONS -->
-          <h2 class="sec-title">Quick Actions</h2>
+          <h2 class="sec-title">
+            Where to
+            <em
+              style="
+                font-family: var(--font-serif);
+                font-style: italic;
+                color: var(--color-terracotta);
+              "
+              >begin</em
+            >
+          </h2>
           <p class="sec-sub">
             Follow this path: <b>Docs → Cheatsheet → Practice</b> for interview
             readiness.
@@ -118,6 +123,7 @@
 
           <div class="card-grid">
             <a class="topic-card" href="docs.html">
+              <div class="ico">📖</div>
               <h4>Learn — Docs Section</h4>
               <p>
                 Every manual testing concept explained simply with diagrams,
@@ -126,6 +132,7 @@
               </p>
             </a>
             <a class="topic-card" href="cheatsheet.html">
+              <div class="ico">📝</div>
               <h4>Cheatsheet</h4>
               <p>
                 Fast revision: definitions, templates, SQL commands, HTTP codes,
@@ -133,6 +140,7 @@
               </p>
             </a>
             <a class="topic-card" href="practice.html">
+              <div class="ico">🎯</div>
               <h4>Practice</h4>
               <p>
                 Topic quizzes, flashcards, scenario-based interview questions
@@ -140,6 +148,7 @@
               </p>
             </a>
             <a class="topic-card" href="tutorial.html">
+              <div class="ico">🎓</div>
               <h4>Beginner Tutorial</h4>
               <p>
                 A detailed, beginner-friendly walkthrough of software testing —
@@ -150,7 +159,17 @@
           </div>
 
           <!-- DOCS ROADMAP -->
-          <h2 class="sec-title">Your Learning Roadmap</h2>
+          <h2 class="sec-title">
+            Your Learning
+            <em
+              style="
+                font-family: var(--font-serif);
+                font-style: italic;
+                color: var(--color-terracotta);
+              "
+              >Roadmap</em
+            >
+          </h2>
           <p class="sec-sub">
             Study in this order — each topic builds on the last. Mark topics as
             read in the Docs page.
@@ -240,7 +259,17 @@
           </div>
 
           <!-- DAILY SCHEDULE -->
-          <h2 class="sec-title">Your 30-Day Study Plan</h2>
+          <h2 class="sec-title">
+            30-Day Study
+            <em
+              style="
+                font-family: var(--font-serif);
+                font-style: italic;
+                color: var(--color-terracotta);
+              "
+              >Plan</em
+            >
+          </h2>
           <p class="sec-sub">
             4 hours per day = 120 focused hours. Follow this schedule:
           </p>
@@ -314,7 +343,8 @@
 
       <!-- ============ FOOTER ============ -->
       <footer class="footer">
-        Built with <span class="heart">♥</span> by <span class="author">Shravan</span>
+        Built with <span class="heart">♥</span> by
+        <span class="author">Shravan</span>
         <div class="rights">All rights reserved.</div>
       </footer>
     </div>

@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Playwright test artifacts (verification, not part of the site)
+screenshots/
+test-design.js
+package.json
+package-lock.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

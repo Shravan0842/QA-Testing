@@ -1,952 +1,2639 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QA Testing Academy — Docs: All Manual Testing Concepts</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-  <link rel="stylesheet" href="css/styles.css">
-  <script>
-    // Apply saved theme before paint to avoid flash
-    (function () {
-      try {
-        var t = localStorage.getItem("qat_theme_v1");
-        if (!t) {
-          t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        document.documentElement.setAttribute("data-theme", t);
-      } catch (e) {}
-    })();
-  </script>
-</head>
-<body>
-<div class="layout">
-
-  <!-- ============ TOP NAV (Apple-style, two rows) ============ -->
-  <header class="topnav">
-    <div class="topnav-main">
-      <a class="topnav-logo" href="index.html">
-        <span class="topnav-logo-text">QA Testing Academy</span>
-      </a>
-      <button class="topnav-menu-btn" aria-label="Open menu">☰</button>
-      <nav class="topnav-sections" aria-label="Primary">
-        <a href="index.html" class="topnav-link">Dashboard</a>
-        <a href="docs.html" class="topnav-link active">Docs</a>
-        <a href="cheatsheet.html" class="topnav-link">Cheatsheet</a>
-        <a href="practice.html" class="topnav-link">Practice</a>
-        <a href="tutorial.html" class="topnav-link">Tutorial</a>
-      </nav>
-      <div class="topnav-utils">
-        <button class="theme-toggle" id="themeToggle" title="Toggle dark / light mode" aria-label="Toggle theme">
-          <span class="ico">🌙</span><span class="label">Dark</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- ============ MAIN ============ -->
-  <div class="main">
-    <div class="content">
-
-      <div class="card" style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
-        <div style="flex:1; min-width:260px;">
-          <h3 style="margin:0 0 6px;">Your Study Progress</h3>
-          <p style="margin:0; color:var(--text-muted); font-size:14px;">Tick the checkbox at the end of each chapter once you've studied it.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QA Testing Academy — Docs: All Manual Testing Concepts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script>
+      // Apply saved theme before paint to avoid flash
+      (function () {
+        try {
+          var t = localStorage.getItem("qat_theme_v1");
+          if (!t) {
+            t =
+              window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          }
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="layout">
+      <!-- ============ TOP NAV (Apple-style, two rows) ============ -->
+      <header class="topnav">
+        <div class="topnav-main">
+          <a class="topnav-logo" href="index.html">
+            <span class="topnav-logo-mark">QA</span>
+            <span class="topnav-logo-text">Testing Academy</span>
+          </a>
+          <button class="topnav-menu-btn" aria-label="Open menu">☰</button>
+          <nav class="topnav-sections" aria-label="Primary">
+            <a href="index.html" class="topnav-link">Dashboard</a>
+            <a href="docs.html" class="topnav-link active">Docs</a>
+            <a href="cheatsheet.html" class="topnav-link">Cheatsheet</a>
+            <a href="practice.html" class="topnav-link">Practice</a>
+            <a href="tutorial.html" class="topnav-link">Tutorial</a>
+          </nav>
+          <div class="topnav-utils">
+            <button
+              class="theme-toggle"
+              id="themeToggle"
+              title="Toggle dark / light mode"
+              aria-label="Toggle theme"
+            >
+              <span class="ico">🌙</span><span class="label">Dark</span>
+            </button>
+          </div>
         </div>
-        <div style="flex:1; min-width:260px;">
-          <div class="progress-bar"><div class="fill" id="docProgressBar"></div></div>
-          <div style="font-size:13px; color:var(--text-muted);" id="docProgressLabel">0 / 16 topics read</div>
-        </div>
-      </div>
-
-      <!-- DOCS LAYOUT: sticky left rail + scrollable body -->
-      <div class="docs-layout">
-        <aside class="toc-rail" aria-label="Docs navigation">
-          <h4 class="toc-rail-title">👨‍💼 Contents</h4>
-          <ol class="toc-rail-list">
-            <li><a href="#intro" data-toc="doc_intro"><span class="toc-tick" hidden>✓</span><span class="toc-label">Introduction</span></a></li>
-            <li><a href="#sdlc" data-toc="doc_sdlc"><span class="toc-tick" hidden>✓</span><span class="toc-label">SDLC &amp; Models</span></a></li>
-            <li><a href="#stlc" data-toc="doc_stlc"><span class="toc-tick" hidden>✓</span><span class="toc-label">STLC</span></a></li>
-            <li><a href="#levels" data-toc="doc_levels"><span class="toc-tick" hidden>✓</span><span class="toc-label">Test Levels</span></a></li>
-            <li><a href="#types" data-toc="doc_types"><span class="toc-tick" hidden>✓</span><span class="toc-label">Test Types</span></a></li>
-            <li><a href="#design" data-toc="doc_design"><span class="toc-tick" hidden>✓</span><span class="toc-label">Test Design</span></a></li>
-            <li><a href="#testcase" data-toc="doc_testcase"><span class="toc-tick" hidden>✓</span><span class="toc-label">Test Cases</span></a></li>
-            <li><a href="#bug" data-toc="doc_bug"><span class="toc-tick" hidden>✓</span><span class="toc-label">Bug Lifecycle</span></a></li>
-            <li><a href="#plan" data-toc="doc_plan"><span class="toc-tick" hidden>✓</span><span class="toc-label">Test Plan</span></a></li>
-            <li><a href="#agile" data-toc="doc_agile"><span class="toc-tick" hidden>✓</span><span class="toc-label">Agile &amp; Scrum</span></a></li>
-            <li><a href="#tools" data-toc="doc_tools"><span class="toc-tick" hidden>✓</span><span class="toc-label">Tools</span></a></li>
-            <li><a href="#api" data-toc="doc_api"><span class="toc-tick" hidden>✓</span><span class="toc-label">API Testing</span></a></li>
-            <li><a href="#mobile" data-toc="doc_mobile"><span class="toc-tick" hidden>✓</span><span class="toc-label">Mobile Testing</span></a></li>
-            <li><a href="#nonfunc" data-toc="doc_nonfunc"><span class="toc-tick" hidden>✓</span><span class="toc-label">Performance &amp; Security</span></a></li>
-            <li><a href="#automation" data-toc="doc_automation"><span class="toc-tick" hidden>✓</span><span class="toc-label">Automation Basics</span></a></li>
-            <li><a href="#portfolio" data-toc="doc_portfolio"><span class="toc-tick" hidden>✓</span><span class="toc-label">Portfolio</span></a></li>
-          </ol>
-        </aside>
-
-        <div class="docs-body">
-          <!-- ================= 1. INTRODUCTION ================= -->
-          <section class="doc-section" id="intro">
-        <h2><span class="num">1</span> Introduction to Software Testing</h2>
-
-        <h3>What is Software Testing?</h3>
-        <p>Software testing is the process of <strong>verifying and validating</strong> that a software application:
-           (1) works as expected, (2) meets the requirements given by the client, and (3) is bug-free and ready for users.
-           It's <em>not</em> just "clicking around" — it's a <strong>systematic, planned process</strong>.</p>
-
-        <div class="flow">
-          <div class="node">Requirements</div><div class="arrow">→</div>
-          <div class="node">Build App</div><div class="arrow">→</div>
-          <div class="node dark">TEST</div><div class="arrow">→</div>
-          <div class="node">Find Bugs</div><div class="arrow">→</div>
-          <div class="node">Fix &amp; Retest</div><div class="arrow">→</div>
-          <div class="node pass">Release ✅</div>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Term</th><th>Definition</th><th>Simple Example</th></tr></thead>
-            <tbody>
-              <tr><td><b>Verification</b></td><td>"Are we building the product right?" — checking the product against its design/requirements (static, no execution).</td><td>Reviewing a test case to make sure it matches the requirement doc.</td></tr>
-              <tr><td><b>Validation</b></td><td>"Are we building the right product?" — checking the actual running product works and satisfies the user.</td><td>Actually running the login screen and confirming you can log in.</td></tr>
-              <tr><td><b>Bug / Defect</b></td><td>Any deviation between expected behavior and actual behavior.</td><td>Expected "₹100" shown, but app shows "₹1000".</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>QA vs QC vs Testing</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th></th><th>QA (Quality Assurance)</th><th>QC (Quality Control)</th><th>Testing</th></tr></thead>
-            <tbody>
-              <tr><td><b>Focus</b></td><td>Process oriented — prevent defects</td><td>Product oriented — detect defects</td><td>Executing to find defects</td></tr>
-              <tr><td><b>When</b></td><td>Throughout the project</td><td>After development</td><td>During/after development</td></tr>
-              <tr><td><b>Approach</b></td><td>Proactive</td><td>Reactive</td><td>Reactive</td></tr>
-              <tr><td><b>Analogy</b></td><td>Designing a recipe correctly</td><td>Tasting the food</td><td>Actually tasting each dish</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>7 Principles of Software Testing</h3>
-        <ol>
-          <li><b>Testing shows the presence of defects</b> — testing can prove bugs exist, but can never prove the software is 100% bug-free.</li>
-          <li><b>Exhaustive testing is impossible</b> — you can't test everything (every input, every combination). Test smartly using techniques (BVA, EP).</li>
-          <li><b>Early testing saves time &amp; money</b> — a bug found in requirements costs ~10x less than one found in production.</li>
-          <li><b>Defects cluster together</b> — a small number of modules contain most of the bugs (Pareto: ~80% of defects in ~20% of modules).</li>
-          <li><b>Pesticide paradox</b> — running the same tests again and again stops finding new bugs. Keep reviewing &amp; adding new test cases.</li>
-          <li><b>Testing is context dependent</b> — a banking app needs different testing than a game or a website.</li>
-          <li><b>Absence-of-errors fallacy</b> — a bug-free system that doesn't meet user needs is still useless.</li>
-        </ol>
-
-        <div class="callout tip"><b>💡 Interview Tip</b>Always remember: <strong>Verification = static review</strong>, <strong>Validation = dynamic execution</strong>. Interviewers love this simple distinction.</div>
-
-        <div class="example">
-          <div class="ex-title">📝 Real-World Example — Your Fraud Background</div>
-          <p>In fraud investigation you looked for <em>evidence of wrong transactions</em>. Testing is identical:
-             you look for <em>evidence of wrong behavior</em> in software. Both require: a clear expected standard,
-             systematic checking, careful documentation, and proof (screenshots/logs). This is your superpower.</p>
-        </div>
-
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_intro"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
-
-      <!-- ================= 2. SDLC ================= -->
-      <section class="doc-section" id="sdlc">
-        <h2><span class="num">2</span> SDLC &amp; Development Models</h2>
-
-        <h3>What is SDLC?</h3>
-        <p><strong>SDLC (Software Development Life Cycle)</strong> is the step-by-step process used to build software.
-           QA is involved in <em>every</em> phase — testing is not just the last step.</p>
-
-        <div class="flow">
-          <div class="node">1. Requirements</div><div class="arrow">→</div>
-          <div class="node">2. Design</div><div class="arrow">→</div>
-          <div class="node">3. Development</div><div class="arrow">→</div>
-          <div class="node">4. Testing</div><div class="arrow">→</div>
-          <div class="node">5. Deployment</div><div class="arrow">→</div>
-          <div class="node">6. Maintenance</div>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Phase</th><th>What Happens</th><th>QA Role</th></tr></thead>
-            <tbody>
-              <tr><td>1. Requirements</td><td>Business analysts collect what the client wants.</td><td>Review requirements, find gaps/ambiguities, plan testable scenarios.</td></tr>
-              <tr><td>2. Design</td><td>Architects design the system (HLD, LLD).</td><td>Understand design to build better test cases.</td></tr>
-              <tr><td>3. Development</td><td>Developers write code.</td><td>Prepare test environment, test data, test cases.</td></tr>
-              <tr><td>4. Testing</td><td>QA finds and reports bugs.</td><td>Execute test cases, log bugs, verify fixes.</td></tr>
-              <tr><td>5. Deployment</td><td>App goes live to users.</td><td>Smoke test in production, verify no release issues.</td></tr>
-              <tr><td>6. Maintenance</td><td>Fix issues, add features.</td><td>Regression testing for every change.</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>SDLC Models — Overview</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Model</th><th>Key Idea</th><th>Pros</th><th>Cons</th><th>When Used</th></tr></thead>
-            <tbody>
-              <tr><td><b>Waterfall</b></td><td>Linear — each phase finishes before the next starts.</td><td>Simple, well documented.</td><td>No flexibility; changes are costly.</td><td>Small projects with clear requirements.</td></tr>
-              <tr><td><b>V-Model</b></td><td>Waterfall + testing. Each dev phase has a matching test phase.</td><td>Testing planned early, higher quality.</td><td>Still rigid, not for changing requirements.</td><td>Projects where quality is critical (banking, medical).</td></tr>
-              <tr><td><b>Agile</b></td><td>Iterative — build in small sprints, deliver fast, adapt.</td><td>Fast feedback, flexible, customer involved.</td><td>Less documentation, requires discipline.</td><td>Most modern software teams.</td></tr>
-              <tr><td><b>Spiral</b></td><td>Risk-driven, repeated cycles (prototype → evaluate).</td><td>Handles risk well.</td><td>Expensive, complex.</td><td>Large, high-risk projects.</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>V-Model (Important for Interviews)</h3>
-        <p>Each development phase on the left has a <strong>matching test phase</strong> on the right:</p>
-        <div class="flow vertical">
-          <div class="node">Requirements Analysis ← Acceptance Test Design (UAT)</div>
-          <div class="arrow">▼</div>
-          <div class="node">System Design ← System Test Design</div>
-          <div class="arrow">▼</div>
-          <div class="node">Architecture ← Integration Test Design</div>
-          <div class="arrow">▼</div>
-          <div class="node">Module Design ← Unit Test Design</div>
-          <div class="arrow">▼</div>
-          <div class="node alt">Coding ✍️</div>
-        </div>
-
-        <h3>Agile Manifesto (4 Values)</h3>
-        <ul>
-          <li><strong>Individuals and interactions</strong> over processes and tools</li>
-          <li><strong>Working software</strong> over comprehensive documentation</li>
-          <li><strong>Customer collaboration</strong> over contract negotiation</li>
-          <li><strong>Responding to change</strong> over following a plan</li>
-        </ul>
-
-        <div class="callout warn"><b>⚠️ Common Interview Question</b>"Waterfall vs Agile?" — Answer: Waterfall is linear/sequential with testing at the end; Agile is iterative in sprints with testing in every sprint, continuous feedback, and the ability to change requirements quickly.</div>
-
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_sdlc"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
-
-      <!-- ================= 3. STLC ================= -->
-      <section class="doc-section" id="stlc">
-        <h2><span class="num">3</span> STLC — Software Testing Life Cycle</h2>
-
-        <p>STLC is the <strong>testing-specific process</strong> with its own phases (each with entry criteria, activities, and deliverables).</p>
-
-        <div class="flow">
-          <div class="node">1. Requirement Analysis</div><div class="arrow">→</div>
-          <div class="node">2. Test Planning</div><div class="arrow">→</div>
-          <div class="node">3. Test Case Dev</div><div class="arrow">→</div>
-          <div class="node">4. Environment Setup</div><div class="arrow">→</div>
-          <div class="node">5. Test Execution</div><div class="arrow">→</div>
-          <div class="node">6. Closure</div>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Phase</th><th>Activities</th><th>Deliverable</th></tr></thead>
-            <tbody>
-              <tr><td><b>1. Requirement Analysis</b></td><td>Read requirement docs, find testable requirements, understand the feature.</td><td>RTM (Requirement Traceability Matrix) draft</td></tr>
-              <tr><td><b>2. Test Planning</b></td><td>Estimate effort, decide scope &amp; strategy, identify risks, assign resources.</td><td>Test Plan document</td></tr>
-              <tr><td><b>3. Test Case Development</b></td><td>Write test cases, review them, prepare test data.</td><td>Test cases, Test data</td></tr>
-              <tr><td><b>4. Environment Setup</b></td><td>Set up hardware/software/network, test servers, tools, build.</td><td>Test environment ready</td></tr>
-              <tr><td><b>5. Test Execution</b></td><td>Execute test cases, log bugs, retest fixed bugs, regression.</td><td>Bug reports, executed test cases</td></tr>
-              <tr><td><b>6. Test Closure</b></td><td>Analyze results, prepare summary report, lessons learned.</td><td>Test Summary Report</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="callout tip"><b>💡 Remember It</b>The mnemonic <strong>"RTPEEC"</strong> → <u>R</u>equirement analysis, <u>T</u>est planning, <u>P</u>repare cases, <u>E</u>nvironment setup, <u>E</u>xecution, <u>C</u>losure.</div>
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_stlc"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
-
-      <!-- ================= 4. TEST LEVELS ================= -->
-      <section class="doc-section" id="levels">
-        <h2><span class="num">4</span> Test Levels</h2>
-
-        <p>Testing happens at different "levels" as the software is built — from small pieces up to the whole system.</p>
-
-        <div class="flow vertical">
-          <div class="node pass">UAT — does it satisfy the business user?</div>
-          <div class="arrow">▲</div>
-          <div class="node alt">System Testing — whole application together</div>
-          <div class="arrow">▲</div>
-          <div class="node">Integration Testing — modules working together</div>
-          <div class="arrow">▲</div>
-          <div class="node dark">Unit Testing — single function/module (by developers)</div>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Level</th><th>Who does it</th><th>What it checks</th><th>Example</th></tr></thead>
-            <tbody>
-              <tr><td><b>Unit Testing</b></td><td>Developers</td><td>Single function/method in isolation</td><td>Does the <code>calculateDiscount()</code> function return the right value for a given input?</td></tr>
-              <tr><td><b>Integration Testing</b></td><td>Testers (sometimes devs)</td><td>Interfaces between modules</td><td>Does the login module correctly pass user data to the dashboard module?</td></tr>
-              <tr><td><b>System Testing</b></td><td>Testers</td><td>Entire application as a whole (end-to-end)</td><td>Full flow: register → login → add to cart → pay → order confirmation.</td></tr>
-              <tr><td><b>UAT (User Acceptance Testing)</b></td><td>Client / Business users</td><td>Does it meet business needs</td><td>Client verifies the app matches what they asked for.</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="callout info"><b>ℹ️ Alpha vs Beta Testing</b><b>Alpha</b> = testing done by the internal team at the developer's site. <b>Beta</b> = testing done by real external users in a real environment before the final release.</div>
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_levels"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
-
-      <!-- ================= 5. TEST TYPES ================= -->
-      <section class="doc-section" id="types">
-        <h2><span class="num">5</span> Test Types — Functional &amp; Non-Functional</h2>
-
-        <h3>Functional Testing</h3>
-        <p>Checks <strong>WHAT the system does</strong> — whether each function works according to requirements.</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Type</th><th>Purpose</th><th>Quick Example</th></tr></thead>
-            <tbody>
-              <tr><td><b>Smoke Testing</b></td><td>"Build is testable?" Quick sanity check of critical features after a build.</td><td>Can the app open and can you log in? If not, reject the build.</td></tr>
-              <tr><td><b>Sanity Testing</b></td><td>Quick check that a <em>specific</em> fix works, without deep testing.</td><td>After fixing the "login" bug, just test login — not the whole app.</td></tr>
-              <tr><td><b>Regression Testing</b></td><td>New changes didn't break existing features.</td><td>After adding a new payment method, verify old UPI, card, and net-banking still work.</td></tr>
-              <tr><td><b>Retesting</b></td><td>Re-test the <em>exact same failed test case</em> to confirm the fix.</td><td>Bug "₹100 displayed as ₹1000" is fixed → run that exact test again.</td></tr>
-              <tr><td><b>Ad-hoc / Exploratory</b></td><td>Unplanned, creative testing to find unexpected bugs.</td><td>Freely explore a new feature and try unusual inputs.</td></tr>
-              <tr><td><b>Positive Testing</b></td><td>Valid inputs → expect success.</td><td>Enter correct username + password → login succeeds.</td></tr>
-              <tr><td><b>Negative Testing</b></td><td>Invalid inputs → expect proper error handling.</td><td>Enter wrong password → correct error message, no crash.</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Smoke vs Sanity vs Regression (Very Common Interview Q)</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th></th><th>Smoke</th><th>Sanity</th><th>Regression</th></tr></thead>
-            <tbody>
-              <tr><td><b>Goal</b></td><td>Check build stability (all critical features quickly)</td><td>Check one specific fix</td><td>Check nothing broke elsewhere</td></tr>
-              <tr><td><b>Scope</b></td><td>Wide (main features)</td><td>Narrow (one area)</td><td>Wide (existing features)</td></tr>
-              <tr><td><b>When</b></td><td>Every new build</td><td>After a specific fix</td><td>After any code change/release</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Non-Functional Testing</h3>
-        <p>Checks <strong>HOW the system performs</strong> — quality attributes, not just functions.</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Type</th><th>What it checks</th><th>Example</th></tr></thead>
-            <tbody>
-              <tr><td><b>Performance</b></td><td>Speed, responsiveness, stability under load</td><td>App loads in under 2 seconds for 10,000 users.</td></tr>
-              <tr><td><b>Load Testing</b></td><td>Behavior under expected load</td><td>500 users login at once — still works?</td></tr>
-              <tr><td><b>Stress Testing</b></td><td>Behavior beyond limits (when does it break?)</td><td>50,000 users — where does the server crash?</td></tr>
-              <tr><td><b>Security Testing</b></td><td>Protection against attacks &amp; data leaks</td><td>Can a hacker inject SQL to steal passwords?</td></tr>
-              <tr><td><b>Usability Testing</b></td><td>Ease of use</td><td>Can a new user find the "Forgot Password" link easily?</td></tr>
-              <tr><td><b>Compatibility</b></td><td>Works across devices/browsers/OS</td><td>Works on Chrome, Safari, Android, iOS, Windows, Mac.</td></tr>
-              <tr><td><b>Accessibility</b></td><td>Usable by people with disabilities</td><td>Screen-reader friendly, keyboard navigable, contrast.</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_types"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
-
-      <!-- ================= 6. TEST DESIGN ================= -->
-      <section class="doc-section" id="design">
-        <h2><span class="num">6</span> Test Design Techniques</h2>
-
-        <p>These techniques help you choose <strong>which test cases to write</strong> so you find the most bugs with the fewest tests (remember: exhaustive testing is impossible).</p>
-
-        <h3>1. Boundary Value Analysis (BVA)</h3>
-        <p>Bugs happen most often at <strong>boundaries</strong>. Test the edges: just below, exactly at, and just above the boundary.</p>
-        <div class="example">
-          <div class="ex-title">Example: Age field accepts 18 – 60</div>
-          <p>Valid boundaries: <code>17</code> (invalid), <code>18</code> (valid min), <code>59/60</code> (valid max), <code>61</code> (invalid).<br>
-          <strong>BVA test values:</strong> 17, 18, 60, 61 — these 4 values cover the boundaries perfectly.</p>
-        </div>
-
-        <h3>2. Equivalence Partitioning (EP)</h3>
-        <p>Divide inputs into <strong>groups (partitions)</strong> that the system treats the same way. Test <strong>one value from each partition</strong> — no need to test every value.</p>
-        <div class="example">
-          <div class="ex-title">Example: Marks field (0 – 100)</div>
-          <p><span class="chip fail">Invalid: negative (-5)</span>
-             <span class="chip pass">Valid: 0 – 100 (e.g. 50)</span>
-             <span class="chip fail">Invalid: above 100 (150)</span><br>
-          One value per partition is enough: test <code>-5</code>, <code>50</code>, <code>150</code>.</p>
-        </div>
-
-        <h3>3. Decision Table Testing</h3>
-        <p>Use when there are multiple conditions that combine to give results. Build a table of condition combinations.</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Login Box Conditions</th><th>Case 1</th><th>Case 2</th><th>Case 3</th><th>Case 4</th></tr></thead>
-            <tbody>
-              <tr><td>Username correct?</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
-              <tr><td>Password correct?</td><td>✅</td><td>❌</td><td>✅</td><td>❌</td></tr>
-              <tr><td><b>Result</b></td><td><b>Login success</b></td><td><b>Error: wrong password</b></td><td><b>Error: wrong user</b></td><td><b>Error: both wrong</b></td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>4. State Transition Testing</h3>
-        <p>Use when the system changes <strong>states</strong> based on events. Track state changes and valid/invalid transitions.</p>
-        <div class="flow">
-          <div class="node">Pending 📂</div><div class="arrow">pay</div>
-          <div class="node pass">Paid ✅</div><div class="arrow">deliver</div>
-          <div class="node alt">Delivered 📦</div>
-        </div>
-        <p style="font-size:14px; color:var(--text-muted);">Invalid: you should NOT be able to go from "Paid" directly back to "Pending".</p>
-
-        <h3>5. Error Guessing</h3>
-        <p>Using <strong>experience and intuition</strong> to guess where bugs might hide — testing common weak spots (empty inputs, special characters, spaces, huge inputs, rapid clicks).</p>
-
-        <div class="callout warn"><b>⚠️ Interview Favorite</b>Be ready to explain BVA &amp; EP with a live example. E.g. "For a field accepting 1–100, I test 0, 1, 100, 101 (BVA) and one value from each partition (EP)."</div>
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_design"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
-
-      <!-- ================= 7. TEST CASES ================= -->
-      <section class="doc-section" id="testcase">
-        <h2><span class="num">7</span> Test Cases &amp; Test Scenarios</h2>
-
-        <h3>Definitions</h3>
-        <ul>
-          <li><b>Test Scenario:</b> "What to test" — a one-line statement of a feature to test (e.g., "Verify user can log in").</li>
-          <li><b>Test Case:</b> "How to test it" — step-by-step instructions including inputs, steps, and expected result.</li>
-          <li><b>Test Suite:</b> A collection of test cases for a module/feature.</li>
-        </ul>
-
-        <h3>Anatomy of a Good Test Case</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Field</th><th>Description</th><th>Example</th></tr></thead>
-            <tbody>
-              <tr><td>Test Case ID</td><td>Unique identifier</td><td><code>TC_LOGIN_001</code></td></tr>
-              <tr><td>Title / Summary</td><td>What is being verified</td><td>Verify successful login with valid credentials</td></tr>
-              <tr><td>Preconditions</td><td>Setup required before running</td><td>User account exists, app is open</td></tr>
-              <tr><td>Test Steps</td><td>Numbered actions</td><td>1. Enter username. 2. Enter password. 3. Click Login.</td></tr>
-              <tr><td>Test Data</td><td>Input values used</td><td>Username: <code>qa_user</code>, Password: <code>Pass@123</code></td></tr>
-              <tr><td>Expected Result</td><td>What should happen</td><td>User is redirected to the Dashboard</td></tr>
-              <tr><td>Actual Result</td><td>What actually happened (filled during execution)</td><td>Error: "Invalid credentials" — <b>BUG</b></td></tr>
-              <tr><td>Status</td><td>Pass / Fail / Blocked / Not Run</td><td>Fail</td></tr>
-              <tr><td>Priority</td><td>Order of execution (how urgent)</td><td>High</td></tr>
-              <tr><td>Severity</td><td>Impact on the system (how bad)</td><td>Critical</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>How to Write Good Test Cases (Checklist)</h3>
-        <ul class="list-check">
-          <li>Use clear, simple, unambiguous language.</li>
-          <li>Each test case tests <strong>one</strong> thing.</li>
-          <li>Always include expected results (never leave blank).</li>
-          <li>Cover positive AND negative scenarios.</li>
-          <li>Cover boundary conditions.</li>
-          <li>Write steps anyone (even a new joiner) can follow.</li>
-          <li>Don't depend on other test cases.</li>
-          <li>Keep it maintainable &amp; reusable.</li>
-        </ul>
-
-        <h3>Test Scenario vs Test Case — Example</h3>
-        <div class="example">
-          <div class="ex-title">Feature: Login Page</div>
-          <p><b>Scenario:</b> Verify user can log in.<br>
-          <b>Test Cases derived from it:</b></p>
-          <ul>
-            <li>TC1: Login with valid username + valid password → success</li>
-            <li>TC2: Login with valid username + invalid password → error message</li>
-            <li>TC3: Login with invalid username + valid password → error message</li>
-            <li>TC4: Leave both fields empty → validation error</li>
-            <li>TC5: Password with only 1 character (boundary) → error</li>
-            <li>TC6: "Remember me" checked → session persists after browser close</li>
-            <li>TC7: Click "Forgot password" → reset email sent</li>
-          </ul>
-        </div>
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_testcase"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
-
-      <!-- ================= 8. BUG LIFECYCLE ================= -->
-      <section class="doc-section" id="bug">
-        <h2><span class="num">8</span> Bug / Defect Lifecycle</h2>
-
-        <h3>Defect Lifecycle States</h3>
-        <div class="flow">
-          <div class="node">New</div><div class="arrow">→</div>
-          <div class="node">Assigned</div><div class="arrow">→</div>
-          <div class="node">Open</div><div class="arrow">→</div>
-          <div class="node">Fixed</div><div class="arrow">→</div>
-          <div class="node">Retest</div><div class="arrow">→</div>
-          <div class="node pass">Closed ✅</div>
-        </div>
-        <p style="font-size:14px; color:var(--text-muted);">Other possible states: <b>Deferred</b> (fix later), <b>Rejected</b> (not a bug / duplicate), <b>Reopened</b> (fix didn't work), <b>Not a Bug</b>.</p>
-
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>State</th><th>Meaning</th></tr></thead>
-            <tbody>
-              <tr><td>New</td><td>Tester finds and logs the bug.</td></tr>
-              <tr><td>Assigned</td><td>Bug is assigned to a developer.</td></tr>
-              <tr><td>Open</td><td>Developer accepts and starts fixing.</td></tr>
-              <tr><td>Fixed</td><td>Developer says it's fixed and hands back to tester.</td></tr>
-              <tr><td>Retest</td><td>Tester re-runs the test case to verify.</td></tr>
-              <tr><td>Closed</td><td>Bug is verified as fixed.</td></tr>
-              <tr><td>Reopened</td><td>Fix didn't work or the same bug appears again.</td></tr>
-              <tr><td>Deferred</td><td>Accepted but fixed in a future release.</td></tr>
-              <tr><td>Rejected</td><td>Not valid, duplicate, or "works as designed".</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Severity vs Priority (⭐ Critical Concept)</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th></th><th>Severity</th><th>Priority</th></tr></thead>
-            <tbody>
-              <tr><td><b>What it means</b></td><td>How <b>impactful/serious</b> the bug is for the system</td><td>How <b>urgent</b> it is to fix (business view)</td></tr>
-              <tr><td><b>Set by</b></td><td>Usually the Tester</td><td>Usually the Project Manager / Product Owner</td></tr>
-              <tr><td><b>Levels</b></td><td>Critical / Major / Minor / Trivial</td><td>P1 / P2 / P3 / P4 (1 = highest)</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Severity</th><th>Description</th><th>Priority</th><th>Description</th></tr></thead>
-            <tbody>
-              <tr><td><b>Critical</b></td><td>System crashes, data loss, cannot use app at all</td><td><b>P1</b></td><td>Fix immediately, blocks release</td></tr>
-              <tr><td><b>Major</b></td><td>Major feature broken but workaround exists</td><td><b>P2</b></td><td>Fix in this release, high importance</td></tr>
-              <tr><td><b>Minor</b></td><td>Small issue, feature works with minor glitch</td><td><b>P3</b></td><td>Fix in next release if time permits</td></tr>
-              <tr><td><b>Trivial</b></td><td>Cosmetic, spelling, alignment</td><td><b>P4</b></td><td>Fix whenever, low importance</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="example">
-          <div class="ex-title">Severity ≠ Priority — Classic Example</div>
-          <p><b>High severity, low priority:</b> Company LOGO is misspelled on the homepage. It's "trivial" visually but the client wants it fixed urgently because it's their brand. → <em>Low severity (cosmetic) but High priority (business).</em></p>
-          <p><b>High priority, low severity:</b> A rare button misalignment — but it's in the feature launching today, so it must be fixed. → <em>Minor severity but High priority.</em></p>
-          <p><b>High severity, high priority:</b> App crashes when making a payment. → <em>Critical + P1.</em></p>
-        </div>
-
-        <h3>How to Write a Perfect Bug Report</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Field</th><th>Good Example</th></tr></thead>
-            <tbody>
-              <tr><td>Title (summary)</td><td>Amount shows as ₹1000 instead of ₹100 on payment confirmation page</td></tr>
-              <tr><td>Environment</td><td>Chrome v126, Windows 11, Production</td></tr>
-              <tr><td>Steps to Reproduce</td><td>1. Login. 2. Add item worth ₹100 to cart. 3. Pay via UPI. 4. Open confirmation page.</td></tr>
-              <tr><td>Expected Result</td><td>Confirmation shows ₹100</td></tr>
-              <tr><td>Actual Result</td><td>Confirmation shows ₹1000</td></tr>
-              <tr><td>Severity / Priority</td><td>Major / P1</td></tr>
-              <tr><td>Attachment</td><td>Screenshot + screen recording + console logs</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="callout tip"><b>💡 Golden Rule</b>A bug that can't be reproduced can't be fixed. Always write clear steps, add evidence (screenshots/logs), and test on the reported environment before claiming a fix.</div>
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_bug"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
-
-      <!-- ================= 9. TEST PLAN ================= -->
-      <section class="doc-section" id="plan">
-        <h2><span class="num">9</span> Test Plan, Test Strategy &amp; RTM</h2>
-
-        <h3>Test Plan vs Test Strategy</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th></th><th>Test Strategy</th><th>Test Plan</th></tr></thead>
-            <tbody>
-              <tr><td><b>Level</b></td><td>Project / Organization level — <em>HOW</em> testing will be done</td><td>Specific to one project/feature — the actual document</td></tr>
-              <tr><td><b>Created by</b></td><td>Test Manager</td><td>Test Lead / QA Lead</td></tr>
-              <tr><td><b>Content</b></td><td>Approach, tools, standards, levels of testing</td><td>Scope, schedule, resources, risks, entry/exit criteria</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Contents of a Test Plan</h3>
-        <ol>
-          <li><b>Test Plan ID</b> — unique identifier</li>
-          <li><b>Introduction</b> — objectives &amp; scope</li>
-          <li><b>Test Items</b> — what is being tested</li>
-          <li><b>Features to be tested</b> — in scope</li>
-          <li><b>Features NOT to be tested</b> — out of scope (and why)</li>
-          <li><b>Testing Approach</b> — levels, types, techniques</li>
-          <li><b>Test Environment</b> — hardware, software, network</li>
-          <li><b>Entry Criteria</b> — conditions to START testing</li>
-          <li><b>Exit Criteria</b> — conditions to STOP testing</li>
-          <li><b>Test Deliverables</b> — test cases, reports, plans</li>
-          <li><b>Schedule &amp; Estimation</b> — timelines, effort</li>
-          <li><b>Roles &amp; Responsibilities</b></li>
-          <li><b>Risks &amp; Mitigations</b></li>
-        </ol>
-
-        <h3>Entry vs Exit Criteria (Interview Favorite)</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Entry Criteria (Start testing when...)</th><th>Exit Criteria (Stop testing when...)</th></tr></thead>
-            <tbody>
-              <tr><td>Build is received and deployable</td><td>All critical &amp; major bugs are fixed and closed</td></tr>
-              <tr><td>Test environment is ready</td><td>All planned test cases are executed</td></tr>
-              <tr><td>Test data is available</td><td>High-priority test cases pass</td></tr>
-              <tr><td>Requirements &amp; test cases are reviewed</td><td>No open P1 bugs / blockers remain</td></tr>
-              <tr><td>Entry criteria are documented</td><td>Defect density is within acceptable limit, test summary report is signed off</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Requirement Traceability Matrix (RTM)</h3>
-        <p>RTM maps every <strong>requirement → test case → bug</strong>. It proves each requirement is tested. The key to 100% coverage.</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Req ID</th><th>Requirement</th><th>Test Case ID</th><th>Executed?</th><th>Result</th><th>Bug ID</th></tr></thead>
-            <tbody>
-              <tr><td>REQ-001</td><td>User can log in with valid credentials</td><td>TC_LOGIN_001</td><td>✅</td><td>Pass</td><td>—</td></tr>
-              <tr><td>REQ-002</td><td>User cannot log in with wrong password</td><td>TC_LOGIN_002</td><td>✅</td><td>Fail</td><td>BUG-101</td></tr>
-              <tr><td>REQ-003</td><td>User can reset password via email</td><td>TC_LOGIN_003</td><td>👋 Pending</td><td>—</td><td>—</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Test Estimation Techniques</h3>
-        <ul>
-          <li><b>Functional Point Analysis</b> — estimate based on features/function points.</li>
-          <li><b>Use Case Based</b> — estimate per use case.</li>
-          <li><b>Test Point Analysis</b> — weighted by complexity of test cases.</li>
-          <li><b>Experience Based</b> — based on past similar projects.</li>
-        </ul>
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_plan"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
-
-      <!-- ================= 10. AGILE ================= -->
-      <section class="doc-section" id="agile">
-        <h2><span class="num">10</span> Agile &amp; Scrum for Testers</h2>
-
-        <h3>Scrum Roles</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Role</th><th>Responsibility</th></tr></thead>
-            <tbody>
-              <tr><td><b>Product Owner (PO)</b></td><td>Owns the product backlog, defines what to build, prioritizes user stories.</td></tr>
-              <tr><td><b>Scrum Master</b></td><td>Facilitates ceremonies, removes blockers, coaches the team on Scrum.</td></tr>
-              <tr><td><b>Development Team</b></td><td>Developers + Testers + others who build and test the product. Self-organizing.</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Scrum Artifacts</h3>
-        <ul>
-          <li><b>Product Backlog</b> — list of all features/stories the product needs (prioritized).</li>
-          <li><b>Sprint Backlog</b> — stories selected for the current sprint.</li>
-          <li><b>Increment</b> — the working, tested product delivered at the end of a sprint.</li>
-        </ul>
-
-        <h3>Scrum Ceremonies</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Ceremony</th><th>When</th><th>Purpose</th><th>QA Role</th></tr></thead>
-            <tbody>
-              <tr><td><b>Sprint Planning</b></td><td>Start of sprint</td><td>Decide what to build in this sprint</td><td>Estimate stories, identify testable acceptance criteria</td></tr>
-              <tr><td><b>Daily Stand-up</b></td><td>Every day, 15 min</td><td>What I did, what I'll do, blockers</td><td>Report testing progress &amp; blockers</td></tr>
-              <tr><td><b>Sprint Review</b></td><td>End of sprint</td><td>Demo completed work to stakeholders</td><td>Demo tested features, report quality</td></tr>
-              <tr><td><b>Sprint Retrospective</b></td><td>After review</td><td>What went well / what to improve</td><td>Suggest process improvements</td></tr>
-              <tr><td><b>Backlog Refinement</b></td><td>Mid-sprint</td><td>Clarify &amp; estimate future stories</td><td>Add test scenarios to stories early</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Definition of Ready (DoR) vs Definition of Done (DoD)</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Definition of Ready (can we start?)</th><th>Definition of Done (is it finished?)</th></tr></thead>
-            <tbody>
-              <tr><td>Story has clear acceptance criteria</td><td>Code is developed</td></tr>
-              <tr><td>Story is estimated &amp; prioritized</td><td>Unit tested by developer</td></tr>
-              <tr><td>Dependencies are clear</td><td>Feature tested &amp; bugs fixed</td></tr>
-              <tr><td>Team understands the story</td><td>Regression passed, UAT signed off, deployed</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="callout tip"><b>💡 Agile Tester Mindset</b>In Agile, testers are involved from sprint <strong>planning</strong>, test as features are developed (not at the end), automate regression, and give quick feedback. QA is a team responsibility, not a phase.</div>
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_agile"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
-
-      <!-- ================= 11. TOOLS ================= -->
-      <section class="doc-section" id="tools">
-        <h2><span class="num">11</span> Tools: Jira, SQL, Excel for Testers</h2>
-
-        <h3>Jira (Defect Tracking #1 tool)</h3>
-        <p>Jira is used for tracking <strong>user stories, tasks, and bugs</strong>, and for managing Agile sprints.</p>
-        <ul>
-          <li><b>Issue types:</b> Story, Task, Bug, Epic, Sub-task.</li>
-          <li><b>Workflow:</b> To Do → In Progress → In Review → Done (customizable).</li>
-          <li><b>Boards:</b> Scrum board (sprints) or Kanban board (continuous).</li>
-          <li><b>Reports:</b> Burndown chart (work left vs time), Velocity chart, Sprint report.</li>
-          <li><b>Labels/Components:</b> group bugs by module for easier tracking.</li>
-        </ul>
-        <div class="flow">
-          <div class="node">To Do</div><div class="arrow">→</div>
-          <div class="node">In Progress</div><div class="arrow">→</div>
-          <div class="node">In Review</div><div class="arrow">→</div>
-          <div class="node pass">Done</div>
-        </div>
-
-        <h3>SQL for Testers (why it matters)</h3>
-        <p>Testers use SQL to <strong>verify data in the database</strong> — checking that transactions, users, and records are stored correctly, and to prepare test data.</p>
-        <pre><code><span class="c">-- Check if a payment was recorded correctly</span>
+      </header>
+
+      <!-- ============ MAIN ============ -->
+      <div class="main">
+        <div class="content">
+          <div class="page-opener">
+            <span class="eyebrow">Documentation</span>
+            <h1>Every concept, <em>clearly explained.</em></h1>
+            <p class="lead">
+              Sixteen chapters that take you from the basics of what software
+              testing is, through SDLC and STLC, test design techniques, the bug
+              lifecycle, Agile &amp; Scrum, right out to automation and your
+              first portfolio project. Read in order, or jump to what you need.
+            </p>
+          </div>
+
+          <div
+            class="card"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 24px;
+              flex-wrap: wrap;
+            "
+          >
+            <div style="flex: 1; min-width: 260px">
+              <h3 style="margin: 0 0 6px">Your Study Progress</h3>
+              <p
+                style="margin: 0; color: var(--color-graphite); font-size: 14px"
+              >
+                Tick the checkbox at the end of each chapter once you've studied
+                it.
+              </p>
+            </div>
+            <div style="flex: 1; min-width: 260px">
+              <div class="progress-bar">
+                <div class="fill" id="docProgressBar"></div>
+              </div>
+              <div
+                style="font-size: 13px; color: var(--color-graphite)"
+                id="docProgressLabel"
+              >
+                0 / 16 topics read
+              </div>
+            </div>
+          </div>
+
+          <!-- DOCS LAYOUT: sticky left rail + scrollable body -->
+          <div class="docs-layout">
+            <aside class="toc-rail" aria-label="Docs navigation">
+              <h4 class="toc-rail-title">Contents</h4>
+              <ol class="toc-rail-list">
+                <li>
+                  <a href="#intro" data-toc="doc_intro"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">Introduction</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#sdlc" data-toc="doc_sdlc"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">SDLC &amp; Models</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#stlc" data-toc="doc_stlc"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">STLC</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#levels" data-toc="doc_levels"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">Test Levels</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#types" data-toc="doc_types"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">Test Types</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#design" data-toc="doc_design"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">Test Design</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#testcase" data-toc="doc_testcase"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">Test Cases</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#bug" data-toc="doc_bug"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">Bug Lifecycle</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#plan" data-toc="doc_plan"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">Test Plan</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#agile" data-toc="doc_agile"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">Agile &amp; Scrum</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#tools" data-toc="doc_tools"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">Tools</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#api" data-toc="doc_api"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">API Testing</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#mobile" data-toc="doc_mobile"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">Mobile Testing</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#nonfunc" data-toc="doc_nonfunc"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label"
+                      >Performance &amp; Security</span
+                    ></a
+                  >
+                </li>
+                <li>
+                  <a href="#automation" data-toc="doc_automation"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">Automation Basics</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#portfolio" data-toc="doc_portfolio"
+                    ><span class="toc-tick" hidden>✓</span
+                    ><span class="toc-label">Portfolio</span></a
+                  >
+                </li>
+              </ol>
+            </aside>
+
+            <div class="docs-body">
+              <!-- ================= 1. INTRODUCTION ================= -->
+              <section class="doc-section" id="intro">
+                <h2>
+                  <span class="num">1</span> Introduction to Software Testing
+                </h2>
+
+                <h3>What is Software Testing?</h3>
+                <p>
+                  Software testing is the process of
+                  <strong>verifying and validating</strong> that a software
+                  application: (1) works as expected, (2) meets the requirements
+                  given by the client, and (3) is bug-free and ready for users.
+                  It's <em>not</em> just "clicking around" — it's a
+                  <strong>systematic, planned process</strong>.
+                </p>
+
+                <div class="flow">
+                  <div class="node">Requirements</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Build App</div>
+                  <div class="arrow">→</div>
+                  <div class="node dark">TEST</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Find Bugs</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Fix &amp; Retest</div>
+                  <div class="arrow">→</div>
+                  <div class="node pass">Release ✅</div>
+                </div>
+
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Term</th>
+                        <th>Definition</th>
+                        <th>Simple Example</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Verification</b></td>
+                        <td>
+                          "Are we building the product right?" — checking the
+                          product against its design/requirements (static, no
+                          execution).
+                        </td>
+                        <td>
+                          Reviewing a test case to make sure it matches the
+                          requirement doc.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Validation</b></td>
+                        <td>
+                          "Are we building the right product?" — checking the
+                          actual running product works and satisfies the user.
+                        </td>
+                        <td>
+                          Actually running the login screen and confirming you
+                          can log in.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Bug / Defect</b></td>
+                        <td>
+                          Any deviation between expected behavior and actual
+                          behavior.
+                        </td>
+                        <td>Expected "₹100" shown, but app shows "₹1000".</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>QA vs QC vs Testing</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>QA (Quality Assurance)</th>
+                        <th>QC (Quality Control)</th>
+                        <th>Testing</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Focus</b></td>
+                        <td>Process oriented — prevent defects</td>
+                        <td>Product oriented — detect defects</td>
+                        <td>Executing to find defects</td>
+                      </tr>
+                      <tr>
+                        <td><b>When</b></td>
+                        <td>Throughout the project</td>
+                        <td>After development</td>
+                        <td>During/after development</td>
+                      </tr>
+                      <tr>
+                        <td><b>Approach</b></td>
+                        <td>Proactive</td>
+                        <td>Reactive</td>
+                        <td>Reactive</td>
+                      </tr>
+                      <tr>
+                        <td><b>Analogy</b></td>
+                        <td>Designing a recipe correctly</td>
+                        <td>Tasting the food</td>
+                        <td>Actually tasting each dish</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>7 Principles of Software Testing</h3>
+                <ol>
+                  <li>
+                    <b>Testing shows the presence of defects</b> — testing can
+                    prove bugs exist, but can never prove the software is 100%
+                    bug-free.
+                  </li>
+                  <li>
+                    <b>Exhaustive testing is impossible</b> — you can't test
+                    everything (every input, every combination). Test smartly
+                    using techniques (BVA, EP).
+                  </li>
+                  <li>
+                    <b>Early testing saves time &amp; money</b> — a bug found in
+                    requirements costs ~10x less than one found in production.
+                  </li>
+                  <li>
+                    <b>Defects cluster together</b> — a small number of modules
+                    contain most of the bugs (Pareto: ~80% of defects in ~20% of
+                    modules).
+                  </li>
+                  <li>
+                    <b>Pesticide paradox</b> — running the same tests again and
+                    again stops finding new bugs. Keep reviewing &amp; adding
+                    new test cases.
+                  </li>
+                  <li>
+                    <b>Testing is context dependent</b> — a banking app needs
+                    different testing than a game or a website.
+                  </li>
+                  <li>
+                    <b>Absence-of-errors fallacy</b> — a bug-free system that
+                    doesn't meet user needs is still useless.
+                  </li>
+                </ol>
+
+                <div class="callout tip">
+                  <b>💡 Interview Tip</b>Always remember:
+                  <strong>Verification = static review</strong>,
+                  <strong>Validation = dynamic execution</strong>. Interviewers
+                  love this simple distinction.
+                </div>
+
+                <div class="example">
+                  <div class="ex-title">
+                    📝 Real-World Example — Your Fraud Background
+                  </div>
+                  <p>
+                    In fraud investigation you looked for
+                    <em>evidence of wrong transactions</em>. Testing is
+                    identical: you look for
+                    <em>evidence of wrong behavior</em> in software. Both
+                    require: a clear expected standard, systematic checking,
+                    careful documentation, and proof (screenshots/logs). This is
+                    your superpower.
+                  </p>
+                </div>
+
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_intro" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
+
+              <!-- ================= 2. SDLC ================= -->
+              <section class="doc-section" id="sdlc">
+                <h2>
+                  <span class="num">2</span> SDLC &amp; Development Models
+                </h2>
+
+                <h3>What is SDLC?</h3>
+                <p>
+                  <strong>SDLC (Software Development Life Cycle)</strong> is the
+                  step-by-step process used to build software. QA is involved in
+                  <em>every</em> phase — testing is not just the last step.
+                </p>
+
+                <div class="flow">
+                  <div class="node">1. Requirements</div>
+                  <div class="arrow">→</div>
+                  <div class="node">2. Design</div>
+                  <div class="arrow">→</div>
+                  <div class="node">3. Development</div>
+                  <div class="arrow">→</div>
+                  <div class="node">4. Testing</div>
+                  <div class="arrow">→</div>
+                  <div class="node">5. Deployment</div>
+                  <div class="arrow">→</div>
+                  <div class="node">6. Maintenance</div>
+                </div>
+
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Phase</th>
+                        <th>What Happens</th>
+                        <th>QA Role</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1. Requirements</td>
+                        <td>
+                          Business analysts collect what the client wants.
+                        </td>
+                        <td>
+                          Review requirements, find gaps/ambiguities, plan
+                          testable scenarios.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2. Design</td>
+                        <td>Architects design the system (HLD, LLD).</td>
+                        <td>Understand design to build better test cases.</td>
+                      </tr>
+                      <tr>
+                        <td>3. Development</td>
+                        <td>Developers write code.</td>
+                        <td>
+                          Prepare test environment, test data, test cases.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>4. Testing</td>
+                        <td>QA finds and reports bugs.</td>
+                        <td>Execute test cases, log bugs, verify fixes.</td>
+                      </tr>
+                      <tr>
+                        <td>5. Deployment</td>
+                        <td>App goes live to users.</td>
+                        <td>
+                          Smoke test in production, verify no release issues.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>6. Maintenance</td>
+                        <td>Fix issues, add features.</td>
+                        <td>Regression testing for every change.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>SDLC Models — Overview</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Model</th>
+                        <th>Key Idea</th>
+                        <th>Pros</th>
+                        <th>Cons</th>
+                        <th>When Used</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Waterfall</b></td>
+                        <td>
+                          Linear — each phase finishes before the next starts.
+                        </td>
+                        <td>Simple, well documented.</td>
+                        <td>No flexibility; changes are costly.</td>
+                        <td>Small projects with clear requirements.</td>
+                      </tr>
+                      <tr>
+                        <td><b>V-Model</b></td>
+                        <td>
+                          Waterfall + testing. Each dev phase has a matching
+                          test phase.
+                        </td>
+                        <td>Testing planned early, higher quality.</td>
+                        <td>Still rigid, not for changing requirements.</td>
+                        <td>
+                          Projects where quality is critical (banking, medical).
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Agile</b></td>
+                        <td>
+                          Iterative — build in small sprints, deliver fast,
+                          adapt.
+                        </td>
+                        <td>Fast feedback, flexible, customer involved.</td>
+                        <td>Less documentation, requires discipline.</td>
+                        <td>Most modern software teams.</td>
+                      </tr>
+                      <tr>
+                        <td><b>Spiral</b></td>
+                        <td>
+                          Risk-driven, repeated cycles (prototype → evaluate).
+                        </td>
+                        <td>Handles risk well.</td>
+                        <td>Expensive, complex.</td>
+                        <td>Large, high-risk projects.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>V-Model (Important for Interviews)</h3>
+                <p>
+                  Each development phase on the left has a
+                  <strong>matching test phase</strong> on the right:
+                </p>
+                <div class="flow vertical">
+                  <div class="node">
+                    Requirements Analysis ← Acceptance Test Design (UAT)
+                  </div>
+                  <div class="arrow">▼</div>
+                  <div class="node">System Design ← System Test Design</div>
+                  <div class="arrow">▼</div>
+                  <div class="node">Architecture ← Integration Test Design</div>
+                  <div class="arrow">▼</div>
+                  <div class="node">Module Design ← Unit Test Design</div>
+                  <div class="arrow">▼</div>
+                  <div class="node alt">Coding ✍️</div>
+                </div>
+
+                <h3>Agile Manifesto (4 Values)</h3>
+                <ul>
+                  <li>
+                    <strong>Individuals and interactions</strong> over processes
+                    and tools
+                  </li>
+                  <li>
+                    <strong>Working software</strong> over comprehensive
+                    documentation
+                  </li>
+                  <li>
+                    <strong>Customer collaboration</strong> over contract
+                    negotiation
+                  </li>
+                  <li>
+                    <strong>Responding to change</strong> over following a plan
+                  </li>
+                </ul>
+
+                <div class="callout warn">
+                  <b>⚠️ Common Interview Question</b>"Waterfall vs Agile?" —
+                  Answer: Waterfall is linear/sequential with testing at the
+                  end; Agile is iterative in sprints with testing in every
+                  sprint, continuous feedback, and the ability to change
+                  requirements quickly.
+                </div>
+
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_sdlc" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
+
+              <!-- ================= 3. STLC ================= -->
+              <section class="doc-section" id="stlc">
+                <h2>
+                  <span class="num">3</span> STLC — Software Testing Life Cycle
+                </h2>
+
+                <p>
+                  STLC is the <strong>testing-specific process</strong> with its
+                  own phases (each with entry criteria, activities, and
+                  deliverables).
+                </p>
+
+                <div class="flow">
+                  <div class="node">1. Requirement Analysis</div>
+                  <div class="arrow">→</div>
+                  <div class="node">2. Test Planning</div>
+                  <div class="arrow">→</div>
+                  <div class="node">3. Test Case Dev</div>
+                  <div class="arrow">→</div>
+                  <div class="node">4. Environment Setup</div>
+                  <div class="arrow">→</div>
+                  <div class="node">5. Test Execution</div>
+                  <div class="arrow">→</div>
+                  <div class="node">6. Closure</div>
+                </div>
+
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Phase</th>
+                        <th>Activities</th>
+                        <th>Deliverable</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>1. Requirement Analysis</b></td>
+                        <td>
+                          Read requirement docs, find testable requirements,
+                          understand the feature.
+                        </td>
+                        <td>RTM (Requirement Traceability Matrix) draft</td>
+                      </tr>
+                      <tr>
+                        <td><b>2. Test Planning</b></td>
+                        <td>
+                          Estimate effort, decide scope &amp; strategy, identify
+                          risks, assign resources.
+                        </td>
+                        <td>Test Plan document</td>
+                      </tr>
+                      <tr>
+                        <td><b>3. Test Case Development</b></td>
+                        <td>
+                          Write test cases, review them, prepare test data.
+                        </td>
+                        <td>Test cases, Test data</td>
+                      </tr>
+                      <tr>
+                        <td><b>4. Environment Setup</b></td>
+                        <td>
+                          Set up hardware/software/network, test servers, tools,
+                          build.
+                        </td>
+                        <td>Test environment ready</td>
+                      </tr>
+                      <tr>
+                        <td><b>5. Test Execution</b></td>
+                        <td>
+                          Execute test cases, log bugs, retest fixed bugs,
+                          regression.
+                        </td>
+                        <td>Bug reports, executed test cases</td>
+                      </tr>
+                      <tr>
+                        <td><b>6. Test Closure</b></td>
+                        <td>
+                          Analyze results, prepare summary report, lessons
+                          learned.
+                        </td>
+                        <td>Test Summary Report</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="callout tip">
+                  <b>💡 Remember It</b>The mnemonic <strong>"RTPEEC"</strong> →
+                  <u>R</u>equirement analysis, <u>T</u>est planning,
+                  <u>P</u>repare cases, <u>E</u>nvironment setup,
+                  <u>E</u>xecution, <u>C</u>losure.
+                </div>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_stlc" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
+
+              <!-- ================= 4. TEST LEVELS ================= -->
+              <section class="doc-section" id="levels">
+                <h2><span class="num">4</span> Test Levels</h2>
+
+                <p>
+                  Testing happens at different "levels" as the software is built
+                  — from small pieces up to the whole system.
+                </p>
+
+                <div class="flow vertical">
+                  <div class="node pass">
+                    UAT — does it satisfy the business user?
+                  </div>
+                  <div class="arrow">▲</div>
+                  <div class="node alt">
+                    System Testing — whole application together
+                  </div>
+                  <div class="arrow">▲</div>
+                  <div class="node">
+                    Integration Testing — modules working together
+                  </div>
+                  <div class="arrow">▲</div>
+                  <div class="node dark">
+                    Unit Testing — single function/module (by developers)
+                  </div>
+                </div>
+
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Level</th>
+                        <th>Who does it</th>
+                        <th>What it checks</th>
+                        <th>Example</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Unit Testing</b></td>
+                        <td>Developers</td>
+                        <td>Single function/method in isolation</td>
+                        <td>
+                          Does the <code>calculateDiscount()</code> function
+                          return the right value for a given input?
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Integration Testing</b></td>
+                        <td>Testers (sometimes devs)</td>
+                        <td>Interfaces between modules</td>
+                        <td>
+                          Does the login module correctly pass user data to the
+                          dashboard module?
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>System Testing</b></td>
+                        <td>Testers</td>
+                        <td>Entire application as a whole (end-to-end)</td>
+                        <td>
+                          Full flow: register → login → add to cart → pay →
+                          order confirmation.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>UAT (User Acceptance Testing)</b></td>
+                        <td>Client / Business users</td>
+                        <td>Does it meet business needs</td>
+                        <td>
+                          Client verifies the app matches what they asked for.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="callout info">
+                  <b>ℹ️ Alpha vs Beta Testing</b><b>Alpha</b> = testing done by
+                  the internal team at the developer's site. <b>Beta</b> =
+                  testing done by real external users in a real environment
+                  before the final release.
+                </div>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_levels" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
+
+              <!-- ================= 5. TEST TYPES ================= -->
+              <section class="doc-section" id="types">
+                <h2>
+                  <span class="num">5</span> Test Types — Functional &amp;
+                  Non-Functional
+                </h2>
+
+                <h3>Functional Testing</h3>
+                <p>
+                  Checks <strong>WHAT the system does</strong> — whether each
+                  function works according to requirements.
+                </p>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Type</th>
+                        <th>Purpose</th>
+                        <th>Quick Example</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Smoke Testing</b></td>
+                        <td>
+                          "Build is testable?" Quick sanity check of critical
+                          features after a build.
+                        </td>
+                        <td>
+                          Can the app open and can you log in? If not, reject
+                          the build.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Sanity Testing</b></td>
+                        <td>
+                          Quick check that a <em>specific</em> fix works,
+                          without deep testing.
+                        </td>
+                        <td>
+                          After fixing the "login" bug, just test login — not
+                          the whole app.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Regression Testing</b></td>
+                        <td>New changes didn't break existing features.</td>
+                        <td>
+                          After adding a new payment method, verify old UPI,
+                          card, and net-banking still work.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Retesting</b></td>
+                        <td>
+                          Re-test the <em>exact same failed test case</em> to
+                          confirm the fix.
+                        </td>
+                        <td>
+                          Bug "₹100 displayed as ₹1000" is fixed → run that
+                          exact test again.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Ad-hoc / Exploratory</b></td>
+                        <td>
+                          Unplanned, creative testing to find unexpected bugs.
+                        </td>
+                        <td>
+                          Freely explore a new feature and try unusual inputs.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Positive Testing</b></td>
+                        <td>Valid inputs → expect success.</td>
+                        <td>
+                          Enter correct username + password → login succeeds.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Negative Testing</b></td>
+                        <td>Invalid inputs → expect proper error handling.</td>
+                        <td>
+                          Enter wrong password → correct error message, no
+                          crash.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>Smoke vs Sanity vs Regression (Very Common Interview Q)</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Smoke</th>
+                        <th>Sanity</th>
+                        <th>Regression</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Goal</b></td>
+                        <td>
+                          Check build stability (all critical features quickly)
+                        </td>
+                        <td>Check one specific fix</td>
+                        <td>Check nothing broke elsewhere</td>
+                      </tr>
+                      <tr>
+                        <td><b>Scope</b></td>
+                        <td>Wide (main features)</td>
+                        <td>Narrow (one area)</td>
+                        <td>Wide (existing features)</td>
+                      </tr>
+                      <tr>
+                        <td><b>When</b></td>
+                        <td>Every new build</td>
+                        <td>After a specific fix</td>
+                        <td>After any code change/release</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>Non-Functional Testing</h3>
+                <p>
+                  Checks <strong>HOW the system performs</strong> — quality
+                  attributes, not just functions.
+                </p>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Type</th>
+                        <th>What it checks</th>
+                        <th>Example</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Performance</b></td>
+                        <td>Speed, responsiveness, stability under load</td>
+                        <td>App loads in under 2 seconds for 10,000 users.</td>
+                      </tr>
+                      <tr>
+                        <td><b>Load Testing</b></td>
+                        <td>Behavior under expected load</td>
+                        <td>500 users login at once — still works?</td>
+                      </tr>
+                      <tr>
+                        <td><b>Stress Testing</b></td>
+                        <td>Behavior beyond limits (when does it break?)</td>
+                        <td>50,000 users — where does the server crash?</td>
+                      </tr>
+                      <tr>
+                        <td><b>Security Testing</b></td>
+                        <td>Protection against attacks &amp; data leaks</td>
+                        <td>Can a hacker inject SQL to steal passwords?</td>
+                      </tr>
+                      <tr>
+                        <td><b>Usability Testing</b></td>
+                        <td>Ease of use</td>
+                        <td>
+                          Can a new user find the "Forgot Password" link easily?
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Compatibility</b></td>
+                        <td>Works across devices/browsers/OS</td>
+                        <td>
+                          Works on Chrome, Safari, Android, iOS, Windows, Mac.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Accessibility</b></td>
+                        <td>Usable by people with disabilities</td>
+                        <td>
+                          Screen-reader friendly, keyboard navigable, contrast.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_types" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
+
+              <!-- ================= 6. TEST DESIGN ================= -->
+              <section class="doc-section" id="design">
+                <h2><span class="num">6</span> Test Design Techniques</h2>
+
+                <p>
+                  These techniques help you choose
+                  <strong>which test cases to write</strong> so you find the
+                  most bugs with the fewest tests (remember: exhaustive testing
+                  is impossible).
+                </p>
+
+                <h3>1. Boundary Value Analysis (BVA)</h3>
+                <p>
+                  Bugs happen most often at <strong>boundaries</strong>. Test
+                  the edges: just below, exactly at, and just above the
+                  boundary.
+                </p>
+                <div class="example">
+                  <div class="ex-title">Example: Age field accepts 18 – 60</div>
+                  <p>
+                    Valid boundaries: <code>17</code> (invalid),
+                    <code>18</code> (valid min), <code>59/60</code> (valid max),
+                    <code>61</code> (invalid).<br />
+                    <strong>BVA test values:</strong> 17, 18, 60, 61 — these 4
+                    values cover the boundaries perfectly.
+                  </p>
+                </div>
+
+                <h3>2. Equivalence Partitioning (EP)</h3>
+                <p>
+                  Divide inputs into <strong>groups (partitions)</strong> that
+                  the system treats the same way. Test
+                  <strong>one value from each partition</strong> — no need to
+                  test every value.
+                </p>
+                <div class="example">
+                  <div class="ex-title">Example: Marks field (0 – 100)</div>
+                  <p>
+                    <span class="chip fail">Invalid: negative (-5)</span>
+                    <span class="chip pass">Valid: 0 – 100 (e.g. 50)</span>
+                    <span class="chip fail">Invalid: above 100 (150)</span
+                    ><br />
+                    One value per partition is enough: test <code>-5</code>,
+                    <code>50</code>, <code>150</code>.
+                  </p>
+                </div>
+
+                <h3>3. Decision Table Testing</h3>
+                <p>
+                  Use when there are multiple conditions that combine to give
+                  results. Build a table of condition combinations.
+                </p>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Login Box Conditions</th>
+                        <th>Case 1</th>
+                        <th>Case 2</th>
+                        <th>Case 3</th>
+                        <th>Case 4</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Username correct?</td>
+                        <td>✅</td>
+                        <td>✅</td>
+                        <td>❌</td>
+                        <td>❌</td>
+                      </tr>
+                      <tr>
+                        <td>Password correct?</td>
+                        <td>✅</td>
+                        <td>❌</td>
+                        <td>✅</td>
+                        <td>❌</td>
+                      </tr>
+                      <tr>
+                        <td><b>Result</b></td>
+                        <td><b>Login success</b></td>
+                        <td><b>Error: wrong password</b></td>
+                        <td><b>Error: wrong user</b></td>
+                        <td><b>Error: both wrong</b></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>4. State Transition Testing</h3>
+                <p>
+                  Use when the system changes <strong>states</strong> based on
+                  events. Track state changes and valid/invalid transitions.
+                </p>
+                <div class="flow">
+                  <div class="node">Pending 📂</div>
+                  <div class="arrow">pay</div>
+                  <div class="node pass">Paid ✅</div>
+                  <div class="arrow">deliver</div>
+                  <div class="node alt">Delivered 📦</div>
+                </div>
+                <p style="font-size: 14px; color: var(--color-graphite)">
+                  Invalid: you should NOT be able to go from "Paid" directly
+                  back to "Pending".
+                </p>
+
+                <h3>5. Error Guessing</h3>
+                <p>
+                  Using <strong>experience and intuition</strong> to guess where
+                  bugs might hide — testing common weak spots (empty inputs,
+                  special characters, spaces, huge inputs, rapid clicks).
+                </p>
+
+                <div class="callout warn">
+                  <b>⚠️ Interview Favorite</b>Be ready to explain BVA &amp; EP
+                  with a live example. E.g. "For a field accepting 1–100, I test
+                  0, 1, 100, 101 (BVA) and one value from each partition (EP)."
+                </div>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_design" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
+
+              <!-- ================= 7. TEST CASES ================= -->
+              <section class="doc-section" id="testcase">
+                <h2>
+                  <span class="num">7</span> Test Cases &amp; Test Scenarios
+                </h2>
+
+                <h3>Definitions</h3>
+                <ul>
+                  <li>
+                    <b>Test Scenario:</b> "What to test" — a one-line statement
+                    of a feature to test (e.g., "Verify user can log in").
+                  </li>
+                  <li>
+                    <b>Test Case:</b> "How to test it" — step-by-step
+                    instructions including inputs, steps, and expected result.
+                  </li>
+                  <li>
+                    <b>Test Suite:</b> A collection of test cases for a
+                    module/feature.
+                  </li>
+                </ul>
+
+                <h3>Anatomy of a Good Test Case</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Field</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Test Case ID</td>
+                        <td>Unique identifier</td>
+                        <td><code>TC_LOGIN_001</code></td>
+                      </tr>
+                      <tr>
+                        <td>Title / Summary</td>
+                        <td>What is being verified</td>
+                        <td>Verify successful login with valid credentials</td>
+                      </tr>
+                      <tr>
+                        <td>Preconditions</td>
+                        <td>Setup required before running</td>
+                        <td>User account exists, app is open</td>
+                      </tr>
+                      <tr>
+                        <td>Test Steps</td>
+                        <td>Numbered actions</td>
+                        <td>
+                          1. Enter username. 2. Enter password. 3. Click Login.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Test Data</td>
+                        <td>Input values used</td>
+                        <td>
+                          Username: <code>qa_user</code>, Password:
+                          <code>Pass@123</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Expected Result</td>
+                        <td>What should happen</td>
+                        <td>User is redirected to the Dashboard</td>
+                      </tr>
+                      <tr>
+                        <td>Actual Result</td>
+                        <td>
+                          What actually happened (filled during execution)
+                        </td>
+                        <td>Error: "Invalid credentials" — <b>BUG</b></td>
+                      </tr>
+                      <tr>
+                        <td>Status</td>
+                        <td>Pass / Fail / Blocked / Not Run</td>
+                        <td>Fail</td>
+                      </tr>
+                      <tr>
+                        <td>Priority</td>
+                        <td>Order of execution (how urgent)</td>
+                        <td>High</td>
+                      </tr>
+                      <tr>
+                        <td>Severity</td>
+                        <td>Impact on the system (how bad)</td>
+                        <td>Critical</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>How to Write Good Test Cases (Checklist)</h3>
+                <ul class="list-check">
+                  <li>Use clear, simple, unambiguous language.</li>
+                  <li>Each test case tests <strong>one</strong> thing.</li>
+                  <li>Always include expected results (never leave blank).</li>
+                  <li>Cover positive AND negative scenarios.</li>
+                  <li>Cover boundary conditions.</li>
+                  <li>Write steps anyone (even a new joiner) can follow.</li>
+                  <li>Don't depend on other test cases.</li>
+                  <li>Keep it maintainable &amp; reusable.</li>
+                </ul>
+
+                <h3>Test Scenario vs Test Case — Example</h3>
+                <div class="example">
+                  <div class="ex-title">Feature: Login Page</div>
+                  <p>
+                    <b>Scenario:</b> Verify user can log in.<br />
+                    <b>Test Cases derived from it:</b>
+                  </p>
+                  <ul>
+                    <li>
+                      TC1: Login with valid username + valid password → success
+                    </li>
+                    <li>
+                      TC2: Login with valid username + invalid password → error
+                      message
+                    </li>
+                    <li>
+                      TC3: Login with invalid username + valid password → error
+                      message
+                    </li>
+                    <li>TC4: Leave both fields empty → validation error</li>
+                    <li>
+                      TC5: Password with only 1 character (boundary) → error
+                    </li>
+                    <li>
+                      TC6: "Remember me" checked → session persists after
+                      browser close
+                    </li>
+                    <li>TC7: Click "Forgot password" → reset email sent</li>
+                  </ul>
+                </div>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_testcase" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
+
+              <!-- ================= 8. BUG LIFECYCLE ================= -->
+              <section class="doc-section" id="bug">
+                <h2><span class="num">8</span> Bug / Defect Lifecycle</h2>
+
+                <h3>Defect Lifecycle States</h3>
+                <div class="flow">
+                  <div class="node">New</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Assigned</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Open</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Fixed</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Retest</div>
+                  <div class="arrow">→</div>
+                  <div class="node pass">Closed ✅</div>
+                </div>
+                <p style="font-size: 14px; color: var(--color-graphite)">
+                  Other possible states: <b>Deferred</b> (fix later),
+                  <b>Rejected</b> (not a bug / duplicate), <b>Reopened</b> (fix
+                  didn't work), <b>Not a Bug</b>.
+                </p>
+
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>State</th>
+                        <th>Meaning</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>New</td>
+                        <td>Tester finds and logs the bug.</td>
+                      </tr>
+                      <tr>
+                        <td>Assigned</td>
+                        <td>Bug is assigned to a developer.</td>
+                      </tr>
+                      <tr>
+                        <td>Open</td>
+                        <td>Developer accepts and starts fixing.</td>
+                      </tr>
+                      <tr>
+                        <td>Fixed</td>
+                        <td>
+                          Developer says it's fixed and hands back to tester.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Retest</td>
+                        <td>Tester re-runs the test case to verify.</td>
+                      </tr>
+                      <tr>
+                        <td>Closed</td>
+                        <td>Bug is verified as fixed.</td>
+                      </tr>
+                      <tr>
+                        <td>Reopened</td>
+                        <td>Fix didn't work or the same bug appears again.</td>
+                      </tr>
+                      <tr>
+                        <td>Deferred</td>
+                        <td>Accepted but fixed in a future release.</td>
+                      </tr>
+                      <tr>
+                        <td>Rejected</td>
+                        <td>Not valid, duplicate, or "works as designed".</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>Severity vs Priority (⭐ Critical Concept)</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Severity</th>
+                        <th>Priority</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>What it means</b></td>
+                        <td>
+                          How <b>impactful/serious</b> the bug is for the system
+                        </td>
+                        <td>How <b>urgent</b> it is to fix (business view)</td>
+                      </tr>
+                      <tr>
+                        <td><b>Set by</b></td>
+                        <td>Usually the Tester</td>
+                        <td>Usually the Project Manager / Product Owner</td>
+                      </tr>
+                      <tr>
+                        <td><b>Levels</b></td>
+                        <td>Critical / Major / Minor / Trivial</td>
+                        <td>P1 / P2 / P3 / P4 (1 = highest)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Severity</th>
+                        <th>Description</th>
+                        <th>Priority</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Critical</b></td>
+                        <td>
+                          System crashes, data loss, cannot use app at all
+                        </td>
+                        <td><b>P1</b></td>
+                        <td>Fix immediately, blocks release</td>
+                      </tr>
+                      <tr>
+                        <td><b>Major</b></td>
+                        <td>Major feature broken but workaround exists</td>
+                        <td><b>P2</b></td>
+                        <td>Fix in this release, high importance</td>
+                      </tr>
+                      <tr>
+                        <td><b>Minor</b></td>
+                        <td>Small issue, feature works with minor glitch</td>
+                        <td><b>P3</b></td>
+                        <td>Fix in next release if time permits</td>
+                      </tr>
+                      <tr>
+                        <td><b>Trivial</b></td>
+                        <td>Cosmetic, spelling, alignment</td>
+                        <td><b>P4</b></td>
+                        <td>Fix whenever, low importance</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="example">
+                  <div class="ex-title">
+                    Severity ≠ Priority — Classic Example
+                  </div>
+                  <p>
+                    <b>High severity, low priority:</b> Company LOGO is
+                    misspelled on the homepage. It's "trivial" visually but the
+                    client wants it fixed urgently because it's their brand. →
+                    <em
+                      >Low severity (cosmetic) but High priority (business).</em
+                    >
+                  </p>
+                  <p>
+                    <b>High priority, low severity:</b> A rare button
+                    misalignment — but it's in the feature launching today, so
+                    it must be fixed. →
+                    <em>Minor severity but High priority.</em>
+                  </p>
+                  <p>
+                    <b>High severity, high priority:</b> App crashes when making
+                    a payment. → <em>Critical + P1.</em>
+                  </p>
+                </div>
+
+                <h3>How to Write a Perfect Bug Report</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Field</th>
+                        <th>Good Example</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Title (summary)</td>
+                        <td>
+                          Amount shows as ₹1000 instead of ₹100 on payment
+                          confirmation page
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Environment</td>
+                        <td>Chrome v126, Windows 11, Production</td>
+                      </tr>
+                      <tr>
+                        <td>Steps to Reproduce</td>
+                        <td>
+                          1. Login. 2. Add item worth ₹100 to cart. 3. Pay via
+                          UPI. 4. Open confirmation page.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Expected Result</td>
+                        <td>Confirmation shows ₹100</td>
+                      </tr>
+                      <tr>
+                        <td>Actual Result</td>
+                        <td>Confirmation shows ₹1000</td>
+                      </tr>
+                      <tr>
+                        <td>Severity / Priority</td>
+                        <td>Major / P1</td>
+                      </tr>
+                      <tr>
+                        <td>Attachment</td>
+                        <td>Screenshot + screen recording + console logs</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="callout tip">
+                  <b>💡 Golden Rule</b>A bug that can't be reproduced can't be
+                  fixed. Always write clear steps, add evidence
+                  (screenshots/logs), and test on the reported environment
+                  before claiming a fix.
+                </div>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_bug" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
+
+              <!-- ================= 9. TEST PLAN ================= -->
+              <section class="doc-section" id="plan">
+                <h2>
+                  <span class="num">9</span> Test Plan, Test Strategy &amp; RTM
+                </h2>
+
+                <h3>Test Plan vs Test Strategy</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Test Strategy</th>
+                        <th>Test Plan</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Level</b></td>
+                        <td>
+                          Project / Organization level — <em>HOW</em> testing
+                          will be done
+                        </td>
+                        <td>
+                          Specific to one project/feature — the actual document
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Created by</b></td>
+                        <td>Test Manager</td>
+                        <td>Test Lead / QA Lead</td>
+                      </tr>
+                      <tr>
+                        <td><b>Content</b></td>
+                        <td>Approach, tools, standards, levels of testing</td>
+                        <td>
+                          Scope, schedule, resources, risks, entry/exit criteria
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>Contents of a Test Plan</h3>
+                <ol>
+                  <li><b>Test Plan ID</b> — unique identifier</li>
+                  <li><b>Introduction</b> — objectives &amp; scope</li>
+                  <li><b>Test Items</b> — what is being tested</li>
+                  <li><b>Features to be tested</b> — in scope</li>
+                  <li>
+                    <b>Features NOT to be tested</b> — out of scope (and why)
+                  </li>
+                  <li><b>Testing Approach</b> — levels, types, techniques</li>
+                  <li><b>Test Environment</b> — hardware, software, network</li>
+                  <li><b>Entry Criteria</b> — conditions to START testing</li>
+                  <li><b>Exit Criteria</b> — conditions to STOP testing</li>
+                  <li><b>Test Deliverables</b> — test cases, reports, plans</li>
+                  <li><b>Schedule &amp; Estimation</b> — timelines, effort</li>
+                  <li><b>Roles &amp; Responsibilities</b></li>
+                  <li><b>Risks &amp; Mitigations</b></li>
+                </ol>
+
+                <h3>Entry vs Exit Criteria (Interview Favorite)</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Entry Criteria (Start testing when...)</th>
+                        <th>Exit Criteria (Stop testing when...)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Build is received and deployable</td>
+                        <td>
+                          All critical &amp; major bugs are fixed and closed
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Test environment is ready</td>
+                        <td>All planned test cases are executed</td>
+                      </tr>
+                      <tr>
+                        <td>Test data is available</td>
+                        <td>High-priority test cases pass</td>
+                      </tr>
+                      <tr>
+                        <td>Requirements &amp; test cases are reviewed</td>
+                        <td>No open P1 bugs / blockers remain</td>
+                      </tr>
+                      <tr>
+                        <td>Entry criteria are documented</td>
+                        <td>
+                          Defect density is within acceptable limit, test
+                          summary report is signed off
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>Requirement Traceability Matrix (RTM)</h3>
+                <p>
+                  RTM maps every <strong>requirement → test case → bug</strong>.
+                  It proves each requirement is tested. The key to 100%
+                  coverage.
+                </p>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Req ID</th>
+                        <th>Requirement</th>
+                        <th>Test Case ID</th>
+                        <th>Executed?</th>
+                        <th>Result</th>
+                        <th>Bug ID</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>REQ-001</td>
+                        <td>User can log in with valid credentials</td>
+                        <td>TC_LOGIN_001</td>
+                        <td>✅</td>
+                        <td>Pass</td>
+                        <td>—</td>
+                      </tr>
+                      <tr>
+                        <td>REQ-002</td>
+                        <td>User cannot log in with wrong password</td>
+                        <td>TC_LOGIN_002</td>
+                        <td>✅</td>
+                        <td>Fail</td>
+                        <td>BUG-101</td>
+                      </tr>
+                      <tr>
+                        <td>REQ-003</td>
+                        <td>User can reset password via email</td>
+                        <td>TC_LOGIN_003</td>
+                        <td>👋 Pending</td>
+                        <td>—</td>
+                        <td>—</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>Test Estimation Techniques</h3>
+                <ul>
+                  <li>
+                    <b>Functional Point Analysis</b> — estimate based on
+                    features/function points.
+                  </li>
+                  <li><b>Use Case Based</b> — estimate per use case.</li>
+                  <li>
+                    <b>Test Point Analysis</b> — weighted by complexity of test
+                    cases.
+                  </li>
+                  <li>
+                    <b>Experience Based</b> — based on past similar projects.
+                  </li>
+                </ul>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_plan" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
+
+              <!-- ================= 10. AGILE ================= -->
+              <section class="doc-section" id="agile">
+                <h2>
+                  <span class="num">10</span> Agile &amp; Scrum for Testers
+                </h2>
+
+                <h3>Scrum Roles</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Role</th>
+                        <th>Responsibility</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Product Owner (PO)</b></td>
+                        <td>
+                          Owns the product backlog, defines what to build,
+                          prioritizes user stories.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Scrum Master</b></td>
+                        <td>
+                          Facilitates ceremonies, removes blockers, coaches the
+                          team on Scrum.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Development Team</b></td>
+                        <td>
+                          Developers + Testers + others who build and test the
+                          product. Self-organizing.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>Scrum Artifacts</h3>
+                <ul>
+                  <li>
+                    <b>Product Backlog</b> — list of all features/stories the
+                    product needs (prioritized).
+                  </li>
+                  <li>
+                    <b>Sprint Backlog</b> — stories selected for the current
+                    sprint.
+                  </li>
+                  <li>
+                    <b>Increment</b> — the working, tested product delivered at
+                    the end of a sprint.
+                  </li>
+                </ul>
+
+                <h3>Scrum Ceremonies</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Ceremony</th>
+                        <th>When</th>
+                        <th>Purpose</th>
+                        <th>QA Role</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Sprint Planning</b></td>
+                        <td>Start of sprint</td>
+                        <td>Decide what to build in this sprint</td>
+                        <td>
+                          Estimate stories, identify testable acceptance
+                          criteria
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Daily Stand-up</b></td>
+                        <td>Every day, 15 min</td>
+                        <td>What I did, what I'll do, blockers</td>
+                        <td>Report testing progress &amp; blockers</td>
+                      </tr>
+                      <tr>
+                        <td><b>Sprint Review</b></td>
+                        <td>End of sprint</td>
+                        <td>Demo completed work to stakeholders</td>
+                        <td>Demo tested features, report quality</td>
+                      </tr>
+                      <tr>
+                        <td><b>Sprint Retrospective</b></td>
+                        <td>After review</td>
+                        <td>What went well / what to improve</td>
+                        <td>Suggest process improvements</td>
+                      </tr>
+                      <tr>
+                        <td><b>Backlog Refinement</b></td>
+                        <td>Mid-sprint</td>
+                        <td>Clarify &amp; estimate future stories</td>
+                        <td>Add test scenarios to stories early</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>Definition of Ready (DoR) vs Definition of Done (DoD)</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Definition of Ready (can we start?)</th>
+                        <th>Definition of Done (is it finished?)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Story has clear acceptance criteria</td>
+                        <td>Code is developed</td>
+                      </tr>
+                      <tr>
+                        <td>Story is estimated &amp; prioritized</td>
+                        <td>Unit tested by developer</td>
+                      </tr>
+                      <tr>
+                        <td>Dependencies are clear</td>
+                        <td>Feature tested &amp; bugs fixed</td>
+                      </tr>
+                      <tr>
+                        <td>Team understands the story</td>
+                        <td>Regression passed, UAT signed off, deployed</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="callout tip">
+                  <b>💡 Agile Tester Mindset</b>In Agile, testers are involved
+                  from sprint <strong>planning</strong>, test as features are
+                  developed (not at the end), automate regression, and give
+                  quick feedback. QA is a team responsibility, not a phase.
+                </div>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_agile" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
+
+              <!-- ================= 11. TOOLS ================= -->
+              <section class="doc-section" id="tools">
+                <h2>
+                  <span class="num">11</span> Tools: Jira, SQL, Excel for
+                  Testers
+                </h2>
+
+                <h3>Jira (Defect Tracking #1 tool)</h3>
+                <p>
+                  Jira is used for tracking
+                  <strong>user stories, tasks, and bugs</strong>, and for
+                  managing Agile sprints.
+                </p>
+                <ul>
+                  <li><b>Issue types:</b> Story, Task, Bug, Epic, Sub-task.</li>
+                  <li>
+                    <b>Workflow:</b> To Do → In Progress → In Review → Done
+                    (customizable).
+                  </li>
+                  <li>
+                    <b>Boards:</b> Scrum board (sprints) or Kanban board
+                    (continuous).
+                  </li>
+                  <li>
+                    <b>Reports:</b> Burndown chart (work left vs time), Velocity
+                    chart, Sprint report.
+                  </li>
+                  <li>
+                    <b>Labels/Components:</b> group bugs by module for easier
+                    tracking.
+                  </li>
+                </ul>
+                <div class="flow">
+                  <div class="node">To Do</div>
+                  <div class="arrow">→</div>
+                  <div class="node">In Progress</div>
+                  <div class="arrow">→</div>
+                  <div class="node">In Review</div>
+                  <div class="arrow">→</div>
+                  <div class="node pass">Done</div>
+                </div>
+
+                <h3>SQL for Testers (why it matters)</h3>
+                <p>
+                  Testers use SQL to
+                  <strong>verify data in the database</strong> — checking that
+                  transactions, users, and records are stored correctly, and to
+                  prepare test data.
+                </p>
+                <pre><code><span class="c">-- Check if a payment was recorded correctly</span>
 <span class="k">SELECT</span> * <span class="k">FROM</span> payments
 <span class="k">WHERE</span> order_id = <span class="s">'ORD-20240901-001'</span>;</code></pre>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Clause</th><th>Purpose</th><th>Example</th></tr></thead>
-            <tbody>
-              <tr><td>SELECT</td><td>Choose columns</td><td><code>SELECT name, email FROM users;</code></td></tr>
-              <tr><td>WHERE</td><td>Filter rows</td><td><code>WHERE status = 'active'</code></td></tr>
-              <tr><td>JOIN</td><td>Combine tables</td><td><code>users JOIN orders ON users.id = orders.user_id</code></td></tr>
-              <tr><td>GROUP BY</td><td>Group &amp; aggregate</td><td><code>GROUP BY city</code> with COUNT()</td></tr>
-              <tr><td>ORDER BY</td><td>Sort</td><td><code>ORDER BY created_at DESC</code></td></tr>
-              <tr><td>HAVING</td><td>Filter groups</td><td><code>HAVING COUNT(*) > 5</code></td></tr>
-            </tbody>
-          </table>
-        </div>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Clause</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>SELECT</td>
+                        <td>Choose columns</td>
+                        <td><code>SELECT name, email FROM users;</code></td>
+                      </tr>
+                      <tr>
+                        <td>WHERE</td>
+                        <td>Filter rows</td>
+                        <td><code>WHERE status = 'active'</code></td>
+                      </tr>
+                      <tr>
+                        <td>JOIN</td>
+                        <td>Combine tables</td>
+                        <td>
+                          <code
+                            >users JOIN orders ON users.id =
+                            orders.user_id</code
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>GROUP BY</td>
+                        <td>Group &amp; aggregate</td>
+                        <td><code>GROUP BY city</code> with COUNT()</td>
+                      </tr>
+                      <tr>
+                        <td>ORDER BY</td>
+                        <td>Sort</td>
+                        <td><code>ORDER BY created_at DESC</code></td>
+                      </tr>
+                      <tr>
+                        <td>HAVING</td>
+                        <td>Filter groups</td>
+                        <td><code>HAVING COUNT(*) > 5</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-        <h3>Excel/Google Sheets for Testers</h3>
-        <ul>
-          <li><b>Test case management</b> — many teams manage test cases in sheets.</li>
-          <li><b>Test data preparation</b> — VLOOKUP, IF, CONCATENATE to generate data.</li>
-          <li><b>Defect tracking &amp; reporting</b> — pivot tables, charts, conditional formatting (color failed rows red).</li>
-          <li><b>Metrics</b> — pass %, defect density, effort tracking.</li>
-        </ul>
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_tools"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
+                <h3>Excel/Google Sheets for Testers</h3>
+                <ul>
+                  <li>
+                    <b>Test case management</b> — many teams manage test cases
+                    in sheets.
+                  </li>
+                  <li>
+                    <b>Test data preparation</b> — VLOOKUP, IF, CONCATENATE to
+                    generate data.
+                  </li>
+                  <li>
+                    <b>Defect tracking &amp; reporting</b> — pivot tables,
+                    charts, conditional formatting (color failed rows red).
+                  </li>
+                  <li>
+                    <b>Metrics</b> — pass %, defect density, effort tracking.
+                  </li>
+                </ul>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_tools" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
 
-      <!-- ================= 12. API TESTING ================= -->
-      <section class="doc-section" id="api">
-        <h2><span class="num">12</span> API Testing &amp; Postman</h2>
+              <!-- ================= 12. API TESTING ================= -->
+              <section class="doc-section" id="api">
+                <h2><span class="num">12</span> API Testing &amp; Postman</h2>
 
-        <h3>What is an API?</h3>
-        <p>An <strong>API (Application Programming Interface)</strong> is how different software systems talk to each other.
-           In testing, API testing verifies the <strong>backend logic</strong> — faster than UI testing and catches issues the UI might hide.</p>
+                <h3>What is an API?</h3>
+                <p>
+                  An <strong>API (Application Programming Interface)</strong> is
+                  how different software systems talk to each other. In testing,
+                  API testing verifies the <strong>backend logic</strong> —
+                  faster than UI testing and catches issues the UI might hide.
+                </p>
 
-        <div class="flow">
-          <div class="node">Frontend App</div><div class="arrow">HTTP Request →</div>
-          <div class="node dark">API / Server</div><div class="arrow">⭐ Response</div>
-          <div class="node">Database</div>
-        </div>
+                <div class="flow">
+                  <div class="node">Frontend App</div>
+                  <div class="arrow">HTTP Request →</div>
+                  <div class="node dark">API / Server</div>
+                  <div class="arrow">⭐ Response</div>
+                  <div class="node">Database</div>
+                </div>
 
-        <h3>HTTP Methods</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Method</th><th>Purpose</th><th>Analogy</th></tr></thead>
-            <tbody>
-              <tr><td><b>GET</b></td><td>Read data</td><td>"Show me the list of customers"</td></tr>
-              <tr><td><b>POST</b></td><td>Create new data</td><td>"Add a new customer"</td></tr>
-              <tr><td><b>PUT</b></td><td>Update data (full)</td><td>"Replace this customer's details"</td></tr>
-              <tr><td><b>PATCH</b></td><td>Partial update</td><td>"Just change the phone number"</td></tr>
-              <tr><td><b>DELETE</b></td><td>Remove data</td><td>"Delete this customer"</td></tr>
-            </tbody>
-          </table>
-        </div>
+                <h3>HTTP Methods</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Method</th>
+                        <th>Purpose</th>
+                        <th>Analogy</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>GET</b></td>
+                        <td>Read data</td>
+                        <td>"Show me the list of customers"</td>
+                      </tr>
+                      <tr>
+                        <td><b>POST</b></td>
+                        <td>Create new data</td>
+                        <td>"Add a new customer"</td>
+                      </tr>
+                      <tr>
+                        <td><b>PUT</b></td>
+                        <td>Update data (full)</td>
+                        <td>"Replace this customer's details"</td>
+                      </tr>
+                      <tr>
+                        <td><b>PATCH</b></td>
+                        <td>Partial update</td>
+                        <td>"Just change the phone number"</td>
+                      </tr>
+                      <tr>
+                        <td><b>DELETE</b></td>
+                        <td>Remove data</td>
+                        <td>"Delete this customer"</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-        <h3>HTTP Status Codes (Must Know)</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Code</th><th>Meaning</th><th>Code</th><th>Meaning</th></tr></thead>
-            <tbody>
-              <tr><td>200</td><td>OK — success</td><td>404</td><td>Not Found</td></tr>
-              <tr><td>201</td><td>Created</td><td>401</td><td>Unauthorized (not logged in)</td></tr>
-              <tr><td>204</td><td>No Content</td><td>403</td><td>Forbidden (no permission)</td></tr>
-              <tr><td>400</td><td>Bad Request (client error)</td><td>500</td><td>Internal Server Error</td></tr>
-              <tr><td>502</td><td>Bad Gateway</td><td>503</td><td>Service Unavailable</td></tr>
-            </tbody>
-          </table>
-        </div>
+                <h3>HTTP Status Codes (Must Know)</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Code</th>
+                        <th>Meaning</th>
+                        <th>Code</th>
+                        <th>Meaning</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>200</td>
+                        <td>OK — success</td>
+                        <td>404</td>
+                        <td>Not Found</td>
+                      </tr>
+                      <tr>
+                        <td>201</td>
+                        <td>Created</td>
+                        <td>401</td>
+                        <td>Unauthorized (not logged in)</td>
+                      </tr>
+                      <tr>
+                        <td>204</td>
+                        <td>No Content</td>
+                        <td>403</td>
+                        <td>Forbidden (no permission)</td>
+                      </tr>
+                      <tr>
+                        <td>400</td>
+                        <td>Bad Request (client error)</td>
+                        <td>500</td>
+                        <td>Internal Server Error</td>
+                      </tr>
+                      <tr>
+                        <td>502</td>
+                        <td>Bad Gateway</td>
+                        <td>503</td>
+                        <td>Service Unavailable</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-        <h3>Postman Workflow for Testers</h3>
-        <ol>
-          <li>Create a <b>Collection</b> (group of requests).</li>
-          <li>Add <b>requests</b> — method, URL, headers, body (JSON).</li>
-          <li>Use <b>Environment variables</b> (base URL, token) so tests are reusable.</li>
-          <li>Write <b>Tests</b> (e.g., <code>pm.response.to.have.status(200)</code>).</li>
-          <li>Run collections, generate <b>reports</b>.</li>
-        </ol>
-        <div class="callout info"><b>ℹ️ Practice Online</b>Use free public APIs like <code>reqres.in</code> or <code>jsonplaceholder.typicode.com</code> to practice GET/POST without any setup.</div>
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_api"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
+                <h3>Postman Workflow for Testers</h3>
+                <ol>
+                  <li>Create a <b>Collection</b> (group of requests).</li>
+                  <li>
+                    Add <b>requests</b> — method, URL, headers, body (JSON).
+                  </li>
+                  <li>
+                    Use <b>Environment variables</b> (base URL, token) so tests
+                    are reusable.
+                  </li>
+                  <li>
+                    Write <b>Tests</b> (e.g.,
+                    <code>pm.response.to.have.status(200)</code>).
+                  </li>
+                  <li>Run collections, generate <b>reports</b>.</li>
+                </ol>
+                <div class="callout info">
+                  <b>ℹ️ Practice Online</b>Use free public APIs like
+                  <code>reqres.in</code> or
+                  <code>jsonplaceholder.typicode.com</code> to practice GET/POST
+                  without any setup.
+                </div>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_api" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
 
-      <!-- ================= 13. MOBILE ================= -->
-      <section class="doc-section" id="mobile">
-        <h2><span class="num">13</span> Mobile Application Testing</h2>
+              <!-- ================= 13. MOBILE ================= -->
+              <section class="doc-section" id="mobile">
+                <h2><span class="num">13</span> Mobile Application Testing</h2>
 
-        <h3>Key Challenges in Mobile Testing</h3>
-        <ul>
-          <li><b>Device fragmentation</b> — thousands of devices, screen sizes, OS versions.</li>
-          <li><b>Network variability</b> — 2G/3G/4G/5G/WiFi, weak vs strong signals.</li>
-          <li><b>Battery &amp; memory</b> — apps must be efficient.</li>
-          <li><b>OS version differences</b> — Android 11 vs 14, iOS 16 vs 17.</li>
-          <li><b>Interruptions</b> — calls, SMS, notifications, low battery, screen rotation.</li>
-        </ul>
+                <h3>Key Challenges in Mobile Testing</h3>
+                <ul>
+                  <li>
+                    <b>Device fragmentation</b> — thousands of devices, screen
+                    sizes, OS versions.
+                  </li>
+                  <li>
+                    <b>Network variability</b> — 2G/3G/4G/5G/WiFi, weak vs
+                    strong signals.
+                  </li>
+                  <li><b>Battery &amp; memory</b> — apps must be efficient.</li>
+                  <li>
+                    <b>OS version differences</b> — Android 11 vs 14, iOS 16 vs
+                    17.
+                  </li>
+                  <li>
+                    <b>Interruptions</b> — calls, SMS, notifications, low
+                    battery, screen rotation.
+                  </li>
+                </ul>
 
-        <h3>What to Test in a Mobile App</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Area</th><th>Test Scenarios</th></tr></thead>
-            <tbody>
-              <tr><td>Install / Uninstall</td><td>Clean install, upgrade from older version, uninstall removes all data, reinstall.</td></tr>
-              <tr><td>UI / UX</td><td>Layout on different screen sizes, rotation, dark mode, touch targets.</td></tr>
-              <tr><td>Network</td><td>Slow network, no network, switch WiFi→4G mid-download, timeout behavior.</td></tr>
-              <tr><td>Interruption</td><td>Incoming call during payment, SMS during video, app goes to background.</td></tr>
-              <tr><td>OS behavior</td><td>Push notifications, permissions (camera/location), battery drain, force-stop &amp; restart.</td></tr>
-              <tr><td>Performance</td><td>Cold start time, scrolling smoothness, memory usage, crash on low memory.</td></tr>
-              <tr><td>Security</td><td>Local data encryption, no sensitive data in logs, secure API calls.</td></tr>
-            </tbody>
-          </table>
-        </div>
+                <h3>What to Test in a Mobile App</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Area</th>
+                        <th>Test Scenarios</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Install / Uninstall</td>
+                        <td>
+                          Clean install, upgrade from older version, uninstall
+                          removes all data, reinstall.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>UI / UX</td>
+                        <td>
+                          Layout on different screen sizes, rotation, dark mode,
+                          touch targets.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Network</td>
+                        <td>
+                          Slow network, no network, switch WiFi→4G mid-download,
+                          timeout behavior.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Interruption</td>
+                        <td>
+                          Incoming call during payment, SMS during video, app
+                          goes to background.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>OS behavior</td>
+                        <td>
+                          Push notifications, permissions (camera/location),
+                          battery drain, force-stop &amp; restart.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Performance</td>
+                        <td>
+                          Cold start time, scrolling smoothness, memory usage,
+                          crash on low memory.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Security</td>
+                        <td>
+                          Local data encryption, no sensitive data in logs,
+                          secure API calls.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-        <h3>Emulator vs Real Device</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th></th><th>Emulator/Simulator</th><th>Real Device</th></tr></thead>
-            <tbody>
-              <tr><td>Speed</td><td>Faster to set up, good for early testing</td><td>Slower, but realistic</td></tr>
-              <tr><td>Accuracy</td><td>Cannot test real sensors, network, battery</td><td>Most accurate behavior</td></tr>
-              <tr><td>Cost</td><td>Free</td><td>Expensive to own many devices</td></tr>
-              <tr><td>Use</td><td>Functional testing, automation</td><td>Final verification, performance, sensors</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_mobile"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
+                <h3>Emulator vs Real Device</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Emulator/Simulator</th>
+                        <th>Real Device</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Speed</td>
+                        <td>Faster to set up, good for early testing</td>
+                        <td>Slower, but realistic</td>
+                      </tr>
+                      <tr>
+                        <td>Accuracy</td>
+                        <td>Cannot test real sensors, network, battery</td>
+                        <td>Most accurate behavior</td>
+                      </tr>
+                      <tr>
+                        <td>Cost</td>
+                        <td>Free</td>
+                        <td>Expensive to own many devices</td>
+                      </tr>
+                      <tr>
+                        <td>Use</td>
+                        <td>Functional testing, automation</td>
+                        <td>Final verification, performance, sensors</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_mobile" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
 
-      <!-- ================= 14. PERFORMANCE & SECURITY ================= -->
-      <section class="doc-section" id="nonfunc">
-        <h2><span class="num">14</span> Performance &amp; Security Testing</h2>
+              <!-- ================= 14. PERFORMANCE & SECURITY ================= -->
+              <section class="doc-section" id="nonfunc">
+                <h2>
+                  <span class="num">14</span> Performance &amp; Security Testing
+                </h2>
 
-        <h3>Performance Testing Types</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Type</th><th>Goal</th><th>Example</th></tr></thead>
-            <tbody>
-              <tr><td><b>Load Testing</b></td><td>Behavior under expected normal load</td><td>500 concurrent users using the app</td></tr>
-              <tr><td><b>Stress Testing</b></td><td>Behavior beyond capacity / find breaking point</td><td>Push 10x users until the server fails</td></tr>
-              <tr><td><b>Endurance / Soak</b></td><td>Stability over a long time (memory leaks)</td><td>Run for 24–72 hours continuously</td></tr>
-              <tr><td><b>Spike Testing</b></td><td>Sudden huge increase in users</td><td>Sale event: traffic jumps 20x in 5 minutes</td></tr>
-              <tr><td><b>Volume Testing</b></td><td>Behavior with large amounts of data</td><td>Database with 10 million records</td></tr>
-            </tbody>
-          </table>
-        </div>
+                <h3>Performance Testing Types</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Type</th>
+                        <th>Goal</th>
+                        <th>Example</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Load Testing</b></td>
+                        <td>Behavior under expected normal load</td>
+                        <td>500 concurrent users using the app</td>
+                      </tr>
+                      <tr>
+                        <td><b>Stress Testing</b></td>
+                        <td>Behavior beyond capacity / find breaking point</td>
+                        <td>Push 10x users until the server fails</td>
+                      </tr>
+                      <tr>
+                        <td><b>Endurance / Soak</b></td>
+                        <td>Stability over a long time (memory leaks)</td>
+                        <td>Run for 24–72 hours continuously</td>
+                      </tr>
+                      <tr>
+                        <td><b>Spike Testing</b></td>
+                        <td>Sudden huge increase in users</td>
+                        <td>Sale event: traffic jumps 20x in 5 minutes</td>
+                      </tr>
+                      <tr>
+                        <td><b>Volume Testing</b></td>
+                        <td>Behavior with large amounts of data</td>
+                        <td>Database with 10 million records</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-        <h3>Key Performance Metrics</h3>
-        <ul>
-          <li><b>Response Time</b> — how fast the server responds.</li>
-          <li><b>Throughput</b> — requests processed per second.</li>
-          <li><b>Latency</b> — delay between request and response.</li>
-          <li><b>Error Rate</b> — % of failed requests.</li>
-          <li><b>CPU / Memory usage</b> — server resource consumption.</li>
-          <li><b>Concurrency</b> — how many users at once.</li>
-        </ul>
-        <p><b>Tool:</b> <b>JMeter</b> (most common, free) — create test plans, thread groups (users), samplers (requests), and view reports.</p>
+                <h3>Key Performance Metrics</h3>
+                <ul>
+                  <li><b>Response Time</b> — how fast the server responds.</li>
+                  <li><b>Throughput</b> — requests processed per second.</li>
+                  <li><b>Latency</b> — delay between request and response.</li>
+                  <li><b>Error Rate</b> — % of failed requests.</li>
+                  <li>
+                    <b>CPU / Memory usage</b> — server resource consumption.
+                  </li>
+                  <li><b>Concurrency</b> — how many users at once.</li>
+                </ul>
+                <p>
+                  <b>Tool:</b> <b>JMeter</b> (most common, free) — create test
+                  plans, thread groups (users), samplers (requests), and view
+                  reports.
+                </p>
 
-        <h3>Security Testing Basics — OWASP Top 10 (know the names)</h3>
-        <ol>
-          <li><b>Broken Access Control</b> — users can access data they shouldn't.</li>
-          <li><b>Cryptographic Failures</b> — weak/unsafe data encryption.</li>
-          <li><b>Injection</b> — SQL/XSS/Command injection.</li>
-          <li><b>Insecure Design</b> — flaws in the architecture.</li>
-          <li><b>Security Misconfiguration</b> — default passwords, open ports.</li>
-          <li><b>Vulnerable &amp; Outdated Components</b> — old libraries.</li>
-          <li><b>Identification &amp; Auth Failures</b> — weak login mechanisms.</li>
-          <li><b>Software &amp; Data Integrity Failures</b> — untrusted updates.</li>
-          <li><b>Security Logging &amp; Monitoring Failures</b> — no logs to detect attacks.</li>
-          <li><b>Server-Side Request Forgery (SSRF)</b> — server tricked into fetching malicious URLs.</li>
-        </ol>
-        <div class="callout warn"><b>⚠️ For Manual Tester Interviews</b>You won't be expected to <em>perform</em> penetration testing — just know what security testing is, common attack types (SQL Injection, XSS), and that tools like Burp Suite / OWASP ZAP exist.</div>
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_nonfunc"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
+                <h3>Security Testing Basics — OWASP Top 10 (know the names)</h3>
+                <ol>
+                  <li>
+                    <b>Broken Access Control</b> — users can access data they
+                    shouldn't.
+                  </li>
+                  <li>
+                    <b>Cryptographic Failures</b> — weak/unsafe data encryption.
+                  </li>
+                  <li><b>Injection</b> — SQL/XSS/Command injection.</li>
+                  <li><b>Insecure Design</b> — flaws in the architecture.</li>
+                  <li>
+                    <b>Security Misconfiguration</b> — default passwords, open
+                    ports.
+                  </li>
+                  <li>
+                    <b>Vulnerable &amp; Outdated Components</b> — old libraries.
+                  </li>
+                  <li>
+                    <b>Identification &amp; Auth Failures</b> — weak login
+                    mechanisms.
+                  </li>
+                  <li>
+                    <b>Software &amp; Data Integrity Failures</b> — untrusted
+                    updates.
+                  </li>
+                  <li>
+                    <b>Security Logging &amp; Monitoring Failures</b> — no logs
+                    to detect attacks.
+                  </li>
+                  <li>
+                    <b>Server-Side Request Forgery (SSRF)</b> — server tricked
+                    into fetching malicious URLs.
+                  </li>
+                </ol>
+                <div class="callout warn">
+                  <b>⚠️ For Manual Tester Interviews</b>You won't be expected to
+                  <em>perform</em> penetration testing — just know what security
+                  testing is, common attack types (SQL Injection, XSS), and that
+                  tools like Burp Suite / OWASP ZAP exist.
+                </div>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_nonfunc" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
 
-      <!-- ================= 15. AUTOMATION ================= -->
-      <section class="doc-section" id="automation">
-        <h2><span class="num">15</span> Automation Testing Basics</h2>
+              <!-- ================= 15. AUTOMATION ================= -->
+              <section class="doc-section" id="automation">
+                <h2><span class="num">15</span> Automation Testing Basics</h2>
 
-        <p>You're applying for <b>manual</b> QA, but you <strong>must be able to talk about automation</strong> in interviews. Learn the concepts — not how to code.</p>
+                <p>
+                  You're applying for <b>manual</b> QA, but you
+                  <strong>must be able to talk about automation</strong> in
+                  interviews. Learn the concepts — not how to code.
+                </p>
 
-        <h3>When to Automate vs When Not To</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Automate when...</th><th>Don't automate when...</th></tr></thead>
-            <tbody>
-              <tr><td>Tests are repeated often (regression)</td><td>One-time / exploratory testing</td></tr>
-              <tr><td>Large volume of data tests</td><td>Frequently changing UI</td></tr>
-              <tr><td>Tests take a long time manually</td><td>Usability / visual checks</td></tr>
-              <tr><td>High-risk modules</td><td>Short-lived projects</td></tr>
-            </tbody>
-          </table>
-        </div>
+                <h3>When to Automate vs When Not To</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Automate when...</th>
+                        <th>Don't automate when...</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Tests are repeated often (regression)</td>
+                        <td>One-time / exploratory testing</td>
+                      </tr>
+                      <tr>
+                        <td>Large volume of data tests</td>
+                        <td>Frequently changing UI</td>
+                      </tr>
+                      <tr>
+                        <td>Tests take a long time manually</td>
+                        <td>Usability / visual checks</td>
+                      </tr>
+                      <tr>
+                        <td>High-risk modules</td>
+                        <td>Short-lived projects</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-        <h3>Popular Automation Tools (just know what they are)</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Tool</th><th>What it does</th></tr></thead>
-            <tbody>
-              <tr><td><b>Selenium</b></td><td>Most popular browser automation tool. Supports Java, Python, C#.</td></tr>
-              <tr><td><b>Cypress</b></td><td>Modern, fast JS-based browser testing.</td></tr>
-              <tr><td><b>Playwright</b></td><td>Microsoft's modern automation framework (fast, reliable).</td></tr>
-              <tr><td><b>Appium</b></td><td>Mobile app automation (Android/iOS).</td></tr>
-              <tr><td><b>Postman / Rest Assured</b></td><td>API automation.</td></tr>
-              <tr><td><b>JMeter</b></td><td>Performance testing.</td></tr>
-            </tbody>
-          </table>
-        </div>
+                <h3>Popular Automation Tools (just know what they are)</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Tool</th>
+                        <th>What it does</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Selenium</b></td>
+                        <td>
+                          Most popular browser automation tool. Supports Java,
+                          Python, C#.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Cypress</b></td>
+                        <td>Modern, fast JS-based browser testing.</td>
+                      </tr>
+                      <tr>
+                        <td><b>Playwright</b></td>
+                        <td>
+                          Microsoft's modern automation framework (fast,
+                          reliable).
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Appium</b></td>
+                        <td>Mobile app automation (Android/iOS).</td>
+                      </tr>
+                      <tr>
+                        <td><b>Postman / Rest Assured</b></td>
+                        <td>API automation.</td>
+                      </tr>
+                      <tr>
+                        <td><b>JMeter</b></td>
+                        <td>Performance testing.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-        <h3>Test Automation Frameworks</h3>
-        <ul>
-          <li><b>Data-Driven:</b> test data stored separately (Excel/CSV), same test runs with multiple data sets.</li>
-          <li><b>Keyword-Driven:</b> keywords (like "login", "click") define test actions — non-coders can write tests.</li>
-          <li><b>Page Object Model (POM):</b> each page of the app is a class; test code is clean and maintainable. <b>Most asked in interviews.</b></li>
-          <li><b>Hybrid:</b> combination of the above.</li>
-        </ul>
+                <h3>Test Automation Frameworks</h3>
+                <ul>
+                  <li>
+                    <b>Data-Driven:</b> test data stored separately (Excel/CSV),
+                    same test runs with multiple data sets.
+                  </li>
+                  <li>
+                    <b>Keyword-Driven:</b> keywords (like "login", "click")
+                    define test actions — non-coders can write tests.
+                  </li>
+                  <li>
+                    <b>Page Object Model (POM):</b> each page of the app is a
+                    class; test code is clean and maintainable.
+                    <b>Most asked in interviews.</b>
+                  </li>
+                  <li><b>Hybrid:</b> combination of the above.</li>
+                </ul>
 
-        <div class="callout tip"><b>💡 How to Answer</b>"I'm a manual tester now and learning automation concepts. I understand Selenium with POM, data-driven testing, and when to automate. I'm familiar with Java/Python basics and plan to grow into automation." — honest, ambitious, and impressive.</div>
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_automation"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
+                <div class="callout tip">
+                  <b>💡 How to Answer</b>"I'm a manual tester now and learning
+                  automation concepts. I understand Selenium with POM,
+                  data-driven testing, and when to automate. I'm familiar with
+                  Java/Python basics and plan to grow into automation." —
+                  honest, ambitious, and impressive.
+                </div>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_automation" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
 
-      <!-- ================= 16. PORTFOLIO ================= -->
-      <section class="doc-section" id="portfolio">
-        <h2><span class="num">16</span> Portfolio Project — The Thing That Gets You Hired</h2>
+              <!-- ================= 16. PORTFOLIO ================= -->
+              <section class="doc-section" id="portfolio">
+                <h2>
+                  <span class="num">16</span> Portfolio Project — The Thing That
+                  Gets You Hired
+                </h2>
 
-        <p>No experience? No problem. Build a <strong>complete QA portfolio project</strong> on any public website (Amazon, Flipkart, Zomato, Swiggy, a banking app). Interviewers love to see real artifacts.</p>
+                <p>
+                  No experience? No problem. Build a
+                  <strong>complete QA portfolio project</strong> on any public
+                  website (Amazon, Flipkart, Zomato, Swiggy, a banking app).
+                  Interviewers love to see real artifacts.
+                </p>
 
-        <h3>Your Portfolio Must Include</h3>
-        <ol>
-          <li><b>Test Plan</b> — scope, approach, entry/exit criteria, risks.</li>
-          <li><b>50+ Test Cases</b> — organized by module (Login, Search, Cart, Payment, Orders).</li>
-          <li><b>RTM</b> — requirements → test cases mapping.</li>
-          <li><b>10+ Bug Reports</b> — with screenshots, severity/priority, steps.</li>
-          <li><b>Test Execution Summary</b> — pass/fail %, defect analysis.</li>
-          <li><b>SQL queries</b> — sample queries to verify data.</li>
-          <li><b>Postman collection</b> — a few API tests.</li>
-        </ol>
+                <h3>Your Portfolio Must Include</h3>
+                <ol>
+                  <li>
+                    <b>Test Plan</b> — scope, approach, entry/exit criteria,
+                    risks.
+                  </li>
+                  <li>
+                    <b>50+ Test Cases</b> — organized by module (Login, Search,
+                    Cart, Payment, Orders).
+                  </li>
+                  <li><b>RTM</b> — requirements → test cases mapping.</li>
+                  <li>
+                    <b>10+ Bug Reports</b> — with screenshots,
+                    severity/priority, steps.
+                  </li>
+                  <li>
+                    <b>Test Execution Summary</b> — pass/fail %, defect
+                    analysis.
+                  </li>
+                  <li><b>SQL queries</b> — sample queries to verify data.</li>
+                  <li><b>Postman collection</b> — a few API tests.</li>
+                </ol>
 
-        <h3>Sample Project Structure</h3>
-        <pre><code>QA-Portfolio-Ecommerce/
+                <h3>Sample Project Structure</h3>
+                <pre><code>QA-Portfolio-Ecommerce/
 └── 1_Test_Plan.docx
 └── 2_Test_Cases.xlsx        <span class="c">(50+ cases)</span>
 └── 3_RTM.xlsx
@@ -957,37 +2644,83 @@
 └── 6_SQL_Queries.sql
 └── 7_Postman_Collection.json</code></pre>
 
-        <div class="callout warn"><b>⚠️ Do NOT test real money features</b>Use a demo/sandbox environment or a test app. Never enter real card details on practice projects.</div>
+                <div class="callout warn">
+                  <b>⚠️ Do NOT test real money features</b>Use a demo/sandbox
+                  environment or a test app. Never enter real card details on
+                  practice projects.
+                </div>
 
-        <h3>How to Present It in an Interview</h3>
-        <ul>
-          <li>"I took an e-commerce site, wrote a test plan, designed 50+ test cases using BVA and EP, logged bugs with severity &amp; priority, and produced a test summary report."</li>
-          <li>Show 2–3 sample bug reports and walk through <em>how</em> you found them.</li>
-          <li>Mention you wrote SQL to verify data and Postman tests for APIs.</li>
-        </ul>
-        <p>Host it on GitHub or Google Drive and put the link on your resume. This alone makes you stand out from 90% of fresher candidates.</p>
+                <h3>How to Present It in an Interview</h3>
+                <ul>
+                  <li>
+                    "I took an e-commerce site, wrote a test plan, designed 50+
+                    test cases using BVA and EP, logged bugs with severity &amp;
+                    priority, and produced a test summary report."
+                  </li>
+                  <li>
+                    Show 2–3 sample bug reports and walk through
+                    <em>how</em> you found them.
+                  </li>
+                  <li>
+                    Mention you wrote SQL to verify data and Postman tests for
+                    APIs.
+                  </li>
+                </ul>
+                <p>
+                  Host it on GitHub or Google Drive and put the link on your
+                  resume. This alone makes you stand out from 90% of fresher
+                  candidates.
+                </p>
 
-        <label style="display:flex; gap:10px; align-items:center; background:var(--pass-light); padding:12px 16px; border-radius:8px; cursor:pointer;">
-          <input type="checkbox" data-docmark="doc_portfolio"> <b>✅ I've studied this chapter</b>
-        </label>
-      </section>
+                <label
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    background: var(--terracotta-tint);
+                    padding: 12px 18px;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    border: 1px solid var(--terracotta-soft);
+                    margin-top: 16px;
+                  "
+                >
+                  <input type="checkbox" data-docmark="doc_portfolio" />
+                  <b style="color: var(--color-terracotta-h)"
+                    >✓ I've studied this chapter</b
+                  >
+                </label>
+              </section>
 
-      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:8px;">
-        <a class="btn ghost" href="index.html">⭐ Back to Dashboard</a>
-        <a class="btn secondary" href="cheatsheet.html">Next: Cheatsheet →</a>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  gap: 12px;
+                  flex-wrap: wrap;
+                  margin-top: 8px;
+                "
+              >
+                <a class="btn ghost" href="index.html">⭐ Back to Dashboard</a>
+                <a class="btn secondary" href="cheatsheet.html"
+                  >Next: Cheatsheet →</a
+                >
+              </div>
+            </div>
+            <!-- /.docs-body -->
+          </div>
+          <!-- /.docs-layout -->
+        </div>
       </div>
-        </div><!-- /.docs-body -->
-      </div><!-- /.docs-layout -->
+
+      <!-- ============ FOOTER ============ -->
+      <footer class="footer">
+        Built with <span class="heart">♥</span> by
+        <span class="author">Shravan</span>
+        <div class="rights">All rights reserved.</div>
+      </footer>
     </div>
-  </div>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="footer">
-    Built with <span class="heart">♥</span> by <span class="author">Shravan</span>
-    <div class="rights">All rights reserved.</div>
-  </footer>
-  </div>
-
-<script src="js/script.js"></script>
-</body>
+    <script src="js/script.js"></script>
+  </body>
 </html>

@@ -1,221 +1,440 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QA Testing Academy — Cheatsheet</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-  <link rel="stylesheet" href="css/styles.css">
-  <script>
-    // Apply saved theme before paint to avoid flash
-    (function () {
-      try {
-        var t = localStorage.getItem("qat_theme_v1");
-        if (!t) {
-          t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        document.documentElement.setAttribute("data-theme", t);
-      } catch (e) {}
-    })();
-  </script>
-</head>
-<body>
-<div class="layout">
-
-  <!-- ============ TOP NAV (Apple-style, two rows) ============ -->
-  <header class="topnav">
-    <div class="topnav-main">
-      <a class="topnav-logo" href="index.html">
-        <span class="topnav-logo-text">QA Testing Academy</span>
-      </a>
-      <button class="topnav-menu-btn" aria-label="Open menu">☰</button>
-      <nav class="topnav-sections" aria-label="Primary">
-        <a href="index.html" class="topnav-link">Dashboard</a>
-        <a href="docs.html" class="topnav-link">Docs</a>
-        <a href="cheatsheet.html" class="topnav-link active">Cheatsheet</a>
-        <a href="practice.html" class="topnav-link">Practice</a>
-        <a href="tutorial.html" class="topnav-link">Tutorial</a>
-      </nav>
-      <div class="topnav-utils">
-        <button class="theme-toggle" id="themeToggle" title="Toggle dark / light mode" aria-label="Toggle theme">
-          <span class="ico">🌙</span><span class="label">Dark</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- ============ MAIN ============ -->
-  <div class="main">
-    <div class="content">
-      <h2 class="sec-title">⚡ The Complete QA Cheatsheet</h2>
-      <p class="sec-sub">Everything you need to revise fast — definitions, templates, codes, and one-line answers.
-         Perfect the night before an interview. <button class="btn ghost small print-btn" onclick="window.print()">🖨️ Print / Save PDF</button></p>
-
-      <div class="cs-grid">
-
-        <!-- 1. Core definitions -->
-        <div class="cs-card">
-          <div class="cs-head">📜 Core Definitions — In One Line Each</div>
-          <div class="cs-body">
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Term</th><th>One-line meaning</th></tr></thead>
-                <tbody>
-                  <tr><td><b>Verification</b></td><td>Are we building the product right? (static review)</td></tr>
-                  <tr><td><b>Validation</b></td><td>Are we building the right product? (dynamic execution)</td></tr>
-                  <tr><td><b>Bug / Defect</b></td><td>Deviation between expected and actual behavior</td></tr>
-                  <tr><td><b>Error</b></td><td>Mistake made by a developer in code</td></tr>
-                  <tr><td><b>Failure</b></td><td>Bug observed by the user at runtime</td></tr>
-                  <tr><td><b>Test Scenario</b></td><td>WHAT to test (one line)</td></tr>
-                  <tr><td><b>Test Case</b></td><td>HOW to test (steps + expected result)</td></tr>
-                  <tr><td><b>Test Suite</b></td><td>Collection of test cases</td></tr>
-                  <tr><td><b>RTM</b></td><td>Requirement → Test Case → Bug mapping</td></tr>
-                  <tr><td><b>DoR</b></td><td>Definition of Ready — story is ready to start</td></tr>
-                  <tr><td><b>DoD</b></td><td>Definition of Done — story is truly finished</td></tr>
-                  <tr><td><b>Defect Density</b></td><td>Bugs per size of code (per KLOC)</td></tr>
-                  <tr><td><b>Positive Testing</b></td><td>Valid input → success expected</td></tr>
-                  <tr><td><b>Negative Testing</b></td><td>Invalid input → proper error expected</td></tr>
-                </tbody>
-              </table>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QA Testing Academy — Cheatsheet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script>
+      // Apply saved theme before paint to avoid flash
+      (function () {
+        try {
+          var t = localStorage.getItem("qat_theme_v1");
+          if (!t) {
+            t =
+              window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          }
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="layout">
+      <!-- ============ TOP NAV (Apple-style, two rows) ============ -->
+      <header class="topnav">
+        <div class="topnav-main">
+          <a class="topnav-logo" href="index.html">
+            <span class="topnav-logo-mark">QA</span>
+            <span class="topnav-logo-text">Testing Academy</span>
+          </a>
+          <button class="topnav-menu-btn" aria-label="Open menu">☰</button>
+          <nav class="topnav-sections" aria-label="Primary">
+            <a href="index.html" class="topnav-link">Dashboard</a>
+            <a href="docs.html" class="topnav-link">Docs</a>
+            <a href="cheatsheet.html" class="topnav-link active">Cheatsheet</a>
+            <a href="practice.html" class="topnav-link">Practice</a>
+            <a href="tutorial.html" class="topnav-link">Tutorial</a>
+          </nav>
+          <div class="topnav-utils">
+            <button
+              class="theme-toggle"
+              id="themeToggle"
+              title="Toggle dark / light mode"
+              aria-label="Toggle theme"
+            >
+              <span class="ico">🌙</span><span class="label">Dark</span>
+            </button>
           </div>
         </div>
+      </header>
 
-        <!-- 2. SDLC / STLC quick -->
-        <div class="cs-card">
-          <div class="cs-head">SDLC &amp; STLC — Quick Recall</div>
-          <div class="cs-body">
-            <h4>SDLC phases (6):</h4>
-            <div class="flow">
-              <div class="node">Requirements</div><div class="arrow">→</div>
-              <div class="node">Design</div><div class="arrow">→</div>
-              <div class="node">Develop</div><div class="arrow">→</div>
-              <div class="node">Test</div><div class="arrow">→</div>
-              <div class="node">Deploy</div><div class="arrow">→</div>
-              <div class="node">Maintain</div>
-            </div>
-            <h4>STLC phases (6) — mnemonic "RTPEEC":</h4>
-            <div class="flow">
-              <div class="node">Requirement Analysis</div><div class="arrow">→</div>
-              <div class="node">Test Planning</div><div class="arrow">→</div>
-              <div class="node">Prepare Cases</div><div class="arrow">→</div>
-              <div class="node">Environment Setup</div><div class="arrow">→</div>
-              <div class="node">Execution</div><div class="arrow">→</div>
-              <div class="node">Closure</div>
-            </div>
-            <h4>SDLC Models — one-liners:</h4>
-            <ul>
-              <li><b>Waterfall:</b> Linear; each phase completes before next; testing at the end.</li>
-              <li><b>V-Model:</b> Waterfall + testing mirrored at each level; testing planned early.</li>
-              <li><b>Agile:</b> Iterative sprints; continuous testing &amp; feedback; adapt to change.</li>
-              <li><b>Spiral:</b> Risk-driven repeated cycles.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- 3. Test types quick table -->
-        <div class="cs-card">
-          <div class="cs-head">Test Types — Fast Reference</div>
-          <div class="cs-body">
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Type</th><th>What it checks</th></tr></thead>
-                <tbody>
-                  <tr><td><b>Smoke</b></td><td>Build is testable? Critical features work at all</td></tr>
-                  <tr><td><b>Sanity</b></td><td>One specific fix works (narrow)</td></tr>
-                  <tr><td><b>Regression</b></td><td>New changes didn't break existing features</td></tr>
-                  <tr><td><b>Retesting</b></td><td>Re-run the exact failed case after fix</td></tr>
-                  <tr><td><b>Exploratory</b></td><td>Unplanned creative testing</td></tr>
-                  <tr><td><b>Integration</b></td><td>Modules work together</td></tr>
-                  <tr><td><b>System/E2E</b></td><td>Whole application end-to-end</td></tr>
-                  <tr><td><b>UAT</b></td><td>Client confirms business needs met</td></tr>
-                  <tr><td><b>Performance</b></td><td>Speed &amp; stability under load</td></tr>
-                  <tr><td><b>Security</b></td><td>Protection from attacks &amp; leaks</td></tr>
-                  <tr><td><b>Usability</b></td><td>Ease of use</td></tr>
-                  <tr><td><b>Compatibility</b></td><td>Works across browsers/devices/OS</td></tr>
-                  <tr><td><b>Accessibility</b></td><td>Usable by people with disabilities</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="callout tip"><b>Memory trick</b><b>Smoke</b> = whole build quick check · <b>Sanity</b> = one fix · <b>Regression</b> = nothing broke elsewhere.</div>
-          </div>
-        </div>
-
-        <!-- 4. Test case template -->
-        <div class="cs-card">
-          <div class="cs-head">Test Case Template</div>
-          <div class="cs-body">
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Field</th><th>Example value</th></tr></thead>
-                <tbody>
-                  <tr><td>Test Case ID</td><td><code>TC_LOGIN_001</code></td></tr>
-                  <tr><td>Title</td><td>Verify successful login with valid credentials</td></tr>
-                  <tr><td>Module</td><td>Login</td></tr>
-                  <tr><td>Preconditions</td><td>Valid account exists; app is open</td></tr>
-                  <tr><td>Test Data</td><td>user: <code>qa_user</code> / pass: <code>Pass@123</code></td></tr>
-                  <tr><td>Steps</td><td>1. Open login page. 2. Enter username. 3. Enter password. 4. Click "Login".</td></tr>
-                  <tr><td>Expected Result</td><td>Redirected to Dashboard; welcome message shows</td></tr>
-                  <tr><td>Actual Result</td><td><em>(filled during execution)</em></td></tr>
-                  <tr><td>Status</td><td>Pass / Fail / Blocked / Not Run</td></tr>
-                  <tr><td>Priority</td><td>High / Medium / Low</td></tr>
-                  <tr><td>Severity</td><td>Critical / Major / Minor / Trivial</td></tr>
-                </tbody>
-              </table>
+      <!-- ============ MAIN ============ -->
+      <div class="main">
+        <div class="content">
+          <div class="page-opener">
+            <span class="eyebrow">Cheatsheet</span>
+            <h1>Everything you need, <em>in one line.</em></h1>
+            <p class="lead">
+              Nineteen printable cards — definitions, SQL commands, HTTP status
+              codes, bug-report templates, Agile glossary, comparison tables.
+              Built for the night before an interview.
+            </p>
+            <div class="hero-cta" style="margin-top: 8px">
+              <button class="btn ghost" onclick="window.print()">
+                🖨️ Print / Save PDF
+              </button>
             </div>
           </div>
-        </div>
 
-        <!-- 5. Bug report template -->
-        <div class="cs-card">
-          <div class="cs-head">Bug Report Template (Jira-style)</div>
-          <div class="cs-body">
-            <div class="kv">
-              <b>Title</b><span>Short clear summary: "Payment amount shows ₹1000 instead of ₹100 on confirmation page"</span>
-              <b>Environment</b><span>Chrome 126 / Windows 11 / Production</span>
-              <b>Preconditions</b><span>User logged in, item in cart</span>
-              <b>Steps to Reproduce</b><span>1. Add ₹100 item. 2. Pay via UPI. 3. Open confirmation.</span>
-              <b>Expected Result</b><span>Shows ₹100</span>
-              <b>Actual Result</b><span>Shows ₹1000</span>
-              <b>Severity / Priority</b><span>Major / P1</span>
-              <b>Attachments</b><span>Screenshot + recording + logs</span>
-              <b>Status</b><span>New</span>
-              <b>Assigned To</b><span>Developer</span>
+          <div class="cs-grid">
+            <!-- 1. Core definitions -->
+            <div class="cs-card">
+              <div class="cs-head">📜 Core Definitions — In One Line Each</div>
+              <div class="cs-body">
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Term</th>
+                        <th>One-line meaning</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Verification</b></td>
+                        <td>
+                          Are we building the product right? (static review)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Validation</b></td>
+                        <td>
+                          Are we building the right product? (dynamic execution)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Bug / Defect</b></td>
+                        <td>Deviation between expected and actual behavior</td>
+                      </tr>
+                      <tr>
+                        <td><b>Error</b></td>
+                        <td>Mistake made by a developer in code</td>
+                      </tr>
+                      <tr>
+                        <td><b>Failure</b></td>
+                        <td>Bug observed by the user at runtime</td>
+                      </tr>
+                      <tr>
+                        <td><b>Test Scenario</b></td>
+                        <td>WHAT to test (one line)</td>
+                      </tr>
+                      <tr>
+                        <td><b>Test Case</b></td>
+                        <td>HOW to test (steps + expected result)</td>
+                      </tr>
+                      <tr>
+                        <td><b>Test Suite</b></td>
+                        <td>Collection of test cases</td>
+                      </tr>
+                      <tr>
+                        <td><b>RTM</b></td>
+                        <td>Requirement → Test Case → Bug mapping</td>
+                      </tr>
+                      <tr>
+                        <td><b>DoR</b></td>
+                        <td>Definition of Ready — story is ready to start</td>
+                      </tr>
+                      <tr>
+                        <td><b>DoD</b></td>
+                        <td>Definition of Done — story is truly finished</td>
+                      </tr>
+                      <tr>
+                        <td><b>Defect Density</b></td>
+                        <td>Bugs per size of code (per KLOC)</td>
+                      </tr>
+                      <tr>
+                        <td><b>Positive Testing</b></td>
+                        <td>Valid input → success expected</td>
+                      </tr>
+                      <tr>
+                        <td><b>Negative Testing</b></td>
+                        <td>Invalid input → proper error expected</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <!-- 6. Severity vs Priority -->
-        <div class="cs-card">
-          <div class="cs-head">⚠️ Severity vs Priority — Cheat</div>
-          <div class="cs-body">
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th></th><th>Severity (how BAD)</th><th>Priority (how URGENT)</th></tr></thead>
-                <tbody>
-                  <tr><td>Set by</td><td>Tester</td><td>PM / Product Owner</td></tr>
-                  <tr><td>Levels</td><td>Critical, Major, Minor, Trivial</td><td>P1"“P4 (P1 = highest)</td></tr>
-                  <tr><td>Example</td><td>App crash = Critical</td><td>Logo typo = often P1 (business)</td></tr>
-                </tbody>
-              </table>
+            <!-- 2. SDLC / STLC quick -->
+            <div class="cs-card">
+              <div class="cs-head">SDLC &amp; STLC — Quick Recall</div>
+              <div class="cs-body">
+                <h4>SDLC phases (6):</h4>
+                <div class="flow">
+                  <div class="node">Requirements</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Design</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Develop</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Test</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Deploy</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Maintain</div>
+                </div>
+                <h4>STLC phases (6) — mnemonic "RTPEEC":</h4>
+                <div class="flow">
+                  <div class="node">Requirement Analysis</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Test Planning</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Prepare Cases</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Environment Setup</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Execution</div>
+                  <div class="arrow">→</div>
+                  <div class="node">Closure</div>
+                </div>
+                <h4>SDLC Models — one-liners:</h4>
+                <ul>
+                  <li>
+                    <b>Waterfall:</b> Linear; each phase completes before next;
+                    testing at the end.
+                  </li>
+                  <li>
+                    <b>V-Model:</b> Waterfall + testing mirrored at each level;
+                    testing planned early.
+                  </li>
+                  <li>
+                    <b>Agile:</b> Iterative sprints; continuous testing &amp;
+                    feedback; adapt to change.
+                  </li>
+                  <li><b>Spiral:</b> Risk-driven repeated cycles.</li>
+                </ul>
+              </div>
             </div>
-            <div class="example">
-              <div class="ex-title">Classic combinations</div>
-              <p><span class="chip fail">High Sev + High Pri</span> App crashes on payment<br>
-                 <span class="chip fail">High Sev + Low Pri</span> Rare crash in an old rarely-used feature<br>
-                 <span class="chip warn">Low Sev + High Pri</span> Logo typo before a client demo<br>
-                 <span class="chip pass">Low Sev + Low Pri</span> Slight button alignment off</p>
-            </div>
-          </div>
-        </div>
 
-        <!-- 7. SQL cheat -->
-        <div class="cs-card">
-          <div class="cs-head">🗄️ SQL for Testers — Quick Commands</div>
-          <div class="cs-body">
-            <pre><code><span class="c">-- Read all columns</span>
+            <!-- 3. Test types quick table -->
+            <div class="cs-card">
+              <div class="cs-head">Test Types — Fast Reference</div>
+              <div class="cs-body">
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Type</th>
+                        <th>What it checks</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Smoke</b></td>
+                        <td>
+                          Build is testable? Critical features work at all
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Sanity</b></td>
+                        <td>One specific fix works (narrow)</td>
+                      </tr>
+                      <tr>
+                        <td><b>Regression</b></td>
+                        <td>New changes didn't break existing features</td>
+                      </tr>
+                      <tr>
+                        <td><b>Retesting</b></td>
+                        <td>Re-run the exact failed case after fix</td>
+                      </tr>
+                      <tr>
+                        <td><b>Exploratory</b></td>
+                        <td>Unplanned creative testing</td>
+                      </tr>
+                      <tr>
+                        <td><b>Integration</b></td>
+                        <td>Modules work together</td>
+                      </tr>
+                      <tr>
+                        <td><b>System/E2E</b></td>
+                        <td>Whole application end-to-end</td>
+                      </tr>
+                      <tr>
+                        <td><b>UAT</b></td>
+                        <td>Client confirms business needs met</td>
+                      </tr>
+                      <tr>
+                        <td><b>Performance</b></td>
+                        <td>Speed &amp; stability under load</td>
+                      </tr>
+                      <tr>
+                        <td><b>Security</b></td>
+                        <td>Protection from attacks &amp; leaks</td>
+                      </tr>
+                      <tr>
+                        <td><b>Usability</b></td>
+                        <td>Ease of use</td>
+                      </tr>
+                      <tr>
+                        <td><b>Compatibility</b></td>
+                        <td>Works across browsers/devices/OS</td>
+                      </tr>
+                      <tr>
+                        <td><b>Accessibility</b></td>
+                        <td>Usable by people with disabilities</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="callout tip">
+                  <b>Memory trick</b><b>Smoke</b> = whole build quick check ·
+                  <b>Sanity</b> = one fix · <b>Regression</b> = nothing broke
+                  elsewhere.
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Test case template -->
+            <div class="cs-card">
+              <div class="cs-head">Test Case Template</div>
+              <div class="cs-body">
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Field</th>
+                        <th>Example value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Test Case ID</td>
+                        <td><code>TC_LOGIN_001</code></td>
+                      </tr>
+                      <tr>
+                        <td>Title</td>
+                        <td>Verify successful login with valid credentials</td>
+                      </tr>
+                      <tr>
+                        <td>Module</td>
+                        <td>Login</td>
+                      </tr>
+                      <tr>
+                        <td>Preconditions</td>
+                        <td>Valid account exists; app is open</td>
+                      </tr>
+                      <tr>
+                        <td>Test Data</td>
+                        <td>
+                          user: <code>qa_user</code> / pass:
+                          <code>Pass@123</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Steps</td>
+                        <td>
+                          1. Open login page. 2. Enter username. 3. Enter
+                          password. 4. Click "Login".
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Expected Result</td>
+                        <td>Redirected to Dashboard; welcome message shows</td>
+                      </tr>
+                      <tr>
+                        <td>Actual Result</td>
+                        <td><em>(filled during execution)</em></td>
+                      </tr>
+                      <tr>
+                        <td>Status</td>
+                        <td>Pass / Fail / Blocked / Not Run</td>
+                      </tr>
+                      <tr>
+                        <td>Priority</td>
+                        <td>High / Medium / Low</td>
+                      </tr>
+                      <tr>
+                        <td>Severity</td>
+                        <td>Critical / Major / Minor / Trivial</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. Bug report template -->
+            <div class="cs-card">
+              <div class="cs-head">Bug Report Template (Jira-style)</div>
+              <div class="cs-body">
+                <div class="kv">
+                  <b>Title</b
+                  ><span
+                    >Short clear summary: "Payment amount shows ₹1000 instead of
+                    ₹100 on confirmation page"</span
+                  >
+                  <b>Environment</b
+                  ><span>Chrome 126 / Windows 11 / Production</span>
+                  <b>Preconditions</b><span>User logged in, item in cart</span>
+                  <b>Steps to Reproduce</b
+                  ><span
+                    >1. Add ₹100 item. 2. Pay via UPI. 3. Open
+                    confirmation.</span
+                  >
+                  <b>Expected Result</b><span>Shows ₹100</span>
+                  <b>Actual Result</b><span>Shows ₹1000</span>
+                  <b>Severity / Priority</b><span>Major / P1</span>
+                  <b>Attachments</b><span>Screenshot + recording + logs</span>
+                  <b>Status</b><span>New</span> <b>Assigned To</b
+                  ><span>Developer</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. Severity vs Priority -->
+            <div class="cs-card">
+              <div class="cs-head">⚠️ Severity vs Priority — Cheat</div>
+              <div class="cs-body">
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Severity (how BAD)</th>
+                        <th>Priority (how URGENT)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Set by</td>
+                        <td>Tester</td>
+                        <td>PM / Product Owner</td>
+                      </tr>
+                      <tr>
+                        <td>Levels</td>
+                        <td>Critical, Major, Minor, Trivial</td>
+                        <td>P1"“P4 (P1 = highest)</td>
+                      </tr>
+                      <tr>
+                        <td>Example</td>
+                        <td>App crash = Critical</td>
+                        <td>Logo typo = often P1 (business)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="example">
+                  <div class="ex-title">Classic combinations</div>
+                  <p>
+                    <span class="chip fail">High Sev + High Pri</span> App
+                    crashes on payment<br />
+                    <span class="chip fail">High Sev + Low Pri</span> Rare crash
+                    in an old rarely-used feature<br />
+                    <span class="chip warn">Low Sev + High Pri</span> Logo typo
+                    before a client demo<br />
+                    <span class="chip pass">Low Sev + Low Pri</span> Slight
+                    button alignment off
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. SQL cheat -->
+            <div class="cs-card">
+              <div class="cs-head">🗄️ SQL for Testers — Quick Commands</div>
+              <div class="cs-body">
+                <pre><code><span class="c">-- Read all columns</span>
 <span class="k">SELECT</span> * <span class="k">FROM</span> customers;
 
 <span class="c">-- Filter rows</span>
@@ -234,188 +453,1224 @@
 <span class="c">-- Verify a transaction</span>
 <span class="k">SELECT</span> * <span class="k">FROM</span> payments
 <span class="k">WHERE</span> order_id = <span class="s">'ORD-1001'</span>;</code></pre>
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Keyword</th><th>Used for</th></tr></thead>
-                <tbody>
-                  <tr><td>SELECT / FROM</td><td>Pick columns &amp; table</td></tr>
-                  <tr><td>WHERE</td><td>Filter rows</td></tr>
-                  <tr><td>JOIN ... ON</td><td>Combine tables</td></tr>
-                  <tr><td>GROUP BY</td><td>Group for aggregates</td></tr>
-                  <tr><td>HAVING</td><td>Filter groups (after GROUP BY)</td></tr>
-                  <tr><td>ORDER BY</td><td>Sort (ASC/DESC)</td></tr>
-                  <tr><td>LIKE</td><td>Pattern match (<code>LIKE '%gmail%'</code>)</td></tr>
-                  <tr><td>IN / BETWEEN</td><td>List / range filter</td></tr>
-                  <tr><td>COUNT / SUM / AVG</td><td>Aggregates</td></tr>
-                  <tr><td>INSERT / UPDATE / DELETE</td><td>Modify data</td></tr>
-                </tbody>
-              </table>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Keyword</th>
+                        <th>Used for</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>SELECT / FROM</td>
+                        <td>Pick columns &amp; table</td>
+                      </tr>
+                      <tr>
+                        <td>WHERE</td>
+                        <td>Filter rows</td>
+                      </tr>
+                      <tr>
+                        <td>JOIN ... ON</td>
+                        <td>Combine tables</td>
+                      </tr>
+                      <tr>
+                        <td>GROUP BY</td>
+                        <td>Group for aggregates</td>
+                      </tr>
+                      <tr>
+                        <td>HAVING</td>
+                        <td>Filter groups (after GROUP BY)</td>
+                      </tr>
+                      <tr>
+                        <td>ORDER BY</td>
+                        <td>Sort (ASC/DESC)</td>
+                      </tr>
+                      <tr>
+                        <td>LIKE</td>
+                        <td>Pattern match (<code>LIKE '%gmail%'</code>)</td>
+                      </tr>
+                      <tr>
+                        <td>IN / BETWEEN</td>
+                        <td>List / range filter</td>
+                      </tr>
+                      <tr>
+                        <td>COUNT / SUM / AVG</td>
+                        <td>Aggregates</td>
+                      </tr>
+                      <tr>
+                        <td>INSERT / UPDATE / DELETE</td>
+                        <td>Modify data</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- 8. HTTP status codes -->
+            <div class="cs-card">
+              <div class="cs-head">🌍 HTTP Status Codes — Must Know</div>
+              <div class="cs-body">
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Code</th>
+                        <th>Meaning</th>
+                        <th>Code</th>
+                        <th>Meaning</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>2xx Success</b></td>
+                        <td></td>
+                        <td><b>4xx Client error</b></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>200</td>
+                        <td>OK</td>
+                        <td>400</td>
+                        <td>Bad Request</td>
+                      </tr>
+                      <tr>
+                        <td>201</td>
+                        <td>Created</td>
+                        <td>401</td>
+                        <td>Unauthorized (no login)</td>
+                      </tr>
+                      <tr>
+                        <td>204</td>
+                        <td>No Content</td>
+                        <td>403</td>
+                        <td>Forbidden (no permission)</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td>404</td>
+                        <td>Not Found</td>
+                      </tr>
+                      <tr>
+                        <td><b>3xx Redirection</b></td>
+                        <td></td>
+                        <td>429</td>
+                        <td>Too Many Requests</td>
+                      </tr>
+                      <tr>
+                        <td>301/302</td>
+                        <td>Moved / Found</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><b>5xx Server error</b></td>
+                        <td></td>
+                        <td>500</td>
+                        <td>Internal Server Error</td>
+                      </tr>
+                      <tr>
+                        <td>502</td>
+                        <td>Bad Gateway</td>
+                        <td>503</td>
+                        <td>Service Unavailable</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="callout tip">
+                  <b>Remember</b>2xx = success · 4xx = client's fault · 5xx =
+                  server's fault.
+                </div>
+              </div>
+            </div>
+
+            <!-- 9. Agile terms -->
+            <div class="cs-card">
+              <div class="cs-head">Agile &amp; Scrum — Quick Terms</div>
+              <div class="cs-body">
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Term</th>
+                        <th>Meaning</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Sprint</b></td>
+                        <td>Short development cycle (usually 1"“4 weeks)</td>
+                      </tr>
+                      <tr>
+                        <td><b>User Story</b></td>
+                        <td>
+                          Feature from user's view: "As a ___, I want ___ so
+                          that ___"
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Epic</b></td>
+                        <td>Large story broken into smaller stories</td>
+                      </tr>
+                      <tr>
+                        <td><b>Product Backlog</b></td>
+                        <td>Prioritized list of all work</td>
+                      </tr>
+                      <tr>
+                        <td><b>Sprint Backlog</b></td>
+                        <td>Work selected for current sprint</td>
+                      </tr>
+                      <tr>
+                        <td><b>Burndown Chart</b></td>
+                        <td>Remaining work vs time in sprint</td>
+                      </tr>
+                      <tr>
+                        <td><b>Velocity</b></td>
+                        <td>Story points completed per sprint</td>
+                      </tr>
+                      <tr>
+                        <td><b>Stand-up</b></td>
+                        <td>Daily 15-min sync meeting</td>
+                      </tr>
+                      <tr>
+                        <td><b>Retrospective</b></td>
+                        <td>Improve process after each sprint</td>
+                      </tr>
+                      <tr>
+                        <td><b>Scrum Master</b></td>
+                        <td>Facilitator / blocker remover</td>
+                      </tr>
+                      <tr>
+                        <td><b>Product Owner</b></td>
+                        <td>Owns priorities &amp; backlog</td>
+                      </tr>
+                      <tr>
+                        <td><b>INVEST (good story)</b></td>
+                        <td>
+                          Independent, Negotiable, Valuable, Estimable, Small,
+                          Testable
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- 10. Design techniques -->
+            <div class="cs-card">
+              <div class="cs-head">Test Design Techniques — Cheat</div>
+              <div class="cs-body">
+                <ul>
+                  <li>
+                    <b>BVA (Boundary Value Analysis):</b> test values at, just
+                    below, just above boundaries. Field 18"“60 → test 17, 18,
+                    60, 61.
+                  </li>
+                  <li>
+                    <b>EP (Equivalence Partitioning):</b> split inputs into
+                    groups; test 1 value per group. Valid 0"“100 → test 50;
+                    invalid → -5 and 150.
+                  </li>
+                  <li>
+                    <b>Decision Table:</b> combinations of conditions &amp;
+                    outcomes (best for business rules).
+                  </li>
+                  <li>
+                    <b>State Transition:</b> valid/invalid state changes (e.g.,
+                    Pending → Paid → Delivered).
+                  </li>
+                  <li>
+                    <b>Error Guessing:</b> intuition-based — empty fields,
+                    special chars, rapid clicks, huge data.
+                  </li>
+                  <li>
+                    <b>Pairwise Testing:</b> test all combinations of variables
+                    pairwise to reduce test count.
+                  </li>
+                </ul>
+                <div class="callout warn">
+                  <b>⚠️ Interview</b>"For an age field accepting 1"“100: EP →
+                  test 0, 50, 101. BVA → test 0, 1, 100, 101." — know this cold.
+                </div>
+              </div>
+            </div>
+
+            <!-- 11. Estimation & metrics -->
+            <div class="cs-card">
+              <div class="cs-head">
+                Estimation, Entry/Exit &amp; Metrics — Cheat
+              </div>
+              <div class="cs-body">
+                <h4>Estimation techniques:</h4>
+                <ul>
+                  <li>Functional Point Analysis</li>
+                  <li>Use-Case based</li>
+                  <li>Test Point Analysis</li>
+                  <li>Experience based</li>
+                </ul>
+                <h4>Entry criteria (START when):</h4>
+                <ul>
+                  <li>Build deployed &amp; testable</li>
+                  <li>Environment + test data ready</li>
+                  <li>Requirements &amp; test cases reviewed</li>
+                </ul>
+                <h4>Exit criteria (STOP when):</h4>
+                <ul>
+                  <li>All critical/major bugs closed</li>
+                  <li>All planned tests executed</li>
+                  <li>No P1 blockers, summary report signed off</li>
+                </ul>
+                <h4>Key metrics:</h4>
+                <ul>
+                  <li>Test Case Pass % = (Passed ÷ Total Executed) × 100</li>
+                  <li>Defect Density = Defects ÷ KLOC</li>
+                  <li>
+                    Defect Removal Efficiency (DRE) = Defects found ÷ (Defects
+                    found + missed in production)
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 12. Tools -->
+            <div class="cs-card">
+              <div class="cs-head">Tools at a Glance</div>
+              <div class="cs-body">
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Purpose</th>
+                        <th>Tools</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Defect &amp; project tracking</td>
+                        <td><b>Jira</b>, Azure DevOps, Bugzilla, Mantis</td>
+                      </tr>
+                      <tr>
+                        <td>Test management</td>
+                        <td>TestRail, Zephyr, qTest, ALM</td>
+                      </tr>
+                      <tr>
+                        <td>API testing</td>
+                        <td><b>Postman</b>, SoapUI, REST Assured</td>
+                      </tr>
+                      <tr>
+                        <td>Database</td>
+                        <td>MySQL, PostgreSQL, SQL Server, SQLite</td>
+                      </tr>
+                      <tr>
+                        <td>Performance</td>
+                        <td><b>JMeter</b>, LoadRunner, k6</td>
+                      </tr>
+                      <tr>
+                        <td>Security</td>
+                        <td>OWASP ZAP, Burp Suite</td>
+                      </tr>
+                      <tr>
+                        <td>Automation (web)</td>
+                        <td>Selenium, Cypress, Playwright</td>
+                      </tr>
+                      <tr>
+                        <td>Automation (mobile)</td>
+                        <td>Appium</td>
+                      </tr>
+                      <tr>
+                        <td>CI/CD (know the name)</td>
+                        <td>Jenkins, GitHub Actions, GitLab CI</td>
+                      </tr>
+                      <tr>
+                        <td>Version control (know basics)</td>
+                        <td>Git, GitHub</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- 13. One-line interview answers -->
+            <div class="cs-card">
+              <div class="cs-head">Top Interview Answers — One-Liners</div>
+              <div class="cs-body">
+                <div class="qa-item">
+                  <div class="qa-q">
+                    Q: What is the difference between smoke and sanity testing?
+                  </div>
+                  <div class="qa-a">
+                    Smoke checks that the whole build is testable (wide,
+                    critical features), while sanity checks one specific fix
+                    works (narrow).
+                  </div>
+                </div>
+                <div class="qa-item">
+                  <div class="qa-q">Q: Regression vs Retesting?</div>
+                  <div class="qa-a">
+                    Retesting re-runs the exact failed test case to verify a
+                    fix; regression tests the rest of the app to ensure nothing
+                    broke.
+                  </div>
+                </div>
+                <div class="qa-item">
+                  <div class="qa-q">Q: What is the bug lifecycle?</div>
+                  <div class="qa-a">
+                    New → Assigned → Open → Fixed → Retest → Closed, with
+                    possible Reopened, Deferred, or Rejected states.
+                  </div>
+                </div>
+                <div class="qa-item">
+                  <div class="qa-q">Q: Severity vs priority?</div>
+                  <div class="qa-a">
+                    Severity is how bad the bug is for the system (set by
+                    tester); priority is how urgent to fix (set by PM/business).
+                  </div>
+                </div>
+                <div class="qa-item">
+                  <div class="qa-q">Q: What is a test plan?</div>
+                  <div class="qa-a">
+                    A document covering scope, approach, resources, schedule,
+                    entry/exit criteria, and risks for testing a project.
+                  </div>
+                </div>
+                <div class="qa-item">
+                  <div class="qa-q">Q: What is the STLC?</div>
+                  <div class="qa-a">
+                    Software Testing Life Cycle: Requirement analysis, Test
+                    planning, Test case development, Environment setup,
+                    Execution, Closure.
+                  </div>
+                </div>
+                <div class="qa-item">
+                  <div class="qa-q">Q: What is a traceability matrix?</div>
+                  <div class="qa-a">
+                    A mapping of each requirement to its test cases and bugs,
+                    proving full coverage.
+                  </div>
+                </div>
+                <div class="qa-item">
+                  <div class="qa-q">Q: When do you stop testing?</div>
+                  <div class="qa-a">
+                    When exit criteria are met: all planned tests executed,
+                    critical bugs closed, risk acceptable, and report signed
+                    off.
+                  </div>
+                </div>
+                <div class="qa-item">
+                  <div class="qa-q">Q: What is your role in a Scrum team?</div>
+                  <div class="qa-a">
+                    Test stories in-sprint, write test cases from acceptance
+                    criteria, log bugs, do regression, demo quality at sprint
+                    review.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 14. Shift-Left & DevOps -->
+            <div class="cs-card">
+              <div class="cs-head">
+                🔄 Shift-Left &amp; DevOps Testing — Key Terms
+              </div>
+              <div class="cs-body">
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Term</th>
+                        <th>One-line meaning</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Shift-Left</b></td>
+                        <td>
+                          Move testing earlier in the SDLC — test from
+                          requirements onward, not just at the end.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Continuous Testing (CT)</b></td>
+                        <td>
+                          Run automated tests continuously (on every
+                          commit/merge/deploy) to get fast quality feedback.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>CI (Continuous Integration)</b></td>
+                        <td>
+                          Merge code frequently (multiple times a day); auto-run
+                          build + unit + integration tests on every merge.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>CD (Continuous Delivery / Deployment)</b></td>
+                        <td>
+                          Delivery: code is always deployable. Deployment: every
+                          green build goes live automatically.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Trunk-Based Development</b></td>
+                        <td>
+                          All devs commit to one shared branch (main/trunk);
+                          short-lived feature branches at most.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Blue-Green Deploy</b></td>
+                        <td>
+                          Two identical production environments; switch traffic
+                          from old (blue) to new (green) atomically; rollback =
+                          switch back.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Canary Deploy</b></td>
+                        <td>
+                          Release new version to a small % of users first;
+                          monitor; if OK, roll out to 100%.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Feature Flag</b></td>
+                        <td>
+                          Toggle a feature on/off in production without
+                          redeploying code. Enables testing in prod safely.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>IaC (Infrastructure as Code)</b></td>
+                        <td>
+                          Define environments in version-controlled config files
+                          (Terraform, Ansible) — reproducible, testable.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Observability</b></td>
+                        <td>
+                          Understand a system's internal state from its external
+                          outputs: logs, metrics, traces (the "three pillars").
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Chaos Engineering</b></td>
+                        <td>
+                          Intentionally inject failures (kill a server, slow the
+                          network) in production-like envs to test resilience.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- 15. Metrics & KPIs -->
+            <div class="cs-card">
+              <div class="cs-head">📊 Test Metrics &amp; KPIs — Formulas</div>
+              <div class="cs-body">
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Metric</th>
+                        <th>Formula</th>
+                        <th>Example</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Defect Density</b></td>
+                        <td>Bugs / Size (per KLOC or per FP)</td>
+                        <td>8 bugs in 4 KLOC = 2 per KLOC</td>
+                      </tr>
+                      <tr>
+                        <td><b>Defect Leakage</b></td>
+                        <td>(Escaped bugs) / (Total bugs) × 100</td>
+                        <td>2 escaped of 12 total = 16.7%</td>
+                      </tr>
+                      <tr>
+                        <td><b>Test Coverage</b></td>
+                        <td>(Cases executed) / (Total cases) × 100</td>
+                        <td>180 / 200 = 90%</td>
+                      </tr>
+                      <tr>
+                        <td><b>Requirements Coverage</b></td>
+                        <td>(Reqs with ≥1 test) / (Total reqs) × 100</td>
+                        <td>50 / 50 = 100%</td>
+                      </tr>
+                      <tr>
+                        <td><b>% Test Cases Passed</b></td>
+                        <td>(Passed) / (Executed) × 100</td>
+                        <td>170 / 180 = 94.4%</td>
+                      </tr>
+                      <tr>
+                        <td><b>MTTD (Mean Time To Detect)</b></td>
+                        <td>Σ (time to detect each bug) / bug count</td>
+                        <td>(4 + 6 + 2) / 3 = 4 days</td>
+                      </tr>
+                      <tr>
+                        <td><b>MTTR (Mean Time To Repair)</b></td>
+                        <td>Σ (time to fix each bug) / bug count</td>
+                        <td>(3 + 5 + 1) / 3 = 3 days</td>
+                      </tr>
+                      <tr>
+                        <td><b>MTTF (Mean Time To Failure)</b></td>
+                        <td>Σ operational time / # failures</td>
+                        <td>1000h / 5 = 200h between failures</td>
+                      </tr>
+                      <tr>
+                        <td><b>Defect Removal Efficiency (DRE)</b></td>
+                        <td>(Bugs pre-release) / (Bugs pre + post) × 100</td>
+                        <td>48 / 50 = 96%</td>
+                      </tr>
+                      <tr>
+                        <td><b>Test Effectiveness</b></td>
+                        <td>(Bugs found by tests) / (Total cases run) × 100</td>
+                        <td>20 bugs / 200 cases = 10%</td>
+                      </tr>
+                      <tr>
+                        <td><b>Test Case Productivity</b></td>
+                        <td>Cases designed / Effort (person-hours)</td>
+                        <td>100 cases / 25 hrs = 4 / hr</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="callout tip">
+                  <b>💡 Healthy targets:</b> Defect leakage &lt; 5%, DRE &gt;
+                  95%, requirements coverage = 100%, % passed ≥ 95% at release.
+                </div>
+              </div>
+            </div>
+
+            <!-- 16. Estimation -->
+            <div class="cs-card">
+              <div class="cs-head">🧮 Test Estimation — Quick Math</div>
+              <div class="cs-body">
+                <h4>3-Point (PERT)</h4>
+                <p>
+                  <b>Estimate = (O + 4M + P) / 6</b> &nbsp; where O =
+                  optimistic, M = most likely, P = pessimistic.
+                </p>
+                <p>
+                  <b>Example:</b> O=4, M=7, P=14 → (4 + 28 + 14) / 6 =
+                  <b>7.7 person-days</b>.
+                </p>
+
+                <h4>Wideband Delphi</h4>
+                <ul>
+                  <li>Each expert estimates independently (no discussion).</li>
+                  <li>
+                    Reveal all estimates. Discuss the gaps (outliers explain
+                    reasoning).
+                  </li>
+                  <li>
+                    Re-estimate. Repeat 2-3 rounds until estimates converge
+                    (within 10-15%).
+                  </li>
+                  <li>Final value = average of the last round.</li>
+                </ul>
+
+                <h4>Work Breakdown Structure (WBS)</h4>
+                <p>
+                  Sum the estimates of all leaf-level tasks, then add a
+                  contingency buffer (15-25%) for risk.
+                </p>
+                <p>
+                  <b>Example:</b> 10 tasks × 2 days each = 20 days. + 20% buffer
+                  = <b>24 days</b>.
+                </p>
+
+                <h4>Use-Case Points (UCP) — quick version</h4>
+                <p>UCP = (UUCW + UAW) × TCF × ECF</p>
+                <ul>
+                  <li>
+                    <b>UUCW</b> = Unadjusted Use Case Weight (count
+                    simple/avg/complex use cases × 5/10/15)
+                  </li>
+                  <li>
+                    <b>UAW</b> = Unadjusted Actor Weight (count
+                    simple/avg/complex actors × 1/2/3)
+                  </li>
+                  <li>
+                    <b>TCF</b> = Technical Complexity Factor (0.6 + 0.01 ×
+                    ΣT<sub>i</sub>)
+                  </li>
+                  <li>
+                    <b>ECF</b> = Environmental Complexity Factor (1.4 − 0.03 ×
+                    ΣE<sub>i</sub>)
+                  </li>
+                </ul>
+                <p>
+                  Then: Effort (person-hours) = UCP × Productivity factor
+                  (typical 20-30 hrs/UCP).
+                </p>
+
+                <h4>Estimation Tips</h4>
+                <ul>
+                  <li>
+                    Always add a <b>15-25% buffer</b> for bug fixes + retesting
+                    + env issues.
+                  </li>
+                  <li>
+                    Round estimates to <b>½ or 1 day</b> — finer precision is
+                    false confidence.
+                  </li>
+                  <li>
+                    Re-estimate mid-sprint if assumptions change; don't pad
+                    silently.
+                  </li>
+                  <li>
+                    Track actual vs estimated; learn your team's bias over time.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 17. Mobile Testing -->
+            <div class="cs-card">
+              <div class="cs-head">📱 Mobile Testing — Quick Reference</div>
+              <div class="cs-body">
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Category</th>
+                        <th>What to Check</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Gestures</b></td>
+                        <td>
+                          Tap, long-press, double-tap, swipe (4 directions),
+                          pinch-zoom, rotate, two-finger scroll, edge-swipe.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>App Lifecycle</b></td>
+                        <td>
+                          Background → foreground (state preserved?),
+                          force-quit, low-memory kill, OS update while running,
+                          app upgrade.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Interruptions</b></td>
+                        <td>
+                          Incoming call / SMS while in app, push notification,
+                          alarm, low-battery alert, screen lock, headphones
+                          plugged/unplugged.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Network</b></td>
+                        <td>
+                          Wi-Fi ↔ 4G ↔ 5G switch mid-flow, airplane mode, slow
+                          3G, no signal, captive portal (hotel/airport Wi-Fi),
+                          VPN.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Orientation</b></td>
+                        <td>
+                          Portrait ↔ landscape transitions; state preserved;
+                          layout not broken; video continues.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Permissions</b></td>
+                        <td>
+                          Camera, mic, location, contacts, photos, notifications
+                          — grant, deny, revoke mid-use.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>OS Fragmentation</b></td>
+                        <td>
+                          Test on min-supported Android + iOS versions; the
+                          newest OS; at least one tablet form factor.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Device Fragmentation</b></td>
+                        <td>
+                          Small screen, large screen, notch, hole-punch,
+                          foldable, different chipsets (ARMv7/v8, x86 emulator).
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Push Notifications</b></td>
+                        <td>
+                          Received when foreground, background, killed; deep
+                          link opens correct screen; opt-out works.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Storage &amp; Battery</b></td>
+                        <td>
+                          App behavior when storage is full; battery saver mode;
+                          running in background for hours.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Security</b></td>
+                        <td>
+                          Local data encrypted? Auto-lock screen?
+                          Jailbroken/Rooted device behavior? Biometric auth
+                          fallback?
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Offline Mode</b></td>
+                        <td>
+                          App behavior with no network — does it crash, show a
+                          banner, queue actions?
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <h4>Device Coverage Strategy</h4>
+                <ul>
+                  <li>
+                    Use a <b>cloud device farm</b> (BrowserStack, Sauce Labs,
+                    AWS Device Farm, Firebase Test Lab) for breadth.
+                  </li>
+                  <li>
+                    Keep <b>3-5 physical devices in-house</b> for the most
+                    popular models (latest iPhone, latest Samsung, a budget
+                    Android, a tablet, a foldable if relevant).
+                  </li>
+                  <li>
+                    Test on the <b>OS versions your users actually run</b> —
+                    check analytics, not the newest only.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 18. API Testing -->
+            <div class="cs-card">
+              <div class="cs-head">🌐 API Testing — Expanded Cheat</div>
+              <div class="cs-body">
+                <h4>Authentication Types</h4>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Type</th>
+                        <th>How It Works</th>
+                        <th>Where to Use</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>None</b></td>
+                        <td>No credentials needed.</td>
+                        <td>Truly public APIs (weather, public data).</td>
+                      </tr>
+                      <tr>
+                        <td><b>API Key</b></td>
+                        <td>
+                          Single secret in header or query string.
+                          <code>X-API-Key: abc123</code>
+                        </td>
+                        <td>Internal services, simple server-to-server.</td>
+                      </tr>
+                      <tr>
+                        <td><b>Basic Auth</b></td>
+                        <td>
+                          Username:password base64-encoded in header.
+                          <code>Authorization: Basic dXNlcjpwYXNz</code>
+                        </td>
+                        <td>Legacy, internal, low-security endpoints.</td>
+                      </tr>
+                      <tr>
+                        <td><b>Bearer (Token)</b></td>
+                        <td>
+                          Opaque token issued by auth server.
+                          <code>Authorization: Bearer eyJhbGciOi...</code>
+                        </td>
+                        <td>Most modern REST APIs, JWTs.</td>
+                      </tr>
+                      <tr>
+                        <td><b>OAuth 2.0</b></td>
+                        <td>
+                          Delegated access with access + refresh tokens.
+                          Multiple grant types (auth code, client credentials,
+                          password).
+                        </td>
+                        <td>Third-party apps, "Login with Google/GitHub".</td>
+                      </tr>
+                      <tr>
+                        <td><b>OpenID Connect</b></td>
+                        <td>
+                          Identity layer on top of OAuth 2.0. Returns ID token
+                          with user profile.
+                        </td>
+                        <td>SSO, "Sign in with X" experiences.</td>
+                      </tr>
+                      <tr>
+                        <td><b>mTLS (Mutual TLS)</b></td>
+                        <td>Both client and server present certificates.</td>
+                        <td>B2B, financial, zero-trust networks.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h4>Common Headers You'll See / Test</h4>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Header</th>
+                        <th>Purpose</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>Content-Type</code></td>
+                        <td>
+                          Format of the body. <code>application/json</code>,
+                          <code>application/xml</code>,
+                          <code>multipart/form-data</code>.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><code>Authorization</code></td>
+                        <td>
+                          Carries the auth credential (Bearer, Basic, etc.).
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><code>Accept</code></td>
+                        <td>
+                          Tells the server which formats the client can handle.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><code>User-Agent</code></td>
+                        <td>
+                          Identifies the client (browser, app version, OS).
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><code>X-Request-ID</code></td>
+                        <td>
+                          Correlation ID for tracing a request through logs.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><code>Cache-Control</code></td>
+                        <td>
+                          Caching directives (<code>no-cache</code>,
+                          <code>max-age=3600</code>).
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>If-None-Match</code> /
+                          <code>If-Modified-Since</code>
+                        </td>
+                        <td>Conditional GET — returns 304 if unchanged.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h4>REST vs GraphQL vs gRPC — Quick Compare</h4>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Aspect</th>
+                        <th>REST</th>
+                        <th>GraphQL</th>
+                        <th>gRPC</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Transport</b></td>
+                        <td>HTTP/JSON</td>
+                        <td>HTTP/JSON (single endpoint)</td>
+                        <td>HTTP/2 + Protobuf (binary)</td>
+                      </tr>
+                      <tr>
+                        <td><b>Data shape</b></td>
+                        <td>Multiple endpoints, fixed shape</td>
+                        <td>One endpoint, client picks fields</td>
+                        <td>Strict schema (.proto file)</td>
+                      </tr>
+                      <tr>
+                        <td><b>Best for</b></td>
+                        <td>Public APIs, CRUD, browser apps</td>
+                        <td>Complex UIs, mobile, varied clients</td>
+                        <td>Service-to-service microservices</td>
+                      </tr>
+                      <tr>
+                        <td><b>Browser-friendly</b></td>
+                        <td>✅ Yes</td>
+                        <td>✅ Yes</td>
+                        <td>⚠️ Needs grpc-web proxy</td>
+                      </tr>
+                      <tr>
+                        <td><b>Tooling for testers</b></td>
+                        <td>Postman, curl, REST Client</td>
+                        <td>GraphiQL, Apollo Studio, Postman</td>
+                        <td>grpcurl, BloomRPC, Postman</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- 19. Security -->
+            <div class="cs-card">
+              <div class="cs-head">🔒 Security Testing — Basics</div>
+              <div class="cs-body">
+                <h4>OWASP Top 10 (2021) — One-Liners</h4>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Vulnerability</th>
+                        <th>What It Is</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>A01</td>
+                        <td><b>Broken Access Control</b></td>
+                        <td>
+                          Users can act outside their permissions (e.g., view
+                          another user's data by changing the ID).
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>A02</td>
+                        <td><b>Cryptographic Failures</b></td>
+                        <td>
+                          Weak / missing encryption of sensitive data in transit
+                          or at rest (HTTP instead of HTTPS, MD5 for passwords).
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>A03</td>
+                        <td><b>Injection</b></td>
+                        <td>
+                          Untrusted input is run as code (SQL, NoSQL, OS
+                          command, LDAP).
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>A04</td>
+                        <td><b>Insecure Design</b></td>
+                        <td>
+                          Architectural flaws — no rate limiting, missing threat
+                          modeling, business logic bypass.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>A05</td>
+                        <td><b>Security Misconfiguration</b></td>
+                        <td>
+                          Default passwords, open S3 buckets, verbose error
+                          messages, unnecessary features enabled.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>A06</td>
+                        <td><b>Vulnerable &amp; Outdated Components</b></td>
+                        <td>
+                          Using libraries / frameworks with known CVEs and no
+                          update plan.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>A07</td>
+                        <td><b>Identification &amp; Auth Failures</b></td>
+                        <td>
+                          Weak passwords, missing MFA, session fixation,
+                          credential stuffing not blocked.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>A08</td>
+                        <td><b>Software &amp; Data Integrity Failures</b></td>
+                        <td>
+                          Unsigned updates, insecure CI/CD pipelines,
+                          auto-update without verification.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>A09</td>
+                        <td><b>Logging &amp; Monitoring Failures</b></td>
+                        <td>
+                          Insufficient logging of security events; no alerting;
+                          no incident response plan.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>A10</td>
+                        <td><b>Server-Side Request Forgery (SSRF)</b></td>
+                        <td>
+                          Attacker makes the server fetch a remote resource
+                          (internal admin pages, cloud metadata).
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h4>Common Attacks — How to Test</h4>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Attack</th>
+                        <th>What You Try</th>
+                        <th>Where to Test</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>SQL Injection</b></td>
+                        <td>
+                          Enter <code>' OR '1'='1</code> in login / search;
+                          expect parameterized query to reject it.
+                        </td>
+                        <td>Any input field that hits a DB.</td>
+                      </tr>
+                      <tr>
+                        <td><b>XSS (Cross-Site Scripting)</b></td>
+                        <td>
+                          Enter
+                          <code>&lt;script&gt;alert(1)&lt;/script&gt;</code> in
+                          a name / comment field; expect it to be escaped, not
+                          executed.
+                        </td>
+                        <td>Any field whose content is later displayed.</td>
+                      </tr>
+                      <tr>
+                        <td><b>CSRF</b></td>
+                        <td>
+                          Force a logged-in user's browser to submit a
+                          state-changing request from another site.
+                        </td>
+                        <td>
+                          State-changing endpoints (transfer, password change).
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Broken Auth</b></td>
+                        <td>
+                          Brute force, session fixation, password reset
+                          poisoning, JWT signature stripping.
+                        </td>
+                        <td>Login, password reset, session handling.</td>
+                      </tr>
+                      <tr>
+                        <td><b>Insecure Direct Object Reference (IDOR)</b></td>
+                        <td>
+                          Change an ID in the URL (<code>/orders/123</code> →
+                          <code>/orders/124</code>); expect 403, not someone
+                          else's data.
+                        </td>
+                        <td>Any endpoint with user-supplied IDs.</td>
+                      </tr>
+                      <tr>
+                        <td><b>Sensitive Data Exposure</b></td>
+                        <td>
+                          Inspect response body, network, source — passwords,
+                          tokens, PII should never appear in plain text.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Rate Limiting</b></td>
+                        <td>
+                          Send 1000 login attempts in 1 minute; expect 429 after
+                          a threshold.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h4>Useful Security Testing Tools</h4>
+                <ul>
+                  <li>
+                    <b>OWASP ZAP</b> — free, open-source web scanner. Great for
+                    beginners.
+                  </li>
+                  <li>
+                    <b>Burp Suite</b> — industry-standard proxy + scanner for
+                    web apps.
+                  </li>
+                  <li>
+                    <b>Nessus / Qualys</b> — vulnerability scanners for
+                    infrastructure.
+                  </li>
+                  <li>
+                    <b>Postman / REST Client</b> — manual auth / header /
+                    injection testing on APIs.
+                  </li>
+                  <li>
+                    <b>SQLMap</b> — automated SQL injection detection &amp;
+                    exploitation.
+                  </li>
+                  <li>
+                    <b>Browser DevTools</b> — always check Network, Application,
+                    Console for leakage.
+                  </li>
+                </ul>
+
+                <div class="callout warn">
+                  <b
+                    >⚠️ Always test on staging or with explicit written
+                    authorization.</b
+                  >
+                  Scanning or attacking a production system without permission
+                  is illegal in most jurisdictions.
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- 8. HTTP status codes -->
-        <div class="cs-card">
-          <div class="cs-head">🌍 HTTP Status Codes — Must Know</div>
-          <div class="cs-body">
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Code</th><th>Meaning</th><th>Code</th><th>Meaning</th></tr></thead>
-                <tbody>
-                  <tr><td><b>2xx Success</b></td><td></td><td><b>4xx Client error</b></td><td></td></tr>
-                  <tr><td>200</td><td>OK</td><td>400</td><td>Bad Request</td></tr>
-                  <tr><td>201</td><td>Created</td><td>401</td><td>Unauthorized (no login)</td></tr>
-                  <tr><td>204</td><td>No Content</td><td>403</td><td>Forbidden (no permission)</td></tr>
-                  <tr><td></td><td></td><td>404</td><td>Not Found</td></tr>
-                  <tr><td><b>3xx Redirection</b></td><td></td><td>429</td><td>Too Many Requests</td></tr>
-                  <tr><td>301/302</td><td>Moved / Found</td><td></td><td></td></tr>
-                  <tr><td><b>5xx Server error</b></td><td></td><td>500</td><td>Internal Server Error</td></tr>
-                  <tr><td>502</td><td>Bad Gateway</td><td>503</td><td>Service Unavailable</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="callout tip"><b>Remember</b>2xx = success · 4xx = client's fault · 5xx = server's fault.</div>
-          </div>
-        </div>
-
-        <!-- 9. Agile terms -->
-        <div class="cs-card">
-          <div class="cs-head">Agile &amp; Scrum — Quick Terms</div>
-          <div class="cs-body">
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
-                <tbody>
-                  <tr><td><b>Sprint</b></td><td>Short development cycle (usually 1"“4 weeks)</td></tr>
-                  <tr><td><b>User Story</b></td><td>Feature from user's view: "As a ___, I want ___ so that ___"</td></tr>
-                  <tr><td><b>Epic</b></td><td>Large story broken into smaller stories</td></tr>
-                  <tr><td><b>Product Backlog</b></td><td>Prioritized list of all work</td></tr>
-                  <tr><td><b>Sprint Backlog</b></td><td>Work selected for current sprint</td></tr>
-                  <tr><td><b>Burndown Chart</b></td><td>Remaining work vs time in sprint</td></tr>
-                  <tr><td><b>Velocity</b></td><td>Story points completed per sprint</td></tr>
-                  <tr><td><b>Stand-up</b></td><td>Daily 15-min sync meeting</td></tr>
-                  <tr><td><b>Retrospective</b></td><td>Improve process after each sprint</td></tr>
-                  <tr><td><b>Scrum Master</b></td><td>Facilitator / blocker remover</td></tr>
-                  <tr><td><b>Product Owner</b></td><td>Owns priorities &amp; backlog</td></tr>
-                  <tr><td><b>INVEST (good story)</b></td><td>Independent, Negotiable, Valuable, Estimable, Small, Testable</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- 10. Design techniques -->
-        <div class="cs-card">
-          <div class="cs-head">Test Design Techniques — Cheat</div>
-          <div class="cs-body">
-            <ul>
-              <li><b>BVA (Boundary Value Analysis):</b> test values at, just below, just above boundaries. Field 18"“60 → test 17, 18, 60, 61.</li>
-              <li><b>EP (Equivalence Partitioning):</b> split inputs into groups; test 1 value per group. Valid 0"“100 → test 50; invalid → -5 and 150.</li>
-              <li><b>Decision Table:</b> combinations of conditions &amp; outcomes (best for business rules).</li>
-              <li><b>State Transition:</b> valid/invalid state changes (e.g., Pending → Paid → Delivered).</li>
-              <li><b>Error Guessing:</b> intuition-based — empty fields, special chars, rapid clicks, huge data.</li>
-              <li><b>Pairwise Testing:</b> test all combinations of variables pairwise to reduce test count.</li>
-            </ul>
-            <div class="callout warn"><b>⚠️ Interview</b>"For an age field accepting 1"“100: EP → test 0, 50, 101. BVA → test 0, 1, 100, 101." — know this cold.</div>
-          </div>
-        </div>
-
-        <!-- 11. Estimation & metrics -->
-        <div class="cs-card">
-          <div class="cs-head">Estimation, Entry/Exit &amp; Metrics — Cheat</div>
-          <div class="cs-body">
-            <h4>Estimation techniques:</h4>
-            <ul>
-              <li>Functional Point Analysis</li>
-              <li>Use-Case based</li>
-              <li>Test Point Analysis</li>
-              <li>Experience based</li>
-            </ul>
-            <h4>Entry criteria (START when):</h4>
-            <ul>
-              <li>Build deployed &amp; testable</li>
-              <li>Environment + test data ready</li>
-              <li>Requirements &amp; test cases reviewed</li>
-            </ul>
-            <h4>Exit criteria (STOP when):</h4>
-            <ul>
-              <li>All critical/major bugs closed</li>
-              <li>All planned tests executed</li>
-              <li>No P1 blockers, summary report signed off</li>
-            </ul>
-            <h4>Key metrics:</h4>
-            <ul>
-              <li>Test Case Pass % = (Passed ÷ Total Executed) × 100</li>
-              <li>Defect Density = Defects ÷ KLOC</li>
-              <li>Defect Removal Efficiency (DRE) = Defects found ÷ (Defects found + missed in production)</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- 12. Tools -->
-        <div class="cs-card">
-          <div class="cs-head">Tools at a Glance</div>
-          <div class="cs-body">
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Purpose</th><th>Tools</th></tr></thead>
-                <tbody>
-                  <tr><td>Defect &amp; project tracking</td><td><b>Jira</b>, Azure DevOps, Bugzilla, Mantis</td></tr>
-                  <tr><td>Test management</td><td>TestRail, Zephyr, qTest, ALM</td></tr>
-                  <tr><td>API testing</td><td><b>Postman</b>, SoapUI, REST Assured</td></tr>
-                  <tr><td>Database</td><td>MySQL, PostgreSQL, SQL Server, SQLite</td></tr>
-                  <tr><td>Performance</td><td><b>JMeter</b>, LoadRunner, k6</td></tr>
-                  <tr><td>Security</td><td>OWASP ZAP, Burp Suite</td></tr>
-                  <tr><td>Automation (web)</td><td>Selenium, Cypress, Playwright</td></tr>
-                  <tr><td>Automation (mobile)</td><td>Appium</td></tr>
-                  <tr><td>CI/CD (know the name)</td><td>Jenkins, GitHub Actions, GitLab CI</td></tr>
-                  <tr><td>Version control (know basics)</td><td>Git, GitHub</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- 13. One-line interview answers -->
-        <div class="cs-card">
-          <div class="cs-head">Top Interview Answers — One-Liners</div>
-          <div class="cs-body">
-            <div class="qa-item"><div class="qa-q">Q: What is the difference between smoke and sanity testing?</div>
-              <div class="qa-a">Smoke checks that the whole build is testable (wide, critical features), while sanity checks one specific fix works (narrow).</div></div>
-            <div class="qa-item"><div class="qa-q">Q: Regression vs Retesting?</div>
-              <div class="qa-a">Retesting re-runs the exact failed test case to verify a fix; regression tests the rest of the app to ensure nothing broke.</div></div>
-            <div class="qa-item"><div class="qa-q">Q: What is the bug lifecycle?</div>
-              <div class="qa-a">New → Assigned → Open → Fixed → Retest → Closed, with possible Reopened, Deferred, or Rejected states.</div></div>
-            <div class="qa-item"><div class="qa-q">Q: Severity vs priority?</div>
-              <div class="qa-a">Severity is how bad the bug is for the system (set by tester); priority is how urgent to fix (set by PM/business).</div></div>
-            <div class="qa-item"><div class="qa-q">Q: What is a test plan?</div>
-              <div class="qa-a">A document covering scope, approach, resources, schedule, entry/exit criteria, and risks for testing a project.</div></div>
-            <div class="qa-item"><div class="qa-q">Q: What is the STLC?</div>
-              <div class="qa-a">Software Testing Life Cycle: Requirement analysis, Test planning, Test case development, Environment setup, Execution, Closure.</div></div>
-            <div class="qa-item"><div class="qa-q">Q: What is a traceability matrix?</div>
-              <div class="qa-a">A mapping of each requirement to its test cases and bugs, proving full coverage.</div></div>
-            <div class="qa-item"><div class="qa-q">Q: When do you stop testing?</div>
-              <div class="qa-a">When exit criteria are met: all planned tests executed, critical bugs closed, risk acceptable, and report signed off.</div></div>
-            <div class="qa-item"><div class="qa-q">Q: What is your role in a Scrum team?</div>
-              <div class="qa-a">Test stories in-sprint, write test cases from acceptance criteria, log bugs, do regression, demo quality at sprint review.</div></div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              gap: 12px;
+              flex-wrap: wrap;
+              margin-top: 8px;
+            "
+          >
+            <a class="btn ghost" href="docs.html">⭐ Back to Docs</a>
+            <a class="btn secondary" href="practice.html">Next: Practice →</a>
           </div>
         </div>
       </div>
 
-      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:8px;">
-        <a class="btn ghost" href="docs.html">⭐ Back to Docs</a>
-        <a class="btn secondary" href="practice.html">Next: Practice →</a>
-      </div>
+      <!-- ============ FOOTER ============ -->
+      <footer class="footer">
+        Built with <span class="heart">♥</span> by
+        <span class="author">Shravan</span>
+        <div class="rights">All rights reserved.</div>
+      </footer>
     </div>
-  </div>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="footer">
-    Built with <span class="heart">♥</span> by <span class="author">Shravan</span>
-    <div class="rights">All rights reserved.</div>
-  </footer>
-</div>
-
-<script src="js/script.js"></script>
-</body>
+    <script src="js/script.js"></script>
+  </body>
 </html>
