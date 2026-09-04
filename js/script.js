@@ -23,9 +23,12 @@
   function syncThemeButton() {
     if (!themeBtn) return;
     const dark = document.documentElement.getAttribute("data-theme") === "dark";
-    themeBtn.querySelector(".ico").textContent = dark ? "☀️" : "🌙";
-    themeBtn.querySelector(".label").textContent = dark ? "Light" : "Dark";
+    const ico = themeBtn.querySelector(".ico");
+    const lbl = themeBtn.querySelector(".label");
+    if (ico) ico.textContent = dark ? "☀️" : "🌙";
+    if (lbl) lbl.textContent = dark ? "Light" : "Dark";
     themeBtn.title = dark ? "Switch to light mode" : "Switch to dark mode";
+    themeBtn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
   }
   syncThemeButton();
   if (themeBtn) {
@@ -38,48 +41,35 @@
   }
 
   // Highlight the active topnav link.
-  // Two-level nav: row 1 is the section (start / learn / reference / practice),
-  // row 2 is the sub-link within that section. For pages with hash deep-links
-  // (docs.html, practice.html), the matching sub-link becomes active.
+  // Single-row nav: just match the current path to a section link.
   function updateActiveNav() {
     const path = window.location.pathname.split("/").pop() || "index.html";
-    const hash = window.location.hash.replace("#", "");
-
-    // Row 1 — highlight the section whose href matches the current path.
-    const sectionLinks = document.querySelectorAll(".topnav-sections .topnav-link");
-    sectionLinks.forEach((a) => a.classList.remove("active"));
-    const activeSection =
-      Array.from(sectionLinks).find((a) => a.getAttribute("href") === path) || null;
-    if (activeSection) activeSection.classList.add("active");
-
-    // Row 2 — highlight the sub-link matching path[#hash], or just path.
-    const subLinks = document.querySelectorAll(".topnav-sub .topnav-sub-link");
-    subLinks.forEach((a) => a.classList.remove("active"));
-    let activeSub = null;
-    if (hash) {
-      activeSub =
-        Array.from(subLinks).find((a) => a.getAttribute("href") === path + "#" + hash) ||
-        null;
-    }
-    if (!activeSub) {
-      activeSub =
-        Array.from(subLinks).find((a) => a.getAttribute("href") === path) ||
-        null;
-    }
-    if (activeSub) activeSub.classList.add("active");
+    const links = document.querySelectorAll(".topnav-sections .topnav-link");
+    links.forEach((a) => a.classList.remove("active"));
+    const active = Array.from(links).find((a) => a.getAttribute("href") === path) || null;
+    if (active) active.classList.add("active");
   }
   updateActiveNav();
   window.addEventListener("hashchange", updateActiveNav);
 
-  /* ---------- Deep-link to a practice tab via URL hash (e.g. practice.html#flashcards) ---------- */
-  function activateTabFromHash() {
-    const hash = window.location.hash.replace("#", "");
-    if (!hash) return;
-    const tab = document.querySelector('.tab[data-panel="' + hash + '"]');
-    if (tab) tab.click();
+  /* ---------- Deep-link to a section via URL hash (e.g. practice.html#flashcards) ----------
+     Plain <a href="#id"> clicks are handled by the browser (html { scroll-behavior: smooth }
+     + scroll-padding-top: 80px keeps the heading below the topnav). This helper just makes
+     sure the target actually scrolls into view when the page is loaded with a hash
+     already in the URL, and on subsequent hashchange events. */
+  function scrollToHashTarget() {
+    const hash = window.location.hash;
+    if (!hash || hash.length < 2) return;
+    const el = document.getElementById(hash.slice(1));
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Highlight the matching rail link (the rail exists on both docs.html and practice.html).
+    if (typeof window.__qatSetRailActive === "function") {
+      const link = document.querySelector('.toc-rail-list a[href="' + hash + '"]');
+      if (link) window.__qatSetRailActive(link.dataset.toc);
+    }
   }
-  activateTabFromHash();
-  window.addEventListener("hashchange", activateTabFromHash);
+  window.addEventListener("hashchange", scrollToHashTarget);
 
   /* ---------- Accordion ---------- */
   document.addEventListener("click", (e) => {
@@ -88,19 +78,6 @@
       const acc = head.parentElement;
       acc.classList.toggle("open");
     }
-  });
-
-  /* ---------- Tabs ---------- */
-  document.addEventListener("click", (e) => {
-    const tab = e.target.closest(".tab");
-    if (!tab) return;
-    const wrap = tab.closest("[data-tabs]") || tab.parentElement.parentElement;
-    const panelId = tab.getAttribute("data-panel");
-    wrap.querySelectorAll(".tab").forEach((t) => t.classList.remove("active"));
-    tab.classList.add("active");
-    wrap.querySelectorAll(".tab-panel").forEach((p) => p.classList.remove("active"));
-    const target = document.getElementById(panelId);
-    if (target) target.classList.add("active");
   });
 
   /* ---------- Flashcards ---------- */
@@ -134,6 +111,7 @@
     cb.addEventListener("change", () => {
       setStore(key, cb.checked);
       updateDocProgress();
+      syncTocReadState();
     });
   });
 
@@ -150,6 +128,145 @@
     }
   }
   updateDocProgress();
+
+  /* ---------- Docs sticky left rail: read-tick sync + scroll-spy ---------- */
+  function syncTocReadState() {
+    const links = document.querySelectorAll(".toc-rail-list a[data-toc]");
+    if (!links.length) return;
+    links.forEach((a) => {
+      const key = a.dataset.toc; // e.g. "doc_intro" — matches data-docmark
+      const checked = getStoreVal(key, false);
+      const tick = a.querySelector(".toc-tick");
+      a.classList.toggle("read", !!checked);
+      if (tick) {
+        if (checked) tick.removeAttribute("hidden");
+        else tick.setAttribute("hidden", "");
+      }
+    });
+  }
+  syncTocReadState();
+
+  function setupDocsScrollSpy() {
+    const rail = document.querySelector(".toc-rail");
+    if (!rail) return;
+    const links = Array.from(rail.querySelectorAll(".toc-rail-list a[data-toc]"));
+    if (!links.length) return;
+
+    // Map data-toc key (e.g. "doc_intro") to its target section element (#intro).
+    const sections = links
+      .map((a) => {
+        const href = a.getAttribute("href") || "";
+        if (!href.startsWith("#")) return null;
+        const el = document.getElementById(href.slice(1));
+        return el ? { key: a.dataset.toc, el } : null;
+      })
+      .filter(Boolean);
+    if (!sections.length) return;
+
+    const linkByKey = new Map(links.map((a) => [a.dataset.toc, a]));
+    let currentKey = null;
+    let frameQueued = false;
+    let pendingKey = null;
+
+    function setActive(key) {
+      if (key === currentKey) return;
+      currentKey = key;
+      links.forEach((a) => a.classList.toggle("active", a.dataset.toc === key));
+      // Keep the active link visible inside the rail scroll container
+      const active = linkByKey.get(key);
+      if (active) {
+        const railRect = rail.getBoundingClientRect();
+        const linkRect = active.getBoundingClientRect();
+        if (linkRect.top < railRect.top || linkRect.bottom > railRect.bottom) {
+          active.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        }
+      }
+    }
+
+    // Expose a way to force-set the active rail link by key (used by hash deep-links).
+    window.__qatSetRailActive = function (key) { setActive(key); };
+
+    function computeActive() {
+      // Find the section whose top is closest to (but not below) ~25% of viewport
+      const probeY = window.innerHeight * 0.25;
+      let best = null;
+      let bestDist = Infinity;
+      for (const s of sections) {
+        const top = s.el.getBoundingClientRect().top;
+        if (top <= probeY) {
+          const dist = probeY - top;
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = s;
+          }
+        }
+      }
+      // If we're at the very top of the page and no section is above the probe,
+      // fall back to the first section.
+      if (!best) best = sections[0];
+      // If the last section's bottom is above the probe, we are below all sections
+      // — keep the last one active.
+      const last = sections[sections.length - 1];
+      const lastRect = last.el.getBoundingClientRect();
+      if (lastRect.bottom < probeY) best = last;
+      pendingKey = best.key;
+    }
+
+    function onScroll() {
+      if (frameQueued) return;
+      frameQueued = true;
+      requestAnimationFrame(() => {
+        frameQueued = false;
+        computeActive();
+        if (pendingKey) setActive(pendingKey);
+      });
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    // Initial pass
+    computeActive();
+    if (pendingKey) setActive(pendingKey);
+    // If the page was opened with a hash, scroll there and mark the rail link active.
+    if (window.location.hash) {
+      requestAnimationFrame(scrollToHashTarget);
+    }
+  }
+  setupDocsScrollSpy();
+
+  /* ---------- Scroll-driven pause for ambient motion ----------
+     Toggles `is-scrolling` on <body> while the user is scrolling, then
+     removes it ~150ms after they stop. The body uses this class to
+     pause its infinite background-mesh + orb animations so the page
+     doesn't repaint the mesh on every scroll frame. rAF-throttled. */
+  (function setupScrollPause() {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return; // honor user preference
+    }
+    let rafQueued = false;
+    let resumeTimer = null;
+    function onScroll() {
+      if (!document.body.classList.contains("is-scrolling")) {
+        document.body.classList.add("is-scrolling");
+      }
+      if (resumeTimer) clearTimeout(resumeTimer);
+      if (!rafQueued) {
+        rafQueued = true;
+        requestAnimationFrame(() => { rafQueued = false; });
+      }
+      resumeTimer = setTimeout(() => {
+        document.body.classList.remove("is-scrolling");
+        resumeTimer = null;
+      }, 160);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("wheel", onScroll, { passive: true });
+    window.addEventListener("touchmove", onScroll, { passive: true });
+    window.addEventListener("keydown", (e) => {
+      const keys = ["PageUp","PageDown","Home","End","ArrowUp","ArrowDown","Space"];
+      if (keys.indexOf(e.code) !== -1) onScroll();
+    });
+  })();
 
   /* ---------- Quiz engine ---------- */
   // Expected markup: .quiz > .quiz-q[data-answer="A"] with .opt[data-opt="A"] etc.
@@ -261,13 +378,16 @@
   };
 
   /* ---------- Dashboard stats ---------- */
+  // Total quizzes available across the app (kept in sync with practice.html)
+  const TOTAL_QUIZZES = 7;
   function renderDashboard() {
     const el = document.getElementById("statQuizzes");
     if (el) {
       const store = getStore();
-      const quizzes = Object.keys(store).filter((k) => k.startsWith("quiz_")).length;
-      const total = document.querySelectorAll("[data-quiz]").length;
-      el.textContent = (total ? quizzes + " / " + total : quizzes + " quiz best-scores saved");
+      const taken = Object.keys(store).filter((k) => k.startsWith("quiz_")).length;
+      el.textContent = taken > 0
+        ? taken + " / " + TOTAL_QUIZZES
+        : TOTAL_QUIZZES + "+";
     }
   }
   renderDashboard();

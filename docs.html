@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QA Tester Academy — Docs: All Manual Testing Concepts</title>
+  <title>QA Testing Academy — Docs: All Manual Testing Concepts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="css/styles.css">
   <script>
     // Apply saved theme before paint to avoid flash
@@ -25,15 +28,15 @@
   <header class="topnav">
     <div class="topnav-main">
       <a class="topnav-logo" href="index.html">
-        <span class="topnav-logo-mark">🛡️</span>
-        <span class="topnav-logo-text">QA Tester Academy</span>
+        <span class="topnav-logo-text">QA Testing Academy</span>
       </a>
       <button class="topnav-menu-btn" aria-label="Open menu">☰</button>
       <nav class="topnav-sections" aria-label="Primary">
-        <a href="index.html" data-section="start" class="topnav-link">Start</a>
-        <a href="docs.html" data-section="learn" class="topnav-link active">Learn</a>
-        <a href="cheatsheet.html" data-section="reference" class="topnav-link">Quick Reference</a>
-        <a href="practice.html" data-section="practice" class="topnav-link">Practice</a>
+        <a href="index.html" class="topnav-link">Dashboard</a>
+        <a href="docs.html" class="topnav-link active">Docs</a>
+        <a href="cheatsheet.html" class="topnav-link">Cheatsheet</a>
+        <a href="practice.html" class="topnav-link">Practice</a>
+        <a href="tutorial.html" class="topnav-link">Tutorial</a>
       </nav>
       <div class="topnav-utils">
         <button class="theme-toggle" id="themeToggle" title="Toggle dark / light mode" aria-label="Toggle theme">
@@ -41,17 +44,6 @@
         </button>
       </div>
     </div>
-    <nav class="topnav-sub" aria-label="Section">
-      <a href="docs.html" data-hash="" class="topnav-sub-link active">All Concepts</a>
-      <a href="docs.html#sdlc" class="topnav-sub-link">SDLC &amp; Agile</a>
-      <a href="docs.html#stlc" class="topnav-sub-link">STLC</a>
-      <a href="docs.html#types" class="topnav-sub-link">Test Types</a>
-      <a href="docs.html#design" class="topnav-sub-link">Test Design</a>
-      <a href="docs.html#testcase" class="topnav-sub-link">Test Cases</a>
-      <a href="docs.html#bug" class="topnav-sub-link">Bug Lifecycle</a>
-      <a href="docs.html#plan" class="topnav-sub-link">Test Plan</a>
-      <a href="docs.html#tools" class="topnav-sub-link">Tools</a>
-    </nav>
   </header>
 
   <!-- ============ MAIN ============ -->
@@ -69,31 +61,33 @@
         </div>
       </div>
 
-      <!-- TABLE OF CONTENTS -->
-      <aside class="toc">
-        <h4>📑 Table of Contents</h4>
-        <ol>
-          <li><a href="#intro">Introduction to Software Testing</a></li>
-          <li><a href="#sdlc">SDLC &amp; Development Models</a></li>
-          <li><a href="#stlc">STLC — Software Testing Life Cycle</a></li>
-          <li><a href="#levels">Test Levels</a></li>
-          <li><a href="#types">Test Types (Functional &amp; Non-Functional)</a></li>
-          <li><a href="#design">Test Design Techniques</a></li>
-          <li><a href="#testcase">Test Cases &amp; Test Scenarios</a></li>
-          <li><a href="#bug">Bug / Defect Lifecycle</a></li>
-          <li><a href="#plan">Test Plan, Strategy &amp; RTM</a></li>
-          <li><a href="#agile">Agile &amp; Scrum for Testers</a></li>
-          <li><a href="#tools">Tools: Jira, SQL, Excel</a></li>
-          <li><a href="#api">API Testing &amp; Postman</a></li>
-          <li><a href="#mobile">Mobile Application Testing</a></li>
-          <li><a href="#nonfunc">Performance &amp; Security Testing</a></li>
-          <li><a href="#automation">Automation Testing Basics</a></li>
-          <li><a href="#portfolio">Portfolio Project (Get Hired)</a></li>
-        </ol>
-      </aside>
+      <!-- DOCS LAYOUT: sticky left rail + scrollable body -->
+      <div class="docs-layout">
+        <aside class="toc-rail" aria-label="Docs navigation">
+          <h4 class="toc-rail-title">👨‍💼 Contents</h4>
+          <ol class="toc-rail-list">
+            <li><a href="#intro" data-toc="doc_intro"><span class="toc-tick" hidden>✓</span><span class="toc-label">Introduction</span></a></li>
+            <li><a href="#sdlc" data-toc="doc_sdlc"><span class="toc-tick" hidden>✓</span><span class="toc-label">SDLC &amp; Models</span></a></li>
+            <li><a href="#stlc" data-toc="doc_stlc"><span class="toc-tick" hidden>✓</span><span class="toc-label">STLC</span></a></li>
+            <li><a href="#levels" data-toc="doc_levels"><span class="toc-tick" hidden>✓</span><span class="toc-label">Test Levels</span></a></li>
+            <li><a href="#types" data-toc="doc_types"><span class="toc-tick" hidden>✓</span><span class="toc-label">Test Types</span></a></li>
+            <li><a href="#design" data-toc="doc_design"><span class="toc-tick" hidden>✓</span><span class="toc-label">Test Design</span></a></li>
+            <li><a href="#testcase" data-toc="doc_testcase"><span class="toc-tick" hidden>✓</span><span class="toc-label">Test Cases</span></a></li>
+            <li><a href="#bug" data-toc="doc_bug"><span class="toc-tick" hidden>✓</span><span class="toc-label">Bug Lifecycle</span></a></li>
+            <li><a href="#plan" data-toc="doc_plan"><span class="toc-tick" hidden>✓</span><span class="toc-label">Test Plan</span></a></li>
+            <li><a href="#agile" data-toc="doc_agile"><span class="toc-tick" hidden>✓</span><span class="toc-label">Agile &amp; Scrum</span></a></li>
+            <li><a href="#tools" data-toc="doc_tools"><span class="toc-tick" hidden>✓</span><span class="toc-label">Tools</span></a></li>
+            <li><a href="#api" data-toc="doc_api"><span class="toc-tick" hidden>✓</span><span class="toc-label">API Testing</span></a></li>
+            <li><a href="#mobile" data-toc="doc_mobile"><span class="toc-tick" hidden>✓</span><span class="toc-label">Mobile Testing</span></a></li>
+            <li><a href="#nonfunc" data-toc="doc_nonfunc"><span class="toc-tick" hidden>✓</span><span class="toc-label">Performance &amp; Security</span></a></li>
+            <li><a href="#automation" data-toc="doc_automation"><span class="toc-tick" hidden>✓</span><span class="toc-label">Automation Basics</span></a></li>
+            <li><a href="#portfolio" data-toc="doc_portfolio"><span class="toc-tick" hidden>✓</span><span class="toc-label">Portfolio</span></a></li>
+          </ol>
+        </aside>
 
-      <!-- ================= 1. INTRODUCTION ================= -->
-      <section class="doc-section" id="intro">
+        <div class="docs-body">
+          <!-- ================= 1. INTRODUCTION ================= -->
+          <section class="doc-section" id="intro">
         <h2><span class="num">1</span> Introduction to Software Testing</h2>
 
         <h3>What is Software Testing?</h3>
@@ -206,13 +200,13 @@
         <h3>V-Model (Important for Interviews)</h3>
         <p>Each development phase on the left has a <strong>matching test phase</strong> on the right:</p>
         <div class="flow vertical">
-          <div class="node">Requirements Analysis ↔ Acceptance Test Design (UAT)</div>
+          <div class="node">Requirements Analysis ← Acceptance Test Design (UAT)</div>
           <div class="arrow">▼</div>
-          <div class="node">System Design ↔ System Test Design</div>
+          <div class="node">System Design ← System Test Design</div>
           <div class="arrow">▼</div>
-          <div class="node">Architecture ↔ Integration Test Design</div>
+          <div class="node">Architecture ← Integration Test Design</div>
           <div class="arrow">▼</div>
-          <div class="node">Module Design ↔ Unit Test Design</div>
+          <div class="node">Module Design ← Unit Test Design</div>
           <div class="arrow">▼</div>
           <div class="node alt">Coding ✍️</div>
         </div>
@@ -395,7 +389,7 @@
         <h3>4. State Transition Testing</h3>
         <p>Use when the system changes <strong>states</strong> based on events. Track state changes and valid/invalid transitions.</p>
         <div class="flow">
-          <div class="node">Pending 🕐</div><div class="arrow">pay</div>
+          <div class="node">Pending 📂</div><div class="arrow">pay</div>
           <div class="node pass">Paid ✅</div><div class="arrow">deliver</div>
           <div class="node alt">Delivered 📦</div>
         </div>
@@ -612,7 +606,7 @@
             <tbody>
               <tr><td>REQ-001</td><td>User can log in with valid credentials</td><td>TC_LOGIN_001</td><td>✅</td><td>Pass</td><td>—</td></tr>
               <tr><td>REQ-002</td><td>User cannot log in with wrong password</td><td>TC_LOGIN_002</td><td>✅</td><td>Fail</td><td>BUG-101</td></tr>
-              <tr><td>REQ-003</td><td>User can reset password via email</td><td>TC_LOGIN_003</td><td>⏳ Pending</td><td>—</td><td>—</td></tr>
+              <tr><td>REQ-003</td><td>User can reset password via email</td><td>TC_LOGIN_003</td><td>👋 Pending</td><td>—</td><td>—</td></tr>
             </tbody>
           </table>
         </div>
@@ -746,7 +740,7 @@
 
         <div class="flow">
           <div class="node">Frontend App</div><div class="arrow">HTTP Request →</div>
-          <div class="node dark">API / Server</div><div class="arrow">← Response</div>
+          <div class="node dark">API / Server</div><div class="arrow">⭐ Response</div>
           <div class="node">Database</div>
         </div>
 
@@ -953,14 +947,14 @@
 
         <h3>Sample Project Structure</h3>
         <pre><code>QA-Portfolio-Ecommerce/
-├── 1_Test_Plan.docx
-├── 2_Test_Cases.xlsx        <span class="c">(50+ cases)</span>
-├── 3_RTM.xlsx
-├── 4_Bug_Reports/
-│   ├── BUG-001_login_amount_mismatch.png
+└── 1_Test_Plan.docx
+└── 2_Test_Cases.xlsx        <span class="c">(50+ cases)</span>
+└── 3_RTM.xlsx
+└── 4_Bug_Reports/
+│   └── BUG-001_login_amount_mismatch.png
 │   └── ...
-├── 5_Test_Summary_Report.docx
-├── 6_SQL_Queries.sql
+└── 5_Test_Summary_Report.docx
+└── 6_SQL_Queries.sql
 └── 7_Postman_Collection.json</code></pre>
 
         <div class="callout warn"><b>⚠️ Do NOT test real money features</b>Use a demo/sandbox environment or a test app. Never enter real card details on practice projects.</div>
@@ -979,12 +973,20 @@
       </section>
 
       <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:8px;">
-        <a class="btn ghost" href="index.html">← Back to Dashboard</a>
+        <a class="btn ghost" href="index.html">⭐ Back to Dashboard</a>
         <a class="btn secondary" href="cheatsheet.html">Next: Cheatsheet →</a>
       </div>
+        </div><!-- /.docs-body -->
+      </div><!-- /.docs-layout -->
     </div>
   </div>
-</div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    Built with <span class="heart">♥</span> by <span class="author">Shravan</span>
+    <div class="rights">All rights reserved.</div>
+  </footer>
+  </div>
 
 <script src="js/script.js"></script>
 </body>

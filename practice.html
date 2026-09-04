@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QA Tester Academy — Practice</title>
+  <title>QA Testing Academy — Practice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="css/styles.css">
   <script>
     // Apply saved theme before paint to avoid flash
@@ -25,15 +28,15 @@
   <header class="topnav">
     <div class="topnav-main">
       <a class="topnav-logo" href="index.html">
-        <span class="topnav-logo-mark">🛡️</span>
-        <span class="topnav-logo-text">QA Tester Academy</span>
+        <span class="topnav-logo-text">QA Testing Academy</span>
       </a>
       <button class="topnav-menu-btn" aria-label="Open menu">☰</button>
       <nav class="topnav-sections" aria-label="Primary">
-        <a href="index.html" data-section="start" class="topnav-link">Start</a>
-        <a href="docs.html" data-section="learn" class="topnav-link">Learn</a>
-        <a href="cheatsheet.html" data-section="reference" class="topnav-link">Quick Reference</a>
-        <a href="practice.html" data-section="practice" class="topnav-link active">Practice</a>
+        <a href="index.html" class="topnav-link">Dashboard</a>
+        <a href="docs.html" class="topnav-link">Docs</a>
+        <a href="cheatsheet.html" class="topnav-link">Cheatsheet</a>
+        <a href="practice.html" class="topnav-link active">Practice</a>
+        <a href="tutorial.html" class="topnav-link">Tutorial</a>
       </nav>
       <div class="topnav-utils">
         <button class="theme-toggle" id="themeToggle" title="Toggle dark / light mode" aria-label="Toggle theme">
@@ -41,12 +44,6 @@
         </button>
       </div>
     </div>
-    <nav class="topnav-sub" aria-label="Section">
-      <a href="practice.html" data-hash="" class="topnav-sub-link active">📝 Quizzes</a>
-      <a href="practice.html#flashcards" class="topnav-sub-link">🃏 Flashcards</a>
-      <a href="practice.html#interview" class="topnav-sub-link">💬 Interview Q&amp;A</a>
-      <a href="practice.html#playground" class="topnav-sub-link">🎯 Bug Hunting</a>
-    </nav>
   </header>
 
   <!-- ============ MAIN ============ -->
@@ -55,16 +52,21 @@
       <h2 class="sec-title">🎯 Practice &amp; Interview Prep</h2>
       <p class="sec-sub">Test yourself with quizzes, drill with flashcards, master interview answers, and hunt real bugs in the playground.</p>
 
-      <!-- TABS -->
-      <div class="tabs" data-tabs="practice-tabs">
-        <button class="tab active" data-panel="quiz">📝 Quizzes</button>
-        <button class="tab" data-panel="flashcards">🃏 Flashcards</button>
-        <button class="tab" data-panel="interview">💬 Interview Q&amp;A</button>
-        <button class="tab" data-panel="playground">🎯 Bug Hunting</button>
-      </div>
+      <!-- ============ DOCS-LAYOUT: sticky left rail + scrollable body ============ -->
+      <div class="docs-layout">
+        <aside class="toc-rail" aria-label="Practice sections">
+          <h4 class="toc-rail-title">🎯 Practice</h4>
+          <ol class="toc-rail-list">
+            <li><a href="#quiz" data-toc="quiz"><span class="toc-label">📝 Quizzes</span></a></li>
+            <li><a href="#flashcards" data-toc="flashcards"><span class="toc-label">🃏 Flashcards</span></a></li>
+            <li><a href="#interview" data-toc="interview"><span class="toc-label">💬 Interview Q&amp;A</span></a></li>
+            <li><a href="#playground" data-toc="playground"><span class="toc-label">🎯 Bug Hunting</span></a></li>
+          </ol>
+        </aside>
 
-      <!-- ============ QUIZZES ============ -->
-      <div class="tab-panel active" id="quiz">
+        <div class="docs-body">
+          <!-- ============ QUIZZES ============ -->
+          <section class="doc-section" id="quiz">
         <p>Select an option then click <b>"Check My Answers"</b>. Score 70%+ to pass each quiz. Your best scores are saved automatically.</p>
 
         <!-- Quiz 1: fundamentals -->
@@ -367,10 +369,10 @@
             <button class="btn ghost reset-quiz" style="margin-left:8px;">↻ Retake</button>
           </div>
         </div>
-      </div>
+      </section>
 
       <!-- ============ FLASHCARDS ============ -->
-      <div class="tab-panel" id="flashcards">
+      <section class="doc-section" id="flashcards">
         <p>Click a card to flip it. Drill these until you can answer without flipping. 🃏</p>
         <div class="flashcards">
           <div class="flashcard"><div class="inner"><div class="face front">What is the difference between smoke &amp; sanity testing?<span class="hint">Click</span></div><div class="face back">SMOKE = is the whole build testable? (wide, critical features). SANITY = does this one fix work? (narrow).</div></div></div>
@@ -404,10 +406,10 @@
           <div class="flashcard"><div class="inner"><div class="face front">What is a user story format?<span class="hint">Click</span></div><div class="face back">"As a [role], I want [feature] so that [benefit]".</div></div></div>
           <div class="flashcard"><div class="inner"><div class="face front">What is a test suite?<span class="hint">Click</span></div><div class="face back">A collection of test cases for a module, feature, or release.</div></div></div>
         </div>
-      </div>
+      </section>
 
       <!-- ============ INTERVIEW ============ -->
-      <div class="tab-panel" id="interview">
+      <section class="doc-section" id="interview">
         <p>Frequently asked interview questions with model answers. Click a question to reveal the answer, or use the accordion below.</p>
 
         <div class="accordion">
@@ -428,7 +430,7 @@
         </div>
         <div class="accordion">
           <div class="acc-head">5. Difference between severity and priority? <span class="toggle">▼</span></div>
-          <div class="acc-body">Severity measures how serious/impactful a bug is on the system (Critical, Major, Minor, Trivial) and is usually set by the tester. Priority measures how urgently it must be fixed (P1–P4) and is set by the PM/Product Owner. Example: a misspelled logo is low severity but can be high priority.</div>
+          <div class="acc-body">Severity measures how serious/impactful a bug is on the system (Critical, Major, Minor, Trivial) and is usually set by the tester. Priority measures how urgently it must be fixed (P1—P4) and is set by the PM/Product Owner. Example: a misspelled logo is low severity but can be high priority.</div>
         </div>
         <div class="accordion">
           <div class="acc-head">6. What is the bug/defect lifecycle? <span class="toggle">▼</span></div>
@@ -444,11 +446,11 @@
         </div>
         <div class="accordion">
           <div class="acc-head">9. What is boundary value analysis? Give an example. <span class="toggle">▼</span></div>
-          <div class="acc-body">BVA tests values at, just below, and just above the boundaries of a field. For an age field accepting 18–60, I'd test 17, 18, 60, and 61 because bugs cluster at boundaries.</div>
+          <div class="acc-body">BVA tests values at, just below, and just above the boundaries of a field. For an age field accepting 18—60, I'd test 17, 18, 60, and 61 because bugs cluster at boundaries.</div>
         </div>
         <div class="accordion">
           <div class="acc-head">10. What is equivalence partitioning? <span class="toggle">▼</span></div>
-          <div class="acc-body">EP divides inputs into partitions that the system treats the same way; test one value from each partition. For 0–100 marks: valid partition = 50, invalid = -5 and 150.</div>
+          <div class="acc-body">EP divides inputs into partitions that the system treats the same way; test one value from each partition. For 0—100 marks: valid partition = 50, invalid = -5 and 150.</div>
         </div>
         <div class="accordion">
           <div class="acc-head">11. What is a test plan? What does it contain? <span class="toggle">▼</span></div>
@@ -532,7 +534,7 @@
         </div>
         <div class="accordion">
           <div class="acc-head">31. What do you know about mobile testing challenges? <span class="toggle">▼</span></div>
-          <div class="acc-body">Device fragmentation (many devices/OS/screens), network variability (2G–5G, WiFi), interruptions (calls, SMS, notifications), battery/memory constraints, and OS version differences. Test install/uninstall, permissions, rotation, and performance too.</div>
+          <div class="acc-body">Device fragmentation (many devices/OS/screens), network variability (2G—5G, WiFi), interruptions (calls, SMS, notifications), battery/memory constraints, and OS version differences. Test install/uninstall, permissions, rotation, and performance too.</div>
         </div>
         <div class="accordion">
           <div class="acc-head">32. What is the difference between emulator and real device? <span class="toggle">▼</span></div>
@@ -612,15 +614,15 @@
         </div>
 
         <div class="callout tip" style="margin-top:18px;"><b>💡 How To Prep</b>Don't memorize word-for-word. Understand each concept, then practice saying answers out loud. Record yourself and refine. Scenario questions (16, 17, 18) are the favorites — practice those cold.</div>
-      </div>
+      </section>
 
       <!-- ============ PLAYGROUND ============ -->
-      <div class="tab-panel" id="playground">
+      <section class="doc-section" id="playground">
         <div class="callout info"><b>🎯 Bug-Hunting Playground</b>Below is a deliberately <b>buggy "Payment Registration" form</b>. It contains <b>8 intentional bugs</b> (validation, logic, boundary, data issues). Your job: test it like a real QA, find the bugs, tick them in the checklist, and compare with the answers. This trains exactly what interviewers ask: "How would you test this page?"</div>
 
         <div class="playground">
           <div class="pg-form">
-            <div style="text-align:center; margin-bottom:6px;"><b>💳 Customer Payment Registration</b></div>
+            <div style="text-align:center; margin-bottom:6px;"><b>👤 Customer Payment Registration</b></div>
             <!-- Intentional bugs are described in comments; the form below WILL behave buggy -->
             <form id="bugForm">
               <label>Full Name <span style="color:var(--fail);">*</span></label>
@@ -664,14 +666,14 @@
                   </select>
                 </div>
               </div>
-              <div class="pg-hint">Buggy: lets you select an already-expired card (2020–2024)</div>
+              <div class="pg-hint">Buggy: lets you select an already-expired card (2020—2024)</div>
 
               <label>CVV <span style="color:var(--fail);">*</span></label>
               <input type="text" id="pgCvv" name="pgCvv" placeholder="3 digits">
               <div class="pg-hint">Buggy: accepts 2-digit CVV and letters</div>
 
               <div style="margin-top:16px;">
-                <button type="submit" class="btn" style="width:100%;">🔒 Submit Payment</button>
+                <button type="submit" class="btn" style="width:100%;">👨‍💻 Submit Payment</button>
               </div>
               <div class="pg-result" style="display:none; margin-top:14px; padding:12px; background:var(--bg-soft); border-radius:8px;"></div>
             </form>
@@ -679,7 +681,7 @@
         </div>
 
         <div class="card">
-          <h3>🕵️ Bug Checklist — Tick Each Bug You Found</h3>
+          <h3>📋 Bug Checklist — Tick Each Bug You Found</h3>
           <div class="bug-list" style="display:block; margin-top:10px;">
             <label class="bug-item" style="display:flex; gap:10px; align-items:center; cursor:pointer;">
               <input type="checkbox" name="bugFound" value="1">
@@ -691,7 +693,7 @@
             </label>
             <label class="bug-item" style="display:flex; gap:10px; align-items:center; cursor:pointer;">
               <input type="checkbox" name="bugFound" value="1">
-              <div><div class="bug-title">Bug 3: Age boundary validation bypassed</div><div class="bug-meta">Accepts 5 and 99 — must enforce 18–60 (BVA: 17, 18, 60, 61)</div></div>
+              <div><div class="bug-title">Bug 3: Age boundary validation bypassed</div><div class="bug-meta">Accepts 5 and 99 — must enforce 18—60 (BVA: 17, 18, 60, 61)</div></div>
             </label>
             <label class="bug-item" style="display:flex; gap:10px; align-items:center; cursor:pointer;">
               <input type="checkbox" name="bugFound" value="1">
@@ -728,7 +730,7 @@
               <tbody>
                 <tr><td>1</td><td>Name accepts numbers &amp; 1-character input</td><td>Major</td><td>P2</td></tr>
                 <tr><td>2</td><td>Email accepts invalid format like "bad-email"</td><td>Major</td><td>P2</td></tr>
-                <tr><td>3</td><td>Age accepts out-of-range values (bypasses 18–60)</td><td>Critical</td><td>P1</td></tr>
+                <tr><td>3</td><td>Age accepts out-of-range values (bypasses 18—60)</td><td>Critical</td><td>P1</td></tr>
                 <tr><td>4</td><td>Phone accepts only 5 digits</td><td>Major</td><td>P2</td></tr>
                 <tr><td>5</td><td>Card number not masked — security/PII exposure</td><td><b>Critical (security)</b></td><td>P1</td></tr>
                 <tr><td>6</td><td>Amount accepts ₹0 / negative</td><td>Critical</td><td>P1</td></tr>
@@ -739,14 +741,22 @@
           </div>
           <div class="callout tip"><b>💡 Real Interview Skill</b>These bugs came from applying BVA (age 17/18/60/61), negative testing (invalid formats), data validation (CVV length, amount), and security thinking (masking, expired card). This is exactly how testers think!</div>
         </div>
-      </div>
+      </section>
+        </div><!-- /.docs-body -->
+      </div><!-- /.docs-layout -->
 
       <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:8px;">
-        <a class="btn ghost" href="cheatsheet.html">← Back to Cheatsheet</a>
+        <a class="btn ghost" href="cheatsheet.html">→ Back to Cheatsheet</a>
         <a class="btn secondary" href="docs.html">Review Docs →</a>
       </div>
     </div>
   </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    Built with <span class="heart">♥</span> by <span class="author">Shravan</span>
+    <div class="rights">All rights reserved.</div>
+  </footer>
 </div>
 
 <script>
@@ -761,8 +771,8 @@ document.addEventListener("click", function handlerForPlayground(e) {
     res.style.display = "block";
     res.innerHTML = "You found <strong>" + checked + " of 8</strong> intentional bugs. " +
       (checked === 8 ? "🏆 Perfect — you have exceptional testing eyes!" :
-       checked >= 5 ? "👍 Great work! Review the answers to catch the rest." :
-       "📖 Good effort — study the docs on BVA & negative testing, then try again.");
+       checked >= 5 ? "👀 Great work! Review the answers to catch the rest." :
+       "👌 Good effort — study the docs on BVA & negative testing, then try again.");
   }
   if (answers) answers.classList.remove("hidden");
 });
