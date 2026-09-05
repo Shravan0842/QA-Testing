@@ -911,8 +911,20 @@ pre .s { color: #c2a884; }
   line-height: 1.6;
   margin-bottom: 22px;
 }
-.hero .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
-.hero .hero-chips { margin-top: 22px; }
+/* Hero CTA buttons (used by .hero on index AND by .page-opener on tutorial/docs/practice/cheatsheet) */
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+  margin-bottom: 28px; /* breathing room before the chips row */
+}
+.hero-chips {
+  margin-top: 0; /* .hero-cta already provides the gap above */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 .hero .chip { background: var(--terracotta-tint); color: var(--color-terracotta-h); border: 1px solid var(--terracotta-soft); }
 
 /* ---------- Home topic links ---------- */
