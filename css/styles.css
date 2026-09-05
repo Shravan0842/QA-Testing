@@ -244,15 +244,14 @@ body::before {
 }
 .topnav-utils .theme-toggle { margin: 0; }
 
-/* Theme toggle — pill 40×40 with terracotta ring on hover */
+/* Theme toggle — pill (40 tall, auto-width) with terracotta ring on hover */
 .theme-toggle {
   background: transparent;
   border: 1px solid var(--color-warm-taupe);
   border-radius: var(--radius-button);
-  width: 40px;
   height: 40px;
-  padding: 0;
-  font-size: 17px;
+  padding: 0 16px;
+  gap: 8px;
   cursor: pointer;
   color: var(--color-ink);
   display: inline-flex;
@@ -264,7 +263,8 @@ body::before {
               color var(--t-fast) var(--ease),
               transform var(--t-fast) var(--ease);
 }
-.theme-toggle .ico { line-height: 1; }
+.theme-toggle .ico { font-size: 17px; line-height: 1; }
+.theme-toggle .label { font-size: 14px; letter-spacing: 0.2px; }
 .theme-toggle:hover {
   background: var(--terracotta-tint);
   border-color: var(--color-terracotta);
@@ -322,7 +322,7 @@ body::before {
 /* ---------- Page opener (new editorial pattern) ----------
    The eyebrow + serif H1 + lead paragraph at the top of each page.
    Used on every page right inside .content. */
-.page-opener { margin: 8px 0 36px; max-width: 760px; }
+.page-opener { margin: 8px 0 64px; max-width: 760px; }
 .page-opener .eyebrow {
   display: inline-block;
   font-family: var(--font);
