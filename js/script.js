@@ -91,6 +91,11 @@
   document.addEventListener("click", (e) => {
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
+    // Skip links inside the infographic focus rail — that page has its
+    // own click controller (which renders a single infographic instead of
+    // scrolling to it). Letting both handlers run would scroll to a
+    // hidden element AND show the focus view, which is janky.
+    if (a.closest(".infographics-layout")) return;
     const href = a.getAttribute("href");
     if (!href || href.length < 2 || href === "#") return;
     const id = href.slice(1);
@@ -192,8 +197,17 @@
     const links = Array.from(rail.querySelectorAll(".toc-rail-list a[data-toc]"));
     if (!links.length) return;
 
+    // Skip rails whose data-toc keys are not scroll-spy namespaces. The
+    // infographics rail uses keys prefixed with "i_" (e.g. "i_sdlc_models");
+    // it's a focus-mode controller, not a TOC spy. The spy must not claim
+    // those items or override the focus controller's "active" class.
+    // Docs/tutorial TOCs use "doc_*" and "t_*" — those are valid spy keys.
+    const SPY_KEY_RE = /^(doc_|t_)/;
+    const scopedLinks = links.filter((a) => SPY_KEY_RE.test(a.dataset.toc || ""));
+    if (!scopedLinks.length) return;
+
     // Map data-toc key (e.g. "t_intro") to its target section element (#t-intro).
-    const sections = links
+    const sections = scopedLinks
       .map((a) => {
         const href = a.getAttribute("href") || "";
         if (!href.startsWith("#")) return null;
@@ -203,13 +217,13 @@
       .filter(Boolean);
     if (!sections.length) return;
 
-    const linkByKey = new Map(links.map((a) => [a.dataset.toc, a]));
+    const linkByKey = new Map(scopedLinks.map((a) => [a.dataset.toc, a]));
     let currentKey = null;
 
     function setActive(key) {
       if (key === currentKey) return;
       currentKey = key;
-      links.forEach((a) => a.classList.toggle("active", a.dataset.toc === key));
+      scopedLinks.forEach((a) => a.classList.toggle("active", a.dataset.toc === key));
       // Keep the active link visible inside the rail scroll container.
       // Use rail.scrollTop directly (NOT scrollIntoView) so the document
       // scroll position is not affected.

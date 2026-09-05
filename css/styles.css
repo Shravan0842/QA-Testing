@@ -358,6 +358,7 @@ body::before {
 h2.sec-title {
   font-family: var(--font-serif);
   font-size: clamp(26px, 3vw, 32px);
+  margin-top: 48px;   /* clear section break above each dashboard section title */
   margin-bottom: 8px; color: var(--color-ink);
   letter-spacing: -0.6px;
   font-weight: 600;
@@ -1321,3 +1322,197 @@ input[type="checkbox"] { accent-color: var(--color-terracotta); }
 
 /* Print button */
 .print-btn { float: right; }
+
+/* ---------- Infographics page ---------- */
+.filter-row {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 12px 0 8px;
+}
+.chip-btn {
+  font-family: inherit; font-size: 13px; font-weight: 600;
+  padding: 7px 14px; border-radius: 9999px;
+  background: var(--color-aged-paper);
+  border: 1px solid var(--color-warm-taupe);
+  color: var(--color-graphite);
+  cursor: pointer;
+  transition: background var(--t-base) var(--ease),
+              color var(--t-base) var(--ease),
+              border-color var(--t-base) var(--ease);
+}
+.chip-btn:hover { border-color: var(--color-terracotta); color: var(--color-terracotta); }
+.chip-btn.is-active {
+  background: var(--color-terracotta);
+  color: var(--color-parchment);
+  border-color: var(--color-terracotta);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+  margin-bottom: 32px;
+}
+.info-card {
+  background: var(--color-aged-paper);
+  border: 1px solid var(--color-warm-taupe);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  scroll-margin-top: 80px;
+  animation: rise var(--t-slow) var(--ease-out) both;
+  transition: transform var(--t-base) var(--ease),
+              box-shadow var(--t-base) var(--ease),
+              border-color var(--t-base) var(--ease);
+}
+.info-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-terracotta);
+}
+.info-svg {
+  background: var(--color-parchment);
+  border: 1px solid var(--color-warm-taupe);
+  border-radius: 14px;
+  padding: 10px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.info-svg svg { display: block; width: 100%; height: auto; max-height: 220px; }
+/* SVG text inherits theme via the var()s above; fall back to ink for non-themable */
+.info-svg .svg-h  { font-size: 14px; font-weight: 700; fill: var(--color-ink); font-family: var(--font-serif); }
+.info-svg .svg-sh { font-size: 11px; font-weight: 700; fill: var(--color-ink); font-family: var(--font-sans); }
+.info-svg .svg-t  { font-size: 10px; fill: var(--color-graphite); font-family: var(--font-sans); }
+.info-svg .svg-lbl{ font-size: 10px; font-weight: 600; fill: var(--color-charcoal); font-family: var(--font-sans); }
+
+.info-card h4 {
+  font-family: var(--font-serif);
+  font-size: 17px; font-weight: 600; letter-spacing: -0.3px;
+  color: var(--color-ink);
+  margin: 0 0 6px;
+}
+.info-card p {
+  font-size: 13.5px; line-height: 1.55;
+  color: var(--color-graphite);
+  margin: 0 0 12px;
+}
+.info-cat {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.4px;
+  background: var(--terracotta-tint);
+  color: var(--color-terracotta);
+  border: 1px solid var(--terracotta-soft);
+  border-radius: 9999px;
+  padding: 3px 10px;
+}
+
+/* ---------- Infographics: sidebar + focus view ---------- */
+.infographics-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.toc-rail .toc-num {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-terracotta);
+  min-width: 26px;
+  opacity: 0.85;
+  letter-spacing: 0.2px;
+}
+
+.toc-rail-hint {
+  display: block;
+  font-size: 11px;
+  color: var(--color-graphite);
+  line-height: 1.4;
+  padding: 10px 8px 0;
+  border-top: 1px solid var(--color-warm-taupe);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+#focusView { display: none; }
+#focusView.is-active { display: block; }
+#gridView.is-hidden  { display: none; }
+
+.info-focus-card {
+  background: var(--color-aged-paper);
+  border: 1px solid var(--color-warm-taupe);
+  border-radius: var(--radius-card);
+  padding: 32px;
+  box-shadow: var(--shadow-lg);
+  max-width: 100%;
+  animation: rise var(--t-slow) var(--ease-out) both;
+}
+.info-focus-card .info-svg {
+  background: var(--color-parchment);
+  border: 1px solid var(--color-warm-taupe);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.info-focus-card .info-svg svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 380px;
+  max-height: 640px;
+}
+.info-focus-card h4,
+.info-focus-card h2 {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--color-ink);
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+.info-focus-card p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-graphite);
+  margin: 0 0 16px;
+  max-width: 720px;
+}
+.info-focus-card .info-cat {
+  font-size: 12px;
+  padding: 4px 12px;
+}
+
+.info-focus-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.info-focus-nav .btn { min-width: 120px; }
+.info-focus-nav .btn.secondary { min-width: 0; }
+
+@media (max-width: 1100px) {
+  .infographics-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  .info-grid { grid-template-columns: 1fr; }
+  .info-focus-card { padding: 20px; }
+  .info-focus-card .info-svg { padding: 14px; }
+  .info-focus-card .info-svg svg { min-height: 280px; max-height: 520px; }
+  .info-focus-card h4,
+  .info-focus-card h2 { font-size: 22px; }
+  .info-focus-card p { font-size: 14.5px; }
+  .info-focus-nav { flex-direction: column; }
+  .info-focus-nav .btn { width: 100%; }
+}

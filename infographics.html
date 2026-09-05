@@ -1,0 +1,992 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QA Testing Academy — Infographics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script>
+      // Apply saved theme before paint to avoid flash
+      (function () {
+        try {
+          var t = localStorage.getItem("qat_theme_v1");
+          if (!t) {
+            t =
+              window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          }
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="layout">
+      <!-- ============ TOP NAV ============ -->
+      <header class="topnav">
+        <div class="topnav-main">
+          <a class="topnav-logo" href="index.html">
+            <span class="topnav-logo-mark">QA</span>
+            <span class="topnav-logo-text">Testing Academy</span>
+          </a>
+          <button class="topnav-menu-btn" aria-label="Open menu">☰</button>
+          <nav class="topnav-sections" aria-label="Primary">
+            <a href="index.html" class="topnav-link">Dashboard</a>
+            <a href="docs.html" class="topnav-link">Docs</a>
+            <a href="cheatsheet.html" class="topnav-link">Cheatsheet</a>
+            <a href="practice.html" class="topnav-link">Practice</a>
+            <a href="tutorial.html" class="topnav-link">Tutorial</a>
+            <a href="infographics.html" class="topnav-link active">Infographics</a>
+          </nav>
+          <div class="topnav-utils">
+            <button
+              class="theme-toggle"
+              id="themeToggle"
+              title="Toggle dark / light mode"
+              aria-label="Toggle theme"
+            >
+              <span class="ico">🌙</span><span class="label">Dark</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ MAIN ============ -->
+      <div class="main">
+        <div class="content">
+          <!-- HERO -->
+          <div class="page-opener">
+            <span class="eyebrow">Visual Library</span>
+            <h1>QA concepts, <em>in pictures.</em></h1>
+            <p class="lead">
+              Twenty-two hand-drawn infographics that turn the boring parts of
+              software testing into a single glance. Each one is a self-contained
+              diagram — no animations, no clutter, no marketing fluff. Save
+              them, print them, share them with your team.
+            </p>
+            <div class="hero-cta">
+              <a class="btn" href="#all">Browse all 22 →</a>
+              <a class="btn secondary" href="docs.html">Read the docs</a>
+            </div>
+            <div class="hero-chips">
+              <span class="chip">22 infographics</span>
+              <span class="chip">Inline SVG</span>
+              <span class="chip">Works in dark mode</span>
+              <span class="chip">Print-friendly</span>
+            </div>
+          </div>
+
+          <!-- ============ INFOGRAPHICS LAYOUT: sidebar + grid/focus ============ -->
+          <div class="infographics-layout">
+
+            <!-- ============ STICKY SIDEBAR ============ -->
+            <aside class="toc-rail" aria-label="Infographics index">
+              <h4 class="toc-rail-title">Infographics</h4>
+              <ol class="toc-rail-list">
+                <li>
+                  <a href="#" data-toc="all" class="active"
+                    ><span class="toc-num">▦</span
+                    ><span class="toc-label">All infographics</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-qa-vs-qc" data-toc="i_qa_vs_qc"
+                    ><span class="toc-num">01</span
+                    ><span class="toc-label">QA vs QC</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-7-principles" data-toc="i_7_principles"
+                    ><span class="toc-num">02</span
+                    ><span class="toc-label">7 Testing Principles</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-sdlc-models" data-toc="i_sdlc_models"
+                    ><span class="toc-num">03</span
+                    ><span class="toc-label">SDLC Models</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-stlc" data-toc="i_stlc"
+                    ><span class="toc-num">04</span
+                    ><span class="toc-label">STLC — 6 Phases</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-test-pyramid" data-toc="i_test_pyramid"
+                    ><span class="toc-num">05</span
+                    ><span class="toc-label">The Test Pyramid</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-test-levels" data-toc="i_test_levels"
+                    ><span class="toc-num">06</span
+                    ><span class="toc-label">Four Test Levels</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-test-types" data-toc="i_test_types"
+                    ><span class="toc-num">07</span
+                    ><span class="toc-label">Functional vs Non-Functional</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-ep" data-toc="i_ep"
+                    ><span class="toc-num">08</span
+                    ><span class="toc-label">Equivalence Partitioning</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-bva" data-toc="i_bva"
+                    ><span class="toc-num">09</span
+                    ><span class="toc-label">Boundary Value Analysis</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-decision-table" data-toc="i_decision_table"
+                    ><span class="toc-num">10</span
+                    ><span class="toc-label">Decision Table Testing</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-bug-life" data-toc="i_bug_life"
+                    ><span class="toc-num">11</span
+                    ><span class="toc-label">Bug Lifecycle</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-sev-pri" data-toc="i_sev_pri"
+                    ><span class="toc-num">12</span
+                    ><span class="toc-label">Severity × Priority</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-vmodel" data-toc="i_vmodel"
+                    ><span class="toc-num">13</span
+                    ><span class="toc-label">V-Model</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-scrum" data-toc="i_scrum"
+                    ><span class="toc-num">14</span
+                    ><span class="toc-label">Scrum Sprint Flow</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-dod" data-toc="i_dod"
+                    ><span class="toc-num">15</span
+                    ><span class="toc-label">Definition of Done</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-test-case" data-toc="i_test_case"
+                    ><span class="toc-num">16</span
+                    ><span class="toc-label">Anatomy of a Test Case</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-test-plan" data-toc="i_test_plan"
+                    ><span class="toc-num">17</span
+                    ><span class="toc-label">Test Plan Structure</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-api" data-toc="i_api"
+                    ><span class="toc-num">18</span
+                    ><span class="toc-label">API Request &amp; Response</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-http" data-toc="i_http"
+                    ><span class="toc-num">19</span
+                    ><span class="toc-label">HTTP Status Codes</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-mobile-web" data-toc="i_mobile_web"
+                    ><span class="toc-num">20</span
+                    ><span class="toc-label">Web vs Mobile Testing</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-perf" data-toc="i_perf"
+                    ><span class="toc-num">21</span
+                    ><span class="toc-label">Performance Test Types</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#info-auto" data-toc="i_auto"
+                    ><span class="toc-num">22</span
+                    ><span class="toc-label">Automation Pyramid</span></a
+                  >
+                </li>
+              </ol>
+              <small class="toc-rail-hint"
+                >Click an item to focus a single diagram. Click ▦ All to see the
+                full grid.</small
+              >
+            </aside>
+
+            <!-- ============ BODY: grid view + focus view ============ -->
+            <div class="docs-body">
+
+              <!-- ===== GRID VIEW ===== -->
+              <div id="gridView">
+                <h2 class="sec-title" style="margin-top: 0;">
+                  All <em
+                    style="
+                      font-family: var(--font-serif);
+                      font-style: italic;
+                      color: var(--color-terracotta);
+                    "
+                    >infographics</em
+                  >
+                </h2>
+                <p class="sec-sub">
+                  Twenty-two inline-SVG diagrams. Click a sidebar item to focus
+                  on a single one — sharp on any screen, theme-aware, and
+                  printable.
+                </p>
+
+                <div class="info-grid" id="infoGrid">
+
+            <!-- ===== 1. QA vs QC ===== -->
+            <article class="info-card" data-cat="found" id="info-qa-vs-qc">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="QA vs QC">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="28" text-anchor="middle" class="svg-h">QA vs QC</text>
+                  <!-- QA side -->
+                  <rect x="20" y="50" width="150" height="130" rx="10" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/>
+                  <text x="95" y="78" text-anchor="middle" class="svg-sh">QA</text>
+                  <text x="95" y="100" text-anchor="middle" class="svg-t">Process focus</text>
+                  <text x="95" y="120" text-anchor="middle" class="svg-t">Prevention</text>
+                  <text x="95" y="140" text-anchor="middle" class="svg-t">Whole team</text>
+                  <text x="95" y="160" text-anchor="middle" class="svg-t">Upstream</text>
+                  <!-- QC side -->
+                  <rect x="190" y="50" width="150" height="130" rx="10" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/>
+                  <text x="265" y="78" text-anchor="middle" class="svg-sh">QC</text>
+                  <text x="265" y="100" text-anchor="middle" class="svg-t">Product focus</text>
+                  <text x="265" y="120" text-anchor="middle" class="svg-t">Detection</text>
+                  <text x="265" y="140" text-anchor="middle" class="svg-t">Testers</text>
+                  <text x="265" y="160" text-anchor="middle" class="svg-t">Downstream</text>
+                </svg>
+              </div>
+              <h4>1. QA vs QC</h4>
+              <p>Quality Assurance is about improving the process to prevent bugs. Quality Control is about finding bugs in the product.</p>
+              <span class="info-cat">Foundations</span>
+            </article>
+
+            <!-- ===== 2. 7 Testing Principles ===== -->
+            <article class="info-card" data-cat="found" id="info-7-principles">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 260" role="img" aria-label="Seven testing principles">
+                  <rect x="0" y="0" width="360" height="260" fill="var(--color-parchment)"/>
+                  <text x="180" y="24" text-anchor="middle" class="svg-h">7 Testing Principles</text>
+                  <g font-family="inherit" font-size="11" fill="var(--color-ink)">
+                    <circle cx="60"  cy="60"  r="18" fill="var(--color-terracotta)"/><text x="60"  y="64" text-anchor="middle" fill="var(--color-parchment)" font-weight="700">1</text><text x="60"  y="92" text-anchor="middle">Testing shows</text><text x="60"  y="104" text-anchor="middle">defects</text>
+                    <circle cx="140" cy="60"  r="18" fill="var(--color-terracotta)"/><text x="140" y="64" text-anchor="middle" fill="var(--color-parchment)" font-weight="700">2</text><text x="140" y="92" text-anchor="middle">Exhaustive</text><text x="140" y="104" text-anchor="middle">is impossible</text>
+                    <circle cx="220" cy="60"  r="18" fill="var(--color-terracotta)"/><text x="220" y="64" text-anchor="middle" fill="var(--color-parchment)" font-weight="700">3</text><text x="220" y="92" text-anchor="middle">Early testing</text><text x="220" y="104" text-anchor="middle">saves money</text>
+                    <circle cx="300" cy="60"  r="18" fill="var(--color-terracotta)"/><text x="300" y="64" text-anchor="middle" fill="var(--color-parchment)" font-weight="700">4</text><text x="300" y="92" text-anchor="middle">Defects</text><text x="300" y="104" text-anchor="middle">cluster</text>
+                    <circle cx="60"  cy="160" r="18" fill="var(--color-terracotta)"/><text x="60"  y="164" text-anchor="middle" fill="var(--color-parchment)" font-weight="700">5</text><text x="60"  y="192" text-anchor="middle">Pesticide</text><text x="60"  y="204" text-anchor="middle">paradox</text>
+                    <circle cx="140" cy="160" r="18" fill="var(--color-terracotta)"/><text x="140" y="164" text-anchor="middle" fill="var(--color-parchment)" font-weight="700">6</text><text x="140" y="192" text-anchor="middle">Context-</text><text x="140" y="204" text-anchor="middle">dependent</text>
+                    <circle cx="220" cy="160" r="18" fill="var(--color-terracotta)"/><text x="220" y="164" text-anchor="middle" fill="var(--color-parchment)" font-weight="700">7</text><text x="220" y="192" text-anchor="middle">Absence-of-</text><text x="220" y="204" text-anchor="middle">errors fallacy</text>
+                  </g>
+                </svg>
+              </div>
+              <h4>2. Seven Testing Principles</h4>
+              <p>ISTQB's seven timeless truths — the foundation of every testing decision you'll ever make.</p>
+              <span class="info-cat">Foundations</span>
+            </article>
+
+            <!-- ===== 3. SDLC Models ===== -->
+            <article class="info-card" data-cat="life" id="info-sdlc-models">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 220" role="img" aria-label="SDLC models">
+                  <rect x="0" y="0" width="360" height="220" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">SDLC Models</text>
+                  <!-- Waterfall -->
+                  <g>
+                    <rect x="20"  y="50" width="60" height="24" rx="3" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="50"  y="66" text-anchor="middle" class="svg-t">Req</text>
+                    <rect x="80"  y="50" width="60" height="24" rx="3" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="110" y="66" text-anchor="middle" class="svg-t">Design</text>
+                    <rect x="140" y="50" width="60" height="24" rx="3" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="170" y="66" text-anchor="middle" class="svg-t">Code</text>
+                    <rect x="200" y="50" width="60" height="24" rx="3" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="230" y="66" text-anchor="middle" class="svg-t">Test</text>
+                    <rect x="260" y="50" width="80" height="24" rx="3" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="300" y="66" text-anchor="middle" class="svg-t">Release</text>
+                    <text x="180" y="92" text-anchor="middle" class="svg-lbl">Waterfall — linear</text>
+                  </g>
+                  <!-- Agile loop -->
+                  <g>
+                    <circle cx="60"  cy="150" r="22" fill="var(--color-aged-paper)" stroke="var(--color-terracotta)"/><text x="60"  y="154" text-anchor="middle" class="svg-t">Plan</text>
+                    <circle cx="120" cy="150" r="22" fill="var(--color-aged-paper)" stroke="var(--color-terracotta)"/><text x="120" y="154" text-anchor="middle" class="svg-t">Build</text>
+                    <circle cx="180" cy="150" r="22" fill="var(--color-aged-paper)" stroke="var(--color-terracotta)"/><text x="180" y="154" text-anchor="middle" class="svg-t">Test</text>
+                    <circle cx="240" cy="150" r="22" fill="var(--color-aged-paper)" stroke="var(--color-terracotta)"/><text x="240" y="154" text-anchor="middle" class="svg-t">Review</text>
+                    <ellipse cx="150" cy="150" rx="100" ry="38" fill="none" stroke="var(--color-warm-taupe)" stroke-dasharray="3 3"/>
+                    <text x="180" y="210" text-anchor="middle" class="svg-lbl">Agile — iterative</text>
+                  </g>
+                </svg>
+              </div>
+              <h4>3. SDLC Models</h4>
+              <p>Waterfall flows once. Agile loops. Pick the one your team and your project can actually finish.</p>
+              <span class="info-cat">Lifecycle</span>
+            </article>
+
+            <!-- ===== 4. STLC Phases ===== -->
+            <article class="info-card" data-cat="life" id="info-stlc">
+              <div class="info-svg">
+                <svg viewBox="0 0 420 200" role="img" aria-label="STLC phases">
+                  <rect x="0" y="0" width="420" height="200" fill="var(--color-parchment)"/>
+                  <text x="210" y="24" text-anchor="middle" class="svg-h">STLC — 6 Phases</text>
+                  <g>
+                    <circle cx="40"  cy="110" r="26" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="40"  y="106" text-anchor="middle" class="svg-sh">1</text><text x="40"  y="118" text-anchor="middle" class="svg-sh">Req</text>
+                    <circle cx="105" cy="110" r="26" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="105" y="106" text-anchor="middle" class="svg-sh">2</text><text x="105" y="118" text-anchor="middle" class="svg-sh">Plan</text>
+                    <circle cx="170" cy="110" r="26" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="170" y="106" text-anchor="middle" class="svg-sh">3</text><text x="170" y="118" text-anchor="middle" class="svg-sh">Design</text>
+                    <circle cx="235" cy="110" r="26" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="235" y="106" text-anchor="middle" class="svg-sh">4</text><text x="235" y="118" text-anchor="middle" class="svg-sh">Env</text>
+                    <circle cx="300" cy="110" r="26" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="300" y="106" text-anchor="middle" class="svg-sh">5</text><text x="300" y="118" text-anchor="middle" class="svg-sh">Exec</text>
+                    <circle cx="380" cy="110" r="26" fill="var(--color-terracotta)" stroke="var(--color-terracotta)"/><text x="380" y="106" text-anchor="middle" fill="var(--color-parchment)" class="svg-sh">6</text><text x="380" y="118" text-anchor="middle" fill="var(--color-parchment)" class="svg-sh">Close</text>
+                  </g>
+                  <text x="210" y="170" text-anchor="middle" class="svg-lbl">Requirement → Planning → Design → Env → Execution → Closure</text>
+                </svg>
+              </div>
+              <h4>4. STLC — 6 Phases</h4>
+              <p>The Software Testing Life Cycle starts before code is written and ends after the release is closed.</p>
+              <span class="info-cat">Lifecycle</span>
+            </article>
+
+            <!-- ===== 5. Test Levels Pyramid ===== -->
+            <article class="info-card" data-cat="levels" id="info-test-pyramid">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 220" role="img" aria-label="Test pyramid">
+                  <rect x="0" y="0" width="360" height="220" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Test Pyramid</text>
+                  <polygon points="180,55 280,110 80,110"  fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/>
+                  <polygon points="80,110 280,110 250,150 110,150" fill="var(--terracotta-soft)" stroke="var(--color-terracotta)"/>
+                  <polygon points="110,150 250,150 230,190 130,190" fill="var(--color-terracotta)" stroke="var(--color-terracotta)"/>
+                  <text x="180" y="78"  text-anchor="middle" class="svg-sh" fill="var(--color-ink)">UI / E2E — slow, few</text>
+                  <text x="180" y="135" text-anchor="middle" class="svg-sh" fill="var(--color-ink)">Integration — medium</text>
+                  <text x="180" y="180" text-anchor="middle" class="svg-sh" fill="var(--color-parchment)">Unit — fast, many</text>
+                </svg>
+              </div>
+              <h4>5. The Test Pyramid</h4>
+              <p>Lots of fast unit tests, fewer integration tests, and very few slow end-to-end tests. Inverted pyramids are expensive.</p>
+              <span class="info-cat">Levels</span>
+            </article>
+
+            <!-- ===== 6. Test Levels detail ===== -->
+            <article class="info-card" data-cat="levels" id="info-test-levels">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 220" role="img" aria-label="Four test levels">
+                  <rect x="0" y="0" width="360" height="220" fill="var(--color-parchment)"/>
+                  <text x="180" y="24" text-anchor="middle" class="svg-h">4 Test Levels</text>
+                  <g>
+                    <rect x="30"  y="50" width="70" height="50" rx="8" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="65"  y="80" text-anchor="middle" class="svg-sh">Unit</text>
+                    <rect x="105" y="50" width="70" height="50" rx="8" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="140" y="80" text-anchor="middle" class="svg-sh">Integration</text>
+                    <rect x="180" y="50" width="70" height="50" rx="8" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="215" y="80" text-anchor="middle" class="svg-sh">System</text>
+                    <rect x="255" y="50" width="70" height="50" rx="8" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="290" y="80" text-anchor="middle" class="svg-sh">UAT</text>
+                  </g>
+                  <line x1="30" y1="130" x2="325" y2="130" stroke="var(--color-warm-taupe)" stroke-dasharray="4 3"/>
+                  <text x="180" y="155" text-anchor="middle" class="svg-lbl">developers ──────────► users</text>
+                  <text x="65"  y="180" text-anchor="middle" class="svg-t">smallest</text>
+                  <text x="290" y="180" text-anchor="middle" class="svg-t">biggest scope</text>
+                </svg>
+              </div>
+              <h4>6. Four Test Levels</h4>
+              <p>Unit, Integration, System, UAT — each level zooms out one notch, and each one catches a different class of bug.</p>
+              <span class="info-cat">Levels</span>
+            </article>
+
+            <!-- ===== 7. Test Types ===== -->
+            <article class="info-card" data-cat="found" id="info-test-types">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 220" role="img" aria-label="Functional vs non-functional">
+                  <rect x="0" y="0" width="360" height="220" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Test Types</text>
+                  <rect x="20" y="45" width="155" height="160" rx="10" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/>
+                  <text x="97" y="68" text-anchor="middle" class="svg-sh">Functional</text>
+                  <text x="97" y="92" text-anchor="middle" class="svg-t">• Unit</text>
+                  <text x="97" y="108" text-anchor="middle" class="svg-t">• Smoke</text>
+                  <text x="97" y="124" text-anchor="middle" class="svg-t">• Regression</text>
+                  <text x="97" y="140" text-anchor="middle" class="svg-t">• User Acceptance</text>
+                  <text x="97" y="156" text-anchor="middle" class="svg-t">• Integration</text>
+                  <text x="97" y="172" text-anchor="middle" class="svg-t">What it does</text>
+                  <rect x="185" y="45" width="155" height="160" rx="10" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/>
+                  <text x="262" y="68" text-anchor="middle" class="svg-sh">Non-Functional</text>
+                  <text x="262" y="92" text-anchor="middle" class="svg-t">• Performance</text>
+                  <text x="262" y="108" text-anchor="middle" class="svg-t">• Load</text>
+                  <text x="262" y="124" text-anchor="middle" class="svg-t">• Security</text>
+                  <text x="262" y="140" text-anchor="middle" class="svg-t">• Usability</text>
+                  <text x="262" y="156" text-anchor="middle" class="svg-t">• Compatibility</text>
+                  <text x="262" y="172" text-anchor="middle" class="svg-t">How well it does it</text>
+                </svg>
+              </div>
+              <h4>7. Functional vs Non-Functional</h4>
+              <p>Functional tests check <em>what</em> the software does. Non-functional tests check <em>how well</em> it does it.</p>
+              <span class="info-cat">Foundations</span>
+            </article>
+
+            <!-- ===== 8. Equivalence Partitioning ===== -->
+            <article class="info-card" data-cat="tech" id="info-ep">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="Equivalence partitioning">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Equivalence Partitioning</text>
+                  <rect x="20"  y="60" width="100" height="100" rx="6" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/>
+                  <text x="70" y="115" text-anchor="middle" class="svg-sh">Invalid</text>
+                  <text x="70" y="135" text-anchor="middle" class="svg-t">age &lt; 18</text>
+                  <rect x="130" y="60" width="100" height="100" rx="6" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/>
+                  <text x="180" y="115" text-anchor="middle" class="svg-sh">Valid</text>
+                  <text x="180" y="135" text-anchor="middle" class="svg-t">18 – 60</text>
+                  <rect x="240" y="60" width="100" height="100" rx="6" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/>
+                  <text x="290" y="115" text-anchor="middle" class="svg-sh">Invalid</text>
+                  <text x="290" y="135" text-anchor="middle" class="svg-t">age &gt; 60</text>
+                  <text x="180" y="182" text-anchor="middle" class="svg-lbl">One test per partition is enough</text>
+                </svg>
+              </div>
+              <h4>8. Equivalence Partitioning</h4>
+              <p>Group inputs that should behave the same. Test one value from each group — it represents the whole partition.</p>
+              <span class="info-cat">Techniques</span>
+            </article>
+
+            <!-- ===== 9. Boundary Value Analysis ===== -->
+            <article class="info-card" data-cat="tech" id="info-bva">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="Boundary value analysis">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Boundary Value Analysis</text>
+                  <line x1="40" y1="100" x2="320" y2="100" stroke="var(--color-ink)" stroke-width="2"/>
+                  <g>
+                    <rect x="60"  y="80" width="40" height="40" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/><text x="80"  y="105" text-anchor="middle" class="svg-t">17</text>
+                    <rect x="100" y="80" width="40" height="40" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="120" y="105" text-anchor="middle" class="svg-sh">18</text>
+                    <rect x="140" y="80" width="40" height="40" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="160" y="105" text-anchor="middle" class="svg-sh">19</text>
+                    <rect x="220" y="80" width="40" height="40" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="240" y="105" text-anchor="middle" class="svg-sh">60</text>
+                    <rect x="260" y="80" width="40" height="40" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="280" y="105" text-anchor="middle" class="svg-sh">61</text>
+                    <rect x="300" y="80" width="20" height="40" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/><text x="310" y="105" text-anchor="middle" class="svg-t">62</text>
+                  </g>
+                  <line x1="100" y1="70" x2="100" y2="135" stroke="var(--color-terracotta)" stroke-width="2" stroke-dasharray="3 2"/>
+                  <line x1="260" y1="70" x2="260" y2="135" stroke="var(--color-terracotta)" stroke-width="2" stroke-dasharray="3 2"/>
+                  <text x="100" y="60" text-anchor="middle" class="svg-lbl">↓ min</text>
+                  <text x="260" y="60" text-anchor="middle" class="svg-lbl">max ↓</text>
+                  <text x="180" y="170" text-anchor="middle" class="svg-lbl">Bugs love the edges. Test 17, 18, 19, 60, 61, 62.</text>
+                </svg>
+              </div>
+              <h4>9. Boundary Value Analysis</h4>
+              <p>Most defects hide at the edges of valid ranges. Test the value just below, on, and just above each boundary.</p>
+              <span class="info-cat">Techniques</span>
+            </article>
+
+            <!-- ===== 10. Decision Table ===== -->
+            <article class="info-card" data-cat="tech" id="info-decision-table">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="Decision table">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Decision Table</text>
+                  <g font-family="inherit" font-size="11">
+                    <rect x="40" y="50" width="280" height="130" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/>
+                    <line x1="40"  y1="80"  x2="320" y2="80"  stroke="var(--color-warm-taupe)"/>
+                    <line x1="40"  y1="110" x2="320" y2="110" stroke="var(--color-warm-taupe)"/>
+                    <line x1="40"  y1="140" x2="320" y2="140" stroke="var(--color-warm-taupe)"/>
+                    <line x1="160" y1="50"  x2="160" y2="180" stroke="var(--color-warm-taupe)"/>
+                    <line x1="220" y1="50"  x2="220" y2="180" stroke="var(--color-warm-taupe)"/>
+                    <line x1="280" y1="50"  x2="280" y2="180" stroke="var(--color-warm-taupe)"/>
+                    <text x="100"  y="70"  text-anchor="middle" class="svg-sh">Conditions</text>
+                    <text x="190"  y="70"  text-anchor="middle" class="svg-sh">R1</text>
+                    <text x="250"  y="70"  text-anchor="middle" class="svg-sh">R2</text>
+                    <text x="300"  y="70"  text-anchor="middle" class="svg-sh">R3</text>
+                    <text x="50"  y="100" class="svg-t">Logged in?</text>
+                    <text x="190" y="100" text-anchor="middle" class="svg-t">Y</text>
+                    <text x="250" y="100" text-anchor="middle" class="svg-t">Y</text>
+                    <text x="300" y="100" text-anchor="middle" class="svg-t">N</text>
+                    <text x="50"  y="130" class="svg-t">Admin?</text>
+                    <text x="190" y="130" text-anchor="middle" class="svg-t">Y</text>
+                    <text x="250" y="130" text-anchor="middle" class="svg-t">N</text>
+                    <text x="300" y="130" text-anchor="middle" class="svg-t">—</text>
+                    <text x="50"  y="165" class="svg-sh">Action</text>
+                    <text x="190" y="165" text-anchor="middle" class="svg-t" fill="var(--color-terracotta)">Edit</text>
+                    <text x="250" y="165" text-anchor="middle" class="svg-t">View</text>
+                    <text x="300" y="165" text-anchor="middle" class="svg-t">Login</text>
+                  </g>
+                </svg>
+              </div>
+              <h4>10. Decision Table Testing</h4>
+              <p>Map every combination of inputs to the action that should fire. Catches logic bugs your test cases miss.</p>
+              <span class="info-cat">Techniques</span>
+            </article>
+
+            <!-- ===== 11. Bug Lifecycle ===== -->
+            <article class="info-card" data-cat="bug" id="info-bug-life">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="Bug lifecycle">
+                  <defs>
+                    <marker id="bugArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-warm-taupe)"/>
+                    </marker>
+                  </defs>
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Bug Lifecycle</text>
+                  <g font-family="inherit" font-size="10">
+                    <rect x="20"  y="70" width="50" height="26" rx="13" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="45"  y="87" text-anchor="middle" class="svg-t">New</text>
+                    <rect x="80"  y="70" width="50" height="26" rx="13" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="105" y="87" text-anchor="middle" class="svg-t">Assigned</text>
+                    <rect x="140" y="70" width="50" height="26" rx="13" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="165" y="87" text-anchor="middle" class="svg-t">Open</text>
+                    <rect x="200" y="70" width="60" height="26" rx="13" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="230" y="87" text-anchor="middle" class="svg-t">Fixed</text>
+                    <rect x="270" y="70" width="70" height="26" rx="13" fill="var(--color-terracotta)" stroke="var(--color-terracotta)"/><text x="305" y="87" text-anchor="middle" fill="var(--color-parchment)" class="svg-t" font-weight="700">Verified</text>
+                    <line x1="70"  y1="83" x2="80"  y2="83" stroke="var(--color-ink)"/>
+                    <line x1="130" y1="83" x2="140" y2="83" stroke="var(--color-ink)"/>
+                    <line x1="190" y1="83" x2="200" y2="83" stroke="var(--color-ink)"/>
+                    <line x1="260" y1="83" x2="270" y2="83" stroke="var(--color-ink)"/>
+                    <!-- Reject loop: from Open back to New (arcs under the row) -->
+                    <path d="M 165 96 Q 165 150 100 150 Q 35 150 45 96" fill="none" stroke="var(--color-warm-taupe)" stroke-dasharray="3 3" marker-end="url(#bugArr)"/>
+                    <text x="100" y="142" text-anchor="middle" class="svg-t">reject / not-repro</text>
+                    <!-- Reopen loop: from Verified back to Open (arcs under the row, right side) -->
+                    <path d="M 305 96 Q 305 165 230 165 Q 200 165 190 96" fill="none" stroke="var(--color-warm-taupe)" stroke-dasharray="3 3" marker-end="url(#bugArr)"/>
+                    <text x="248" y="158" text-anchor="middle" class="svg-t">reopen</text>
+                  </g>
+                </svg>
+              </div>
+              <h4>11. Bug Lifecycle</h4>
+              <p>New → Assigned → Open → Fixed → Verified → Closed. Reopen and Rejected are the two side doors.</p>
+              <span class="info-cat">Bug life</span>
+            </article>
+
+            <!-- ===== 12. Severity vs Priority ===== -->
+            <article class="info-card" data-cat="bug" id="info-sev-pri">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="Severity vs priority matrix">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Severity × Priority</text>
+                  <line x1="50" y1="170" x2="310" y2="170" stroke="var(--color-ink)"/>
+                  <line x1="50" y1="50"  x2="50"  y2="170" stroke="var(--color-ink)"/>
+                  <text x="180" y="190" text-anchor="middle" class="svg-lbl">Priority →</text>
+                  <text x="38"  y="115" text-anchor="middle" class="svg-lbl" transform="rotate(-90 38 115)">Severity ↑</text>
+                  <rect x="60"  y="60"  width="115" height="50" fill="var(--color-terracotta)"/><text x="117" y="82" text-anchor="middle" fill="var(--color-parchment)" class="svg-sh">Fix NOW</text><text x="117" y="98" text-anchor="middle" fill="var(--color-parchment)" class="svg-t">server crash</text>
+                  <rect x="185" y="60"  width="115" height="50" fill="var(--terracotta-soft)"/><text x="242" y="82" text-anchor="middle" class="svg-sh">Plan ahead</text><text x="242" y="98" text-anchor="middle" class="svg-t">minor visual</text>
+                  <rect x="60"  y="115" width="115" height="50" fill="var(--terracotta-tint)"/><text x="117" y="137" text-anchor="middle" class="svg-sh">Schedule</text><text x="117" y="153" text-anchor="middle" class="svg-t">edge case</text>
+                  <rect x="185" y="115" width="115" height="50" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/><text x="242" y="137" text-anchor="middle" class="svg-sh">Backlog</text><text x="242" y="153" text-anchor="middle" class="svg-t">cosmetic</text>
+                </svg>
+              </div>
+              <h4>12. Severity × Priority</h4>
+              <p>Severity is impact. Priority is timing. A typo on the homepage is high priority, low severity. A crash nobody can hit is high severity, low priority.</p>
+              <span class="info-cat">Bug life</span>
+            </article>
+
+            <!-- ===== 13. V-Model ===== -->
+            <article class="info-card" data-cat="life" id="info-vmodel">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="V-Model">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">V-Model</text>
+                  <g font-family="inherit" font-size="10">
+                    <line x1="40" y1="50" x2="180" y2="170" stroke="var(--color-terracotta)" stroke-width="2"/>
+                    <line x1="320" y1="50" x2="180" y2="170" stroke="var(--color-terracotta)" stroke-width="2"/>
+                    <!-- left side -->
+                    <rect x="60"  y="60"  width="100" height="20" rx="4" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="110" y="74" text-anchor="middle" class="svg-t">Requirements</text>
+                    <rect x="100" y="90"  width="80"  height="20" rx="4" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="140" y="104" text-anchor="middle" class="svg-t">System Design</text>
+                    <rect x="130" y="120" width="60"  height="20" rx="4" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="160" y="134" text-anchor="middle" class="svg-t">Coding</text>
+                    <!-- right side -->
+                    <rect x="200" y="60"  width="100" height="20" rx="4" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/><text x="250" y="74" text-anchor="middle" class="svg-t">Acceptance</text>
+                    <rect x="180" y="90"  width="80"  height="20" rx="4" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/><text x="220" y="104" text-anchor="middle" class="svg-t">System Test</text>
+                    <rect x="190" y="120" width="60"  height="20" rx="4" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/><text x="220" y="134" text-anchor="middle" class="svg-t">Unit Test</text>
+                    <text x="180" y="190" text-anchor="middle" class="svg-lbl">dev  ←———————————  test</text>
+                  </g>
+                </svg>
+              </div>
+              <h4>13. V-Model</h4>
+              <p>Each development phase has a matching test phase. The deeper the design, the deeper the test.</p>
+              <span class="info-cat">Lifecycle</span>
+            </article>
+
+            <!-- ===== 14. Scrum Flow ===== -->
+            <article class="info-card" data-cat="agile" id="info-scrum">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="Scrum flow">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Scrum Sprint</text>
+                  <g font-family="inherit" font-size="11">
+                    <rect x="20"  y="60" width="60" height="40" rx="6" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="50"  y="78" text-anchor="middle" class="svg-sh">Product</text><text x="50"  y="92" text-anchor="middle" class="svg-t">Backlog</text>
+                    <rect x="100" y="60" width="60" height="40" rx="6" fill="var(--color-terracotta)" stroke="var(--color-terracotta)"/><text x="130" y="78" text-anchor="middle" fill="var(--color-parchment)" class="svg-sh">Sprint</text><text x="130" y="92" text-anchor="middle" fill="var(--color-parchment)" class="svg-t">Backlog</text>
+                    <rect x="180" y="60" width="60" height="40" rx="6" fill="var(--color-terracotta)" stroke="var(--color-terracotta)"/><text x="210" y="78" text-anchor="middle" fill="var(--color-parchment)" class="svg-sh">Time-box</text><text x="210" y="92" text-anchor="middle" fill="var(--color-parchment)" class="svg-t">2–4 wks</text>
+                    <rect x="260" y="60" width="80" height="40" rx="6" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="300" y="78" text-anchor="middle" class="svg-sh">Increment</text><text x="300" y="92" text-anchor="middle" class="svg-t">shippable</text>
+                    <line x1="80"  y1="80" x2="100" y2="80" stroke="var(--color-ink)"/>
+                    <line x1="160" y1="80" x2="180" y2="80" stroke="var(--color-ink)"/>
+                    <line x1="240" y1="80" x2="260" y2="80" stroke="var(--color-ink)"/>
+                    <!-- ceremonies row -->
+                    <g font-size="9">
+                      <rect x="100" y="120" width="55" height="22" rx="11" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/><text x="127" y="134" text-anchor="middle" class="svg-t">Plan</text>
+                      <rect x="160" y="120" width="55" height="22" rx="11" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/><text x="187" y="134" text-anchor="middle" class="svg-t">Daily</text>
+                      <rect x="220" y="120" width="55" height="22" rx="11" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/><text x="247" y="134" text-anchor="middle" class="svg-t">Review</text>
+                      <rect x="280" y="120" width="55" height="22" rx="11" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/><text x="307" y="134" text-anchor="middle" class="svg-t">Retro</text>
+                    </g>
+                    <text x="180" y="170" text-anchor="middle" class="svg-lbl">backlog → plan → build → review → retro</text>
+                  </g>
+                </svg>
+              </div>
+              <h4>14. Scrum Sprint Flow</h4>
+              <p>Pick work. Plan. Build for 2–4 weeks. Review the demo. Inspect how you worked. Repeat.</p>
+              <span class="info-cat">Agile</span>
+            </article>
+
+            <!-- ===== 15. Definition of Done ===== -->
+            <article class="info-card" data-cat="agile" id="info-dod">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="Definition of done">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Definition of Done</text>
+                  <g font-family="inherit" font-size="11">
+                    <rect x="40" y="50" width="280" height="120" rx="10" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/>
+                    <g font-size="11">
+                      <circle cx="60" cy="72" r="6" fill="var(--color-terracotta)"/><text x="60"  y="76" text-anchor="middle" fill="var(--color-parchment)" font-size="9" font-weight="700">✓</text><text x="78"  y="76" class="svg-t">Code reviewed</text>
+                      <circle cx="60" cy="94" r="6" fill="var(--color-terracotta)"/><text x="60"  y="98" text-anchor="middle" fill="var(--color-parchment)" font-size="9" font-weight="700">✓</text><text x="78"  y="98" class="svg-t">Unit tests pass</text>
+                      <circle cx="60" cy="116" r="6" fill="var(--color-terracotta)"/><text x="60" y="120" text-anchor="middle" fill="var(--color-parchment)" font-size="9" font-weight="700">✓</text><text x="78" y="120" class="svg-t">QA verified</text>
+                      <circle cx="200" cy="72" r="6" fill="var(--color-terracotta)"/><text x="200" y="76" text-anchor="middle" fill="var(--color-parchment)" font-size="9" font-weight="700">✓</text><text x="218" y="76" class="svg-t">Docs updated</text>
+                      <circle cx="200" cy="94" r="6" fill="var(--color-terracotta)"/><text x="200" y="98" text-anchor="middle" fill="var(--color-parchment)" font-size="9" font-weight="700">✓</text><text x="218" y="98" class="svg-t">Deployed to staging</text>
+                      <circle cx="200" cy="116" r="6" fill="var(--color-terracotta)"/><text x="200" y="120" text-anchor="middle" fill="var(--color-parchment)" font-size="9" font-weight="700">✓</text><text x="218" y="120" class="svg-t">Acceptance met</text>
+                    </g>
+                    <text x="180" y="155" text-anchor="middle" class="svg-lbl">Not done until every box is checked</text>
+                  </g>
+                </svg>
+              </div>
+              <h4>15. Definition of Done</h4>
+              <p>A shared checklist the whole team agrees means "this story is finished." If any box is unchecked, it's not done.</p>
+              <span class="info-cat">Agile</span>
+            </article>
+
+            <!-- ===== 16. Test Case Anatomy ===== -->
+            <article class="info-card" data-cat="tech" id="info-test-case">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="Test case anatomy">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Anatomy of a Test Case</text>
+                  <g font-family="inherit" font-size="10">
+                    <rect x="20" y="50" width="160" height="130" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/>
+                    <text x="100" y="68" text-anchor="middle" class="svg-sh">Test Case</text>
+                    <text x="30" y="86"  class="svg-t">ID: TC_LOGIN_01</text>
+                    <text x="30" y="102" class="svg-t">Title: valid login</text>
+                    <text x="30" y="118" class="svg-t">Pre: user exists</text>
+                    <text x="30" y="134" class="svg-t">Steps:</text>
+                    <text x="30" y="148" class="svg-t"> 1. open /login</text>
+                    <text x="30" y="162" class="svg-t"> 2. enter creds</text>
+                    <text x="30" y="176" class="svg-t"> 3. submit</text>
+                    <rect x="200" y="50" width="140" height="130" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/>
+                    <text x="270" y="68" text-anchor="middle" class="svg-sh">Expected Result</text>
+                    <text x="210" y="90"  class="svg-t">• redirect /home</text>
+                    <text x="210" y="106" class="svg-t">• session set</text>
+                    <text x="210" y="122" class="svg-t">• welcome banner</text>
+                    <text x="210" y="146" class="svg-sh">Post-condition</text>
+                    <text x="210" y="162" class="svg-t">user logged in</text>
+                    <text x="210" y="178" class="svg-t">logout works</text>
+                  </g>
+                </svg>
+              </div>
+              <h4>16. Test Case Anatomy</h4>
+              <p>ID, title, pre-conditions, steps, expected result, post-condition. If any field is missing, it isn't a real test case.</p>
+              <span class="info-cat">Techniques</span>
+            </article>
+
+            <!-- ===== 17. Test Plan structure ===== -->
+            <article class="info-card" data-cat="life" id="info-test-plan">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="Test plan structure">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Test Plan</text>
+                  <g font-family="inherit" font-size="10">
+                    <rect x="180" y="50" width="140" height="120" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/>
+                    <text x="250" y="68" text-anchor="middle" class="svg-sh">Test Plan</text>
+                    <text x="190" y="86"  class="svg-t">• scope</text>
+                    <text x="190" y="102" class="svg-t">• approach</text>
+                    <text x="190" y="118" class="svg-t">• schedule</text>
+                    <text x="190" y="134" class="svg-t">• resources</text>
+                    <text x="190" y="150" class="svg-t">• entry / exit</text>
+                    <text x="190" y="166" class="svg-t">• risks</text>
+                    <rect x="20" y="50" width="140" height="30" rx="4" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="90" y="68" text-anchor="middle" class="svg-t">Strategy</text>
+                    <rect x="20" y="85" width="140" height="30" rx="4" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="90" y="103" text-anchor="middle" class="svg-t">Cases</text>
+                    <rect x="20" y="120" width="140" height="30" rx="4" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="90" y="138" text-anchor="middle" class="svg-t">Defects</text>
+                    <line x1="160" y1="65"  x2="180" y2="80"  stroke="var(--color-warm-taupe)"/>
+                    <line x1="160" y1="100" x2="180" y2="105" stroke="var(--color-warm-taupe)"/>
+                    <line x1="160" y1="135" x2="180" y2="130" stroke="var(--color-warm-taupe)"/>
+                  </g>
+                </svg>
+              </div>
+              <h4>17. Test Plan Structure</h4>
+              <p>The test plan is the contract. It defines scope, schedule, resources, and the entry/exit gates each phase needs to cross.</p>
+              <span class="info-cat">Lifecycle</span>
+            </article>
+
+            <!-- ===== 18. API Request / Response ===== -->
+            <article class="info-card" data-cat="api" id="info-api">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="API request and response">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">API Request → Response</text>
+                  <g font-family="inherit" font-size="10">
+                    <rect x="20"  y="60" width="60" height="100" rx="6" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="50"  y="115" text-anchor="middle" class="svg-sh">Client</text>
+                    <rect x="280" y="60" width="60" height="100" rx="6" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="310" y="115" text-anchor="middle" class="svg-sh">Server</text>
+                    <!-- Request arrow: line + explicit triangle pointing right at end -->
+                    <line x1="100" y1="100" x2="262" y2="100" stroke="var(--color-ink)" stroke-width="1.5"/>
+                    <path d="M 262 95 L 274 100 L 262 105 Z" fill="var(--color-ink)"/>
+                    <text x="180" y="92"  text-anchor="middle" class="svg-sh">GET /users</text>
+                    <!-- Response arrow: line + explicit triangle pointing left at end -->
+                    <line x1="278" y1="125" x2="108" y2="125" stroke="var(--color-ink)" stroke-width="1.5"/>
+                    <path d="M 108 120 L 96 125 L 108 130 Z" fill="var(--color-ink)"/>
+                    <text x="180" y="142" text-anchor="middle" class="svg-sh">200 OK + JSON</text>
+                  </g>
+                </svg>
+              </div>
+              <h4>18. API Request &amp; Response</h4>
+              <p>Client sends an HTTP verb + path. Server replies with a status code and a body. The middle is what testers break.</p>
+              <span class="info-cat">API</span>
+            </article>
+
+            <!-- ===== 19. HTTP Status Codes ===== -->
+            <article class="info-card" data-cat="api" id="info-http">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="HTTP status code groups">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">HTTP Status Codes</text>
+                  <g font-family="inherit" font-size="10">
+                    <rect x="20"  y="50" width="70" height="60" rx="6" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/><text x="55"  y="80" text-anchor="middle" class="svg-sh">2xx</text><text x="55"  y="98" text-anchor="middle" class="svg-t">OK</text>
+                    <rect x="100" y="50" width="70" height="60" rx="6" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/><text x="135" y="80" text-anchor="middle" class="svg-sh">3xx</text><text x="135" y="98" text-anchor="middle" class="svg-t">Redirect</text>
+                    <rect x="180" y="50" width="70" height="60" rx="6" fill="var(--terracotta-soft)" stroke="var(--color-terracotta)"/><text x="215" y="80" text-anchor="middle" class="svg-sh">4xx</text><text x="215" y="98" text-anchor="middle" class="svg-t">Client err</text>
+                    <rect x="260" y="50" width="80" height="60" rx="6" fill="var(--color-terracotta)"/><text x="300" y="80" text-anchor="middle" fill="var(--color-parchment)" class="svg-sh">5xx</text><text x="300" y="98" text-anchor="middle" fill="var(--color-parchment)" class="svg-t">Server err</text>
+                    <text x="180" y="135" text-anchor="middle" class="svg-t">200  ·  201  ·  301  ·  400  ·  401  ·  403  ·  404  ·  500  ·  503</text>
+                    <text x="180" y="160" text-anchor="middle" class="svg-lbl">First digit tells you who to blame</text>
+                  </g>
+                </svg>
+              </div>
+              <h4>19. HTTP Status Codes</h4>
+              <p>2xx is the win. 3xx is a polite nudge. 4xx is the client's fault. 5xx is the server's fault. The first digit is the headline.</p>
+              <span class="info-cat">API</span>
+            </article>
+
+            <!-- ===== 20. Mobile vs Web ===== -->
+            <article class="info-card" data-cat="mobile" id="info-mobile-web">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="Mobile vs web testing">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Web vs Mobile</text>
+                  <g font-family="inherit" font-size="10">
+                    <rect x="20"  y="50" width="90" height="110" rx="6" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/>
+                    <rect x="50"  y="60" width="30" height="20" fill="var(--color-parchment)"/>
+                    <text x="65"  y="105" text-anchor="middle" class="svg-sh">Web</text>
+                    <text x="65"  y="123" text-anchor="middle" class="svg-t">few browsers</text>
+                    <text x="65"  y="138" text-anchor="middle" class="svg-t">bigger screen</text>
+                    <text x="65"  y="153" text-anchor="middle" class="svg-t">mouse + keyboard</text>
+                    <rect x="250" y="50" width="90" height="110" rx="10" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/>
+                    <rect x="285" y="60" width="20" height="36" rx="3" fill="var(--color-parchment)"/>
+                    <text x="295" y="105" text-anchor="middle" class="svg-sh">Mobile</text>
+                    <text x="295" y="123" text-anchor="middle" class="svg-t">1000+ devices</text>
+                    <text x="295" y="138" text-anchor="middle" class="svg-t">touch + sensors</text>
+                    <text x="295" y="153" text-anchor="middle" class="svg-t">smaller screen</text>
+                    <text x="180" y="80"  text-anchor="middle" class="svg-t">+ OS versions</text>
+                    <text x="180" y="98"  text-anchor="middle" class="svg-t">+ networks</text>
+                    <text x="180" y="116" text-anchor="middle" class="svg-t">+ battery</text>
+                    <text x="180" y="134" text-anchor="middle" class="svg-t">+ permissions</text>
+                    <text x="180" y="185" text-anchor="middle" class="svg-lbl">Mobile breaks in 10x more ways</text>
+                  </g>
+                </svg>
+              </div>
+              <h4>20. Web vs Mobile Testing</h4>
+              <p>Web has fewer browsers and bigger screens. Mobile has thousands of device + OS combos, shaky networks, and a battery that can die mid-test.</p>
+              <span class="info-cat">Mobile</span>
+            </article>
+
+            <!-- ===== 21. Performance Test Types ===== -->
+            <article class="info-card" data-cat="nonfunc" id="info-perf">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="Performance test types">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Performance Test Types</text>
+                  <g font-family="inherit" font-size="10">
+                    <!-- common baseline -->
+                    <line x1="30" y1="180" x2="340" y2="180" stroke="var(--color-ink)"/>
+                    <text x="185" y="196" text-anchor="middle" class="svg-t">time →</text>
+
+                    <!-- Load: ramp up, flat at expected peak -->
+                    <text x="50" y="48" class="svg-t" font-weight="700" fill="var(--color-terracotta)">Load</text>
+                    <text x="50" y="60" class="svg-t" font-size="9">expected traffic</text>
+                    <polyline points="30,170 70,150 100,130 150,130 200,130" fill="none" stroke="var(--color-terracotta)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+                    <line x1="200" y1="130" x2="200" y2="180" stroke="var(--color-warm-taupe)" stroke-dasharray="2 2"/>
+
+                    <!-- Stress: ramp up beyond peak, then crash -->
+                    <text x="155" y="92" class="svg-t" font-weight="700" fill="var(--color-ink)">Stress</text>
+                    <text x="155" y="104" class="svg-t" font-size="9">break it</text>
+                    <polyline points="30,170 130,150 175,90 195,160 220,140" fill="none" stroke="var(--color-warm-taupe)" stroke-width="2" stroke-dasharray="4 3" stroke-linejoin="round" stroke-linecap="round"/>
+                    <line x1="195" y1="160" x2="195" y2="180" stroke="var(--color-warm-taupe)" stroke-dasharray="2 2"/>
+
+                    <!-- Spike: short, sudden burst -->
+                    <text x="200" y="38" class="svg-t" font-weight="700" fill="var(--color-terracotta)">Spike</text>
+                    <text x="200" y="50" class="svg-t" font-size="9">sudden burst</text>
+                    <polyline points="30,170 260,170 280,60 300,170 340,170" fill="none" stroke="var(--color-terracotta)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+                    <line x1="280" y1="60" x2="280" y2="180" stroke="var(--color-warm-taupe)" stroke-dasharray="2 2"/>
+                  </g>
+                </svg>
+              </div>
+              <h4>21. Performance Test Types</h4>
+              <p>Load test simulates expected traffic. Stress test tries to break it. Spike test slams it in bursts. Each one answers a different question.</p>
+              <span class="info-cat">Non-functional</span>
+            </article>
+
+            <!-- ===== 22. Automation Test Pyramid ===== -->
+            <article class="info-card" data-cat="auto" id="info-auto">
+              <div class="info-svg">
+                <svg viewBox="0 0 360 200" role="img" aria-label="Automation pyramid">
+                  <rect x="0" y="0" width="360" height="200" fill="var(--color-parchment)"/>
+                  <text x="180" y="22" text-anchor="middle" class="svg-h">Automation Pyramid</text>
+                  <polygon points="180,55 280,110 80,110"  fill="var(--terracotta-soft)" stroke="var(--color-terracotta)"/>
+                  <polygon points="80,110 280,110 250,150 110,150" fill="var(--terracotta-tint)" stroke="var(--color-terracotta)"/>
+                  <polygon points="110,150 250,150 230,190 130,190" fill="var(--color-aged-paper)" stroke="var(--color-warm-taupe)"/>
+                  <text x="180" y="85"  text-anchor="middle" class="svg-sh" fill="var(--color-ink)">E2E — few</text>
+                  <text x="180" y="135" text-anchor="middle" class="svg-sh" fill="var(--color-ink)">API — many</text>
+                  <text x="180" y="180" text-anchor="middle" class="svg-sh" fill="var(--color-ink)">Unit — most</text>
+                </svg>
+              </div>
+              <h4>22. Automation Pyramid</h4>
+              <p>Automate the small, fast, reliable tests at the bottom. Save slow UI tests for the few flows only humans really need.</p>
+              <span class="info-cat">Automation</span>
+            </article>
+
+          </div>
+                </div>
+                <!-- /#gridView -->
+
+                <!-- ===== FOCUS VIEW (single infographic) ===== -->
+                <div id="focusView" aria-live="polite"></div>
+                <!-- /#focusView -->
+
+              </div>
+              <!-- /.docs-body -->
+            </div>
+            <!-- /.infographics-layout -->
+          </div>
+        </div>
+
+      <!-- ============ FOOTER ============ -->
+      <footer class="footer">
+        Built with <span class="heart">♥</span> by
+        <span class="author">Shravan</span>
+        <div class="rights">All rights reserved.</div>
+      </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+      // Infographics: sidebar focus mode.
+      // The sidebar lists all 22 infographics. Clicking one shows ONLY that
+      // diagram in a large "focus view"; clicking the "All infographics"
+      // entry at the top of the sidebar returns to the full grid.
+      (function () {
+        var rail = document.querySelector(".infographics-layout .toc-rail");
+        var grid = document.getElementById("gridView");
+        var focus = document.getElementById("focusView");
+        if (!rail || !grid || !focus) return;
+
+        var railLinks = Array.prototype.slice.call(
+          rail.querySelectorAll(".toc-rail-list a[data-toc]")
+        );
+
+        function clearActive() {
+          railLinks.forEach(function (a) { a.classList.remove("active"); });
+        }
+
+        function showAll() {
+          grid.classList.remove("is-hidden");
+          focus.classList.remove("is-active");
+          focus.innerHTML = "";
+          clearActive();
+          var all = rail.querySelector('.toc-rail-list a[data-toc="all"]');
+          if (all) all.classList.add("active");
+          if (history && history.replaceState) {
+            history.replaceState(null, "", window.location.pathname);
+          }
+        }
+
+        function showOne(id) {
+          var card = document.getElementById(id);
+          if (!card) { showAll(); return; }
+
+          // Hide the grid, show the focus view.
+          grid.classList.add("is-hidden");
+          focus.classList.add("is-active");
+
+          // Clone the card so the original stays in the grid.
+          var clone = card.cloneNode(true);
+          var wrap = document.createElement("div");
+          wrap.className = "info-focus-card";
+          while (clone.firstChild) wrap.appendChild(clone.firstChild);
+
+          // Build nav arrows (prev / back / next).
+          var items = Array.prototype.slice.call(
+            document.querySelectorAll("#infoGrid .info-card")
+          );
+          var idx = items.findIndex(function (c) { return c.id === id; });
+          var prev = items[idx - 1];
+          var next = items[idx + 1];
+          var nav = document.createElement("div");
+          nav.className = "info-focus-nav";
+          nav.innerHTML =
+            (prev
+              ? '<a class="btn secondary" href="#" data-prev="' + prev.id + '">← ' + escapeHtml(prev.querySelector("h4").textContent) + '</a>'
+              : '<span></span>') +
+            '<a class="btn" href="#" data-back>All infographics</a>' +
+            (next
+              ? '<a class="btn secondary" href="#" data-next="' + next.id + '">' + escapeHtml(next.querySelector("h4").textContent) + ' →</a>'
+              : '<span></span>');
+
+          focus.innerHTML = "";
+          focus.appendChild(wrap);
+          focus.appendChild(nav);
+
+          // Light up the matching rail link. Card IDs use hyphens
+          // (info-sdlc-models) but data-toc keys use underscores
+          // (i_sdlc_models) — convert so the selector matches.
+          clearActive();
+          var tocKey = "i_" + id.replace(/^info-/, "").replace(/-/g, "_");
+          var match = rail.querySelector('.toc-rail-list a[data-toc="' + tocKey + '"]');
+          if (match) match.classList.add("active");
+
+          // Scroll the focus card to the top of the viewport.
+          var y = focus.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+
+        function escapeHtml(s) {
+          return String(s).replace(/[&<>"']/g, function (ch) {
+            return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch];
+          });
+        }
+
+        // Sidebar clicks.
+        rail.addEventListener("click", function (e) {
+          var a = e.target.closest("a[data-toc]");
+          if (!a) return;
+          e.preventDefault();
+          var toc = a.getAttribute("data-toc");
+          if (toc === "all") { showAll(); return; }
+          // data-toc uses underscores (i_sdlc_models), card IDs use hyphens (info-sdlc-models)
+          var slug = toc.replace(/^i_/, "").replace(/_/g, "-");
+          showOne("info-" + slug);
+        });
+
+        // Focus-view nav buttons (delegated).
+        focus.addEventListener("click", function (e) {
+          if (e.target.closest("[data-back]")) {
+            e.preventDefault();
+            showAll();
+            return;
+          }
+          var p = e.target.closest("[data-prev]");
+          if (p) { e.preventDefault(); showOne(p.getAttribute("data-prev")); return; }
+          var n = e.target.closest("[data-next]");
+          if (n) { e.preventDefault(); showOne(n.getAttribute("data-next")); return; }
+        });
+
+      })();
+    </script>
+  </body>
+</html>
